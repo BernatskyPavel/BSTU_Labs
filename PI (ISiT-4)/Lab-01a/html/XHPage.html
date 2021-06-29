@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>XHPage</title>
+</head>
+<body>
+    <table>
+        <tbody>
+            <tr>
+                <td><label>Param X:</label></td>
+                <td><input id="x" type="text" inputmode="numeric" /></td>
+            </tr>
+            <tr>
+                <td><label>Param Y:</label></td>
+                <td><input id="y" type="text" inputmode="numeric" /></td>
+            </tr>
+            <tr>
+                <td><label>Result:</label></td>
+                <td><input id="result" type="text" inputmode="numeric" readonly /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button onclick="send()" style="margin-left:50%;margin-right:50%;">Send</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label id="status"></label>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        function send() {
+            document.getElementById("status").innerText = "";
+            document.getElementById("status").style = "visibility:hidden";
+            let req = new XMLHttpRequest();
+            req.open('POST', '');
+            req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            req.onreadystatechange = function () {
+                if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+                    document.getElementById("result").value = this.responseText;
+                    document.getElementById("status").innerText = "Success!";
+                    document.getElementById("status").style = "color:green;visibility:visible;";
+                } else {
+                    document.getElementById("status").innerText = "Request error!";
+                    document.getElementById("status").style = "color:red;visibility:visible;";
+
+                }
+            }
+            req.send('x=' + document.getElementById("x").value + '&y=' + document.getElementById("y").value);
+        }
+    </script>
+</body>
+</html>
