@@ -1,0 +1,2 @@
+ps -eF | grep "Lab-03-07" | grep -v grep
+cat /proc/<PID>/status

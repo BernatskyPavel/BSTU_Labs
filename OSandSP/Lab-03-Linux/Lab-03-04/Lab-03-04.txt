@@ -1,0 +1,2 @@
+ps all -q <PID>
+cat proc/<PID>/status

@@ -1,0 +1,2 @@
+ps -fC "Lab-03-05"
+cat /proc/<PID>/status && cat /proc/<PID>/status
