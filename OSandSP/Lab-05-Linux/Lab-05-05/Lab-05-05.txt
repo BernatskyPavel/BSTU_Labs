@@ -1,0 +1,2 @@
+sudo renice <nice> -p <PID>
+top -p <PID>

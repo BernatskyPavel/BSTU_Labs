@@ -1,0 +1,4 @@
+sudo cat /proc/<PID>/maps
+sudo pmap -X <PID>
+objdump -x <binaryfile>
+
