@@ -72,6 +72,12 @@ namespace Lab_03.Controllers
             }
             return RedirectToAction("Index");
         }
+        public ActionResult Error()
+        {
+            ViewData["Last-Method"] = HttpContext.Session["Last-Method"];
+            ViewData["Last-Url"] = HttpContext.Session["Last-Url"];
+            return View();
+        }
 
     }
 }
