@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="3.0" xmlns="https://jakarta.ee/xml/ns/jakartaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-jsptaglibrary_3_0.xsd">
+ <tlib-version>3.0</tlib-version>
+ <short-name>bpv</short-name>
+ <uri>./Lab05/bpvtags.tld</uri>
+ <tag>
+  <name>Dossier</name>
+  <tag-class>lab05.tags.Dossier</tag-class>
+  <body-content>scriptless</body-content>
+  <attribute>
+   <name>action</name>
+   <required>true</required>
+   <rtexprvalue>false</rtexprvalue>
+   <type>String</type>
+  </attribute>
+ </tag>
+ <tag>
+  <name>Surname</name>
+  <tag-class>lab05.tags.Surname</tag-class>
+  <body-content>empty</body-content>
+ </tag>
+ <tag>
+  <name>Lastname</name>
+  <tag-class>lab05.tags.Lastname</tag-class>
+  <body-content>empty</body-content>
+ </tag>
+ <tag>
+  <name>Sex</name>
+  <tag-class>lab05.tags.Sex</tag-class>
+  <body-content>empty</body-content>
+ </tag>
+ <tag>
+  <name>Submit</name>
+  <tag-class>lab05.tags.Submit</tag-class>
+  <body-content>empty</body-content>
+ </tag>
+</taglib>

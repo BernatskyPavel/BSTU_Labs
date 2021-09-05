@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>Index.xhtml</title>
+	<script src="../scripts/jquery-3.4.1.min.js"></script>
+</h:head> 
+<body>
+	<hr /> 
+	<h2>Sum</h2>
+		X: <input id="X-Value" type="text" name="X-Value"/><br />
+		Y: <input id="Y-Value" type="text" name="Y-Value"/><br />
+		<input id="sum-button" type="button" onclick="getSum(true)" value="Get Sum"/><br/>
+		Z: <label id="Z-Value"></label>
+	<br/>
+	<hr />
+	<h2>XML</h2>
+		N: <input id="N-Value-XML" type="text"/><br />
+		<input id="xml-button" type="button" onclick="getXml(true)" value="Get XML"/><br/>
+		Array: <label id="XML-Result"></label>
+		<br/>
+	<hr />
+	<h2>JSON</h2>
+		N: <input id="N-Value-JSON" type="text"/><br />
+		<input id="json-button" type="button" onclick="getJson(true)" value="Get JSON"/><br/>
+		Array: <label id="JSON-Result"></label>
+	<hr />
+	<h2>All async/sync</h2>
+	<input type="button" onclick="getAll(true)" value="ASYNC"/> - 
+	<input type="button" onclick="getAll(false)" value="SYNC"/><br/>
+	<script>	
+		function getSum(sync){
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", "./GoHeader", sync);
+			xhr.setRequestHeader("Value-X", $("#X-Value").val());
+			xhr.setRequestHeader("Value-Y", $("#Y-Value").val());
+			xhr.onreadystatechange = function() {
+				  if (this.readyState != 4) return;
+
+				  if (this.status != 200) {
+				    alert( 'Error: ' + (this.status ? (this.statusText+'\n'+$.parseHTML(this.response)[1].data) : 'Request not done!') );
+				    return;
+				  }
+
+				  $("#Z-Value").html(this.getResponseHeader("Value-Z"));
+				}
+			xhr.send();
+		}
+		function getXml(sync){
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", "./GoXML", sync);
+			xhr.setRequestHeader("XRand-N", $("#N-Value-XML").val());
+			xhr.onreadystatechange = function() {
+				  if (this.readyState != 4) return;
+
+				  if (this.status != 200) {
+				    alert( 'Error: ' + (this.status ? (this.statusText+'\n'+$.parseHTML(this.response)[1].data) : 'Request not done!') );
+				    return;
+				  }
+				  var response = "[";
+				  var childrens = this.responseXML.documentElement.childNodes;
+				  var i, l = childrens.length;
+				  for(i = 0; i &lt; (l - 1); i++){
+					var child = childrens[i];
+					if(child.nodeType == Node.ELEMENT_NODE){
+						response += child.textContent + ", ";
+					}
+				  }
+				  response += childrens[i].textContent + "]";
+				  $("#XML-Result").html(response);
+				}
+			xhr.send();
+		}
+		function getJson(sync){
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", "./GoJSON", sync);
+			xhr.setRequestHeader("XRand-N", $("#N-Value-JSON").val());
+			xhr.onreadystatechange = function() {
+				  if (this.readyState != 4) return;
+
+				  if (this.status != 200) {
+				    alert( 'Error: ' + (this.status ? (this.statusText+'\n'+$.parseHTML(this.response)[1].data) : 'Request not done!') );
+				    return;
+				  }
+				  var json = JSON.parse(this.responseText);
+				  $("#JSON-Result").html("["+json.rands.join(', ')+"]");
+				}
+			xhr.send();
+		}
+		function getAll(sync){
+			getSum(sync);
+			getXml(sync);
+			getJson(sync);
+		}
+	</script>
+</body> 
+</html>
