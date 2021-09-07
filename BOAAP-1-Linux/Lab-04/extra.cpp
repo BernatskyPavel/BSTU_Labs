@@ -49,15 +49,12 @@ public:
   }
 };
 
-enum ShapeType
+double
+scalar_multiple(int a[2], int b[2])
 {
-  IRREGULAR,
-  PARALLELOGRAM,
-  TRAPEZOID,
-  RECTANGLE,
-  SQUARE,
-  RHOMBUS,
-};
+  return fabs(static_cast<double>(a[0]) * static_cast<double>(b[0]) +
+              static_cast<double>(a[1]) * static_cast<double>(b[1]));
+}
 
 template<typename T>
 T
@@ -269,17 +266,166 @@ seventh_extra()
     std::hypot(vecs[2][0], vecs[2][1]),
     std::hypot(vecs[3][0], vecs[3][1]),
   };
+
+  bool collinearity[] = {
+    fabs(scalar_multiple(vecs[0], vecs[2]) - fabs(vecs_r[0] * vecs_r[2])) <
+      1e-14,
+    fabs(scalar_multiple(vecs[1], vecs[3]) - fabs(vecs_r[1] * vecs_r[3])) <
+      1e-14,
+  };
+
+  if (collinearity[0] && collinearity[1]) {
+    if (scalar_multiple(vecs[0], vecs[1]) == 0) {
+      if (vecs_r[0] == vecs_r[1]) {
+        if (vecs_r[0] != vecs_r[3]) {
+          std::wcout << L"Shape: RHOMBUS!\n";
+        } else {
+          std::wcout << L"Shape: SQUARE!\n";
+        }
+        return;
+      } else if (vecs_r[0] == vecs_r[2] && vecs_r[1] == vecs_r[3]) {
+        std::wcout << L"Shape: RECTANGLE!\n";
+        return;
+      }
+      std::wcout << L"Shape: ?!\n";
+    } else {
+      if (vecs_r[0] == vecs_r[1]) {
+        std::wcout << L"Shape: RHOMBUS!\n";
+      } else {
+        std::wcout << L"Shape: PARALLELOGRAM!\n";
+      }
+      return;
+    }
+  } else if (collinearity[0] || collinearity[1]) {
+    std::wcout << L"Shape: TRAPEZOID!\n";
+    return;
+  } else {
+    std::wcout << L"Shape: IRREGULAR!\n";
+    return;
+  }
 }
 
 void
 eighth_extra()
-{}
+{
+  std::wcout << L"Input v1:";
+  double v1 = input_value<double>();
+  std::wcout << L"Input p1:";
+  double p1 = input_value<double>();
+  std::wcout << L"Input v2:";
+  double v2 = input_value<double>();
+  std::wcout << L"Input s:";
+  double s = input_value<double>();
+  std::wcout << L"Input t(h):";
+  double t = input_value<double>();
+
+  if (s / v2 <= t) {
+    std::wcout << L"Enough time to walk all the way to train station!\n";
+    return;
+  }
+
+  if (s / v1 > t) {
+    std::wcout << L"Not enough time to drive all the way to train station even "
+                  L"on taxi!\n";
+    return;
+  }
+
+  double taxi_time = 0.0, walk_time = 0.0, delta = 1.0, walk_dist = 0.0,
+         buff = s;
+  while (t > taxi_time + walk_time) {
+    walk_dist += delta;
+    buff -= delta;
+    walk_time = walk_dist / v2;
+    taxi_time = buff / v1;
+  }
+
+  std::wcout << L"Cheapest variant will cost you: "
+             << ceilf64(buff + delta) * p1 << L" RUB\n";
+  return;
+}
 
 void
 ninth_extra()
-{}
+{
+  std::wcout << L"Input Rook column:";
+  wchar_t r_col = input_value<wchar_t>(InputRules::chess_col);
+  std::wcout << L"Input Rook row:";
+  int r_row = input_value<int>(InputRules::chess_row);
+  std::wcout << L"Input Bishop column:";
+  wchar_t b_col = input_value<wchar_t>(InputRules::chess_col);
+  std::wcout << L"Input Bishop row:";
+  int b_row = input_value<int>(InputRules::chess_row);
+  std::wcout << L"Input King column:";
+  wchar_t k_col = input_value<wchar_t>(InputRules::chess_col);
+  std::wcout << L"Input King row:";
+  int k_row = input_value<int>(InputRules::chess_row);
+
+  if ((r_col == k_col && r_row == k_row) ||
+      (b_col == k_col && b_row == k_row) ||
+      (r_col == b_col && r_row == b_row)) {
+    std::wcout << L"Invalid input: Overlapped figures!\n";
+    return;
+  }
+
+  bool is_danger_from_rook = false, is_danger_from_bishop = false;
+
+  is_danger_from_rook = (r_col == k_col) || (r_row == k_row);
+  is_danger_from_bishop =
+    (abs(static_cast<short>(b_col) - static_cast<short>(k_col)) ==
+     abs(b_row - k_row));
+  if (is_danger_from_bishop && is_danger_from_rook) {
+    std::wcout << L"Danger for king from both figures!\n";
+  } else if (is_danger_from_bishop) {
+    std::wcout << L"Danger for king from Bishop!\n";
+  } else if (is_danger_from_rook) {
+    std::wcout << L"Danger for king from Rook!\n";
+  } else {
+    std::wcout << L"No danger for king!\n";
+  }
+}
 
 void
 tenth_extra()
-{}
+{
+  int xs[4] = { 0, 0, 0, 0 };
+  int ys[4] = { 0, 0, 0, 0 };
+
+  for (size_t i = 0; i < 4; i++) {
+    std::wcout << L"Input x" << i + 1 << L":";
+    xs[i] = input_value<int>();
+    std::wcout << L"Input y" << i + 1 << L":";
+    ys[i] = input_value<int>();
+  }
+
+  if ((xs[0] == xs[2] && ys[0] == ys[2]) ||
+      (xs[1] == xs[2] && ys[1] == ys[2]) ||
+      (xs[0] == xs[3] && ys[0] == ys[3]) ||
+      (xs[1] == xs[3] && ys[1] == ys[3])) {
+    std::wcout << L"Two vectors are criss crossing each other!\n";
+    return;
+  }
+
+  int xa1_min = std::min(xs[0], xs[1]), xa1_max = std::max(xs[0], xs[1]),
+      xa2_min = std::min(xs[2], xs[3]), xa2_max = std::max(xs[2], xs[3]);
+
+  int xa_min = std::max(xa1_min, xa2_min), xa_max = std::min(xa1_max, xa2_max);
+
+  if (xa1_max < xa2_min) {
+    std::wcout << L"Two vectors aren't criss crossing each other!\n";
+    return;
+  }
+
+  double a1 = static_cast<double>(ys[0] - ys[1]) /
+              static_cast<double>(xs[0] - xs[1]),
+         a2 = static_cast<double>(ys[2] - ys[3]) /
+              static_cast<double>(xs[2] - xs[3]);
+  double b1 = ys[0] - a1 * xs[0], b2 = ys[2] - a2 * xs[2];
+
+  double xa = (b2 - b1) / (a1 - a2);
+  if (xa < xa_min || xa > xa_max) {
+    std::wcout << L"Two vectors aren't criss crossing each other!\n";
+  } else {
+    std::wcout << L"Two vectors are criss crossing each other!\n";
+  }
+}
 }
