@@ -18,7 +18,7 @@
 </head>
 <body>
     <form runat="server">
-        <asp:ScriptManager runat="server">
+        <asp:ScriptManager runat="server" EnablePageMethods="true" EnablePartialRendering="true" AjaxFrameworkMode="Enabled">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>
@@ -54,7 +54,7 @@
                         <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                         <li><a runat="server" href="~/LabViews/Lab-01">Lab-01</a></li>
-                        <li><a runat="server" href="~/Contact">Lab-02</a></li>
+                        <li><a runat="server" href="~/LabViews/Lab-02">Lab-02</a></li>
                         <li><a runat="server" href="~/Contact">Lab-03</a></li>
                     </ul>
                 </div>

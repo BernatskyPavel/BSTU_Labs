@@ -125,8 +125,10 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="App_Themes\Lab-01\Lab-01.skin" />
+    <Content Include="App_Themes\Lab-02\Lab-02.skin" />
     <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="LabViews\Lab-02.aspx" />
     <Content Include="LabViews\Lab-01.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -191,6 +193,13 @@
     </Compile>
     <Compile Include="Helpers\Response.cs" />
     <Compile Include="Helpers\Success.cs" />
+    <Compile Include="LabViews\Lab-02.aspx.cs">
+      <DependentUpon>Lab-02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LabViews\Lab-02.aspx.designer.cs">
+      <DependentUpon>Lab-02.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LabViews\Lab-01.aspx.cs">
       <DependentUpon>Lab-01.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
