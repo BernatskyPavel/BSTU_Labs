@@ -1,0 +1,4 @@
+LIBRARY
+EXPORTS
+	printFileInfo=?printFileInfo@Lab_09_DLL@@YAHPEA_W@Z
+	printFileText=?printFileText@Lab_09_DLL@@YAHPEA_W@Z
