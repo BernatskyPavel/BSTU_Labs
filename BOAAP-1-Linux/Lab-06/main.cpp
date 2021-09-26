@@ -1,5 +1,5 @@
 #include "extra.h"
-#include "lab_05.h"
+#include "lab_06.h"
 #include <cwchar>
 #include <iostream>
 #include <locale>
@@ -14,14 +14,14 @@ main()
   std::wcout.setf(std::ios::boolalpha);
 
   task variants[] = {
-    lab_05::first_variant,      lab_05::second_variant,
-    lab_05::third_variant,      lab_05::fourth_variant,
-    lab_05::fifth_variant,      lab_05::sixth_variant,
-    lab_05::seventh_variant,    lab_05::eighth_variant,
-    lab_05::ninth_variant,      lab_05::tenth_variant,
-    lab_05::eleventh_variant,   lab_05::twelfth_variant,
-    lab_05::thirteenth_variant, lab_05::fourteenth_variant,
-    lab_05::fifteenth_variant,  lab_05::sixteenth_variant,
+    lab_06::first_variant,      lab_06::second_variant,
+    lab_06::third_variant,      lab_06::fourth_variant,
+    lab_06::fifth_variant,      lab_06::sixth_variant,
+    lab_06::seventh_variant,    lab_06::eighth_variant,
+    lab_06::ninth_variant,      lab_06::tenth_variant,
+    lab_06::eleventh_variant,   lab_06::twelfth_variant,
+    lab_06::thirteenth_variant, lab_06::fourteenth_variant,
+    lab_06::fifteenth_variant,  lab_06::sixteenth_variant,
   };
 
   task extra[] = {
