@@ -1,19 +1,14 @@
-#include "extra.h"
-#include <algorithm>
+#include "extra.hpp"
 #include <chrono>
-#include <cmath>
-#include <functional>
 #include <iomanip>
 #include <iostream>
 #include <map>
-#include <memory.h>
-#include <set>
+#include <math.h>
 #include <string>
 #include <vector>
-#include <wchar.h>
 
 namespace extra {
-
+#pragma region Helpers
 template<typename T>
 T
 input_value()
@@ -46,7 +41,7 @@ sum_of_digits(int number)
   }
   return result;
 }
-
+#pragma endregion Helpers
 #pragma region First_Extra
 bool
 is_prime(unsigned int n)
@@ -277,16 +272,16 @@ seventh_extra()
     std::tm const* time_out = std::localtime(&time_temp);
 
     switch (time_out->tm_wday) {
-      case 2:
+      case 2: {
         std::wcout << L"'Black' Tuesday: ";
         print_mdy(time_out);
         std::wcout << L"\n";
-        break;
-      case 5:
+      } break;
+      case 5: {
         std::wcout << L"'Black' Friday: ";
         print_mdy(time_out);
         std::wcout << L"\n";
-        break;
+      } break;
       default:
         break;
     }

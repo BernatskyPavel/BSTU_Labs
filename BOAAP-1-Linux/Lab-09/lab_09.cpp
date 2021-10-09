@@ -4,8 +4,10 @@
 #include <vector>
 #include <wchar.h>
 
-namespace lab_09 {
+using namespace lab_09::array;
 
+namespace lab_09 {
+#pragma region Helpers
 template<typename T>
 T
 input_value()
@@ -25,9 +27,8 @@ input_value()
   }
   return temp;
 }
-
+#pragma endregion Helpers
 #pragma region First_Variant
-
 void
 first_variant()
 {
@@ -54,10 +55,8 @@ first_variant()
   array.print(true);
   return;
 }
-
 #pragma endregion First_Variant
 #pragma region Second_Variant
-
 void
 second_variant()
 {
@@ -82,10 +81,8 @@ second_variant()
   array_m.print(true);
   return;
 }
-
 #pragma endregion Second_Variant
 #pragma region Third_Variant
-
 void
 third_variant()
 {
@@ -110,10 +107,8 @@ third_variant()
   array.print(true);
   return;
 }
-
 #pragma endregion Third_Variant
 #pragma region Fourth_Variant
-
 void
 fourth_variant()
 {
@@ -145,10 +140,8 @@ fourth_variant()
   array.print(true);
   return;
 }
-
 #pragma endregion Fourth_Variant
 #pragma region Fifth_Variant
-
 void
 fifth_variant()
 {
@@ -174,10 +167,8 @@ fifth_variant()
   array.print(true);
   return;
 }
-
 #pragma endregion Fifth_Variant
 #pragma region Sixth_Variant
-
 void
 sixth_variant()
 {
@@ -195,10 +186,8 @@ sixth_variant()
   array.print(true);
   return;
 }
-
 #pragma endregion Sixth_Variant
 #pragma region Seventh_Variant
-
 void
 seventh_variant()
 {
@@ -221,10 +210,8 @@ seventh_variant()
   array.print(true);
   return;
 }
-
 #pragma endregion Seventh_Variant
 #pragma region Eighth_Variant
-
 void
 eighth_variant()
 {
@@ -247,10 +234,8 @@ eighth_variant()
   array.print(true);
   return;
 }
-
 #pragma endregion Eighth_Variant
 #pragma region Ninth_Variant
-
 void
 ninth_variant()
 {
@@ -276,10 +261,8 @@ ninth_variant()
              << L"\n";
   return;
 }
-
 #pragma endregion Ninth_Variant
 #pragma region Tenth_Variant
-
 void
 tenth_variant()
 {
@@ -311,10 +294,8 @@ tenth_variant()
 
   return;
 }
-
 #pragma endregion Tenth_Variant
 #pragma region Eleventh_Variant
-
 void
 eleventh_variant()
 {
@@ -343,10 +324,8 @@ eleventh_variant()
   array.print(true);
   return;
 }
-
 #pragma endregion Eleventh_Variant
 #pragma region Twelfth_Variant
-
 void
 twelfth_variant()
 {
@@ -369,10 +348,8 @@ twelfth_variant()
   array.print(true);
   return;
 }
-
 #pragma endregion Twelfth_Variant
 #pragma region Thirteenth_Variant
-
 void
 thirteenth_variant()
 {
@@ -396,10 +373,8 @@ thirteenth_variant()
   array.print(true);
   return;
 }
-
 #pragma endregion Thirteenth_Variant
 #pragma region Fourteenth_Variant
-
 void
 fourteenth_variant()
 {
@@ -423,10 +398,8 @@ fourteenth_variant()
 
   return;
 }
-
 #pragma endregion Fourteenth_Variant
 #pragma region Fifteenth_Variant
-
 void
 fifteenth_variant()
 {
@@ -453,10 +426,8 @@ fifteenth_variant()
   array.print(true);
   return;
 }
-
 #pragma endregion Fifteenth_Variant
 #pragma region Sixteenth_Variant
-
 void
 sixteenth_variant()
 {
@@ -484,6 +455,5 @@ sixteenth_variant()
   }
   return;
 }
-
 #pragma endregion Sixteenth_Variant
 }

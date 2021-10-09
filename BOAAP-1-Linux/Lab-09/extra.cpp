@@ -4,8 +4,10 @@
 #include <iostream>
 #include <wchar.h>
 
-namespace extra {
+using namespace lab_09::array;
 
+namespace extra {
+#pragma region Helpers
 template<typename T>
 T
 input_value()
@@ -25,9 +27,8 @@ input_value()
   }
   return temp;
 }
-
+#pragma endregion Helpers
 #pragma region First_Extra
-
 void
 first_extra()
 {
@@ -61,10 +62,8 @@ first_extra()
 
   return;
 }
-
 #pragma endregion First_Extra
 #pragma region Second_Extra
-
 void
 second_extra()
 {
@@ -91,10 +90,8 @@ second_extra()
   array.print(true);
   return;
 }
-
 #pragma endregion Second_Extra
 #pragma region Third_Extra
-
 void
 third_extra()
 {
@@ -118,7 +115,6 @@ third_extra()
 
 #pragma endregion Third_Extra
 #pragma region Fourth_Extra
-
 void
 fourth_extra()
 {
@@ -156,10 +152,8 @@ fourth_extra()
 
   return;
 }
-
 #pragma endregion Fourth_Extra
 #pragma region Fifth_Extra
-
 void
 fifth_extra()
 {
@@ -192,10 +186,8 @@ fifth_extra()
 
   return;
 }
-
 #pragma endregion Fifth_Extra
 #pragma region Sixth_Extra
-
 void
 sixth_extra()
 {
@@ -226,10 +218,8 @@ sixth_extra()
 
   return;
 }
-
 #pragma endregion Sixth_Extra
 #pragma region Seventh_Extra
-
 void
 seventh_extra()
 {
@@ -258,10 +248,8 @@ seventh_extra()
   array_m.print(true);
   return;
 }
-
 #pragma endregion Seventh_Extra
 #pragma region Eighth_Extra
-
 void
 eighth_extra()
 {
@@ -293,6 +281,5 @@ eighth_extra()
 
   return;
 }
-
 #pragma endregion Eighth_Extra
 }

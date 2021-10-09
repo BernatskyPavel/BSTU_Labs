@@ -1,4 +1,4 @@
-#include "extra.h"
+#include "extra.hpp"
 #include <algorithm>
 #include <cmath>
 #include <functional>
@@ -8,7 +8,7 @@
 #include <wchar.h>
 
 namespace extra {
-
+#pragma region Helpers
 struct InputRules
 {
 public:
@@ -78,7 +78,8 @@ input_value(bool func(T) = InputRules::empty)
   }
   return temp;
 }
-
+#pragma endregion Helpers
+#pragma region First_Extra
 void
 first_extra()
 {
@@ -103,7 +104,8 @@ first_extra()
 
   return;
 }
-
+#pragma endregion First_Extra
+#pragma region Second_Extra
 void
 second_extra()
 {
@@ -120,7 +122,8 @@ second_extra()
     std::wcout << L"Figure at " << m << n << " is safe!\n";
   }
 }
-
+#pragma endregion Second_Extra
+#pragma region Third_Extra
 void
 third_extra()
 {
@@ -141,7 +144,8 @@ third_extra()
                << L"1 -> " << m << n << std::endl;
   }
 }
-
+#pragma endregion Third_Extra
+#pragma region Fourth_Extra
 void
 fourth_extra()
 {
@@ -189,7 +193,8 @@ fourth_extra()
     }
   }
 }
-
+#pragma endregion Fourth_Extra
+#pragma region Fifth_Extra
 void
 fifth_extra()
 {
@@ -207,7 +212,8 @@ fifth_extra()
     std::wcout << L"Sphere doesn't fit!\n";
   }
 }
-
+#pragma endregion Fifth_Extra
+#pragma region Sixth_Extra
 void
 sixth_extra()
 {
@@ -239,7 +245,8 @@ sixth_extra()
     std::wcout << L"Package doesn't fit!\n";
   }
 }
-
+#pragma endregion Sixth_Extra
+#pragma region Seventh_Extra
 void
 seventh_extra()
 {
@@ -304,7 +311,8 @@ seventh_extra()
     return;
   }
 }
-
+#pragma endregion Seventh_Extra
+#pragma region Eighth_Extra
 void
 eighth_extra()
 {
@@ -343,7 +351,8 @@ eighth_extra()
              << ceilf64(buff + delta) * p1 << L" RUB\n";
   return;
 }
-
+#pragma endregion Eighth_Extra
+#pragma region Ninth_Extra
 void
 ninth_extra()
 {
@@ -383,7 +392,8 @@ ninth_extra()
     std::wcout << L"No danger for king!\n";
   }
 }
-
+#pragma endregion Ninth_Extra
+#pragma region Tenth_Extra
 void
 tenth_extra()
 {
@@ -428,4 +438,5 @@ tenth_extra()
     std::wcout << L"Two vectors are criss crossing each other!\n";
   }
 }
+#pragma endregion Tenth_Extra
 }

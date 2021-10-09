@@ -1,19 +1,8 @@
-#include "extra.h"
-#include <algorithm>
-#include <chrono>
-#include <cmath>
-#include <functional>
-#include <iomanip>
+#include "extra.hpp"
 #include <iostream>
-#include <map>
-#include <memory.h>
-#include <set>
-#include <string>
-#include <vector>
-#include <wchar.h>
 
 namespace extra {
-
+#pragma region Helpers
 template<typename T>
 T
 input_value()
@@ -45,9 +34,8 @@ input_array(size_t len)
   }
   return array;
 }
-
+#pragma endregion Helpers
 #pragma region First_Extra
-
 void
 first_extra()
 {
@@ -66,10 +54,8 @@ first_extra()
   delete[] lp_array;
   return;
 }
-
 #pragma endregion First_Extra
 #pragma region Second_Extra
-
 void
 second_extra()
 {
@@ -94,10 +80,8 @@ second_extra()
   delete[] lp_array;
   return;
 }
-
 #pragma endregion Second_Extra
 #pragma region Third_Extra
-
 void
 third_extra()
 {
@@ -122,10 +106,8 @@ third_extra()
   delete[] lp_array;
   return;
 }
-
 #pragma endregion Third_Extra
 #pragma region Fourth_Extra
-
 enum SIGN
 {
   POSITIVE,
@@ -172,10 +154,8 @@ fourth_extra()
   delete[] lp_array;
   return;
 }
-
 #pragma endregion Fourth_Extra
 #pragma region Fifth_Extra
-
 void
 fifth_extra()
 {
@@ -211,10 +191,8 @@ fifth_extra()
   delete[] lp_array;
   return;
 }
-
 #pragma endregion Fifth_Extra
 #pragma region Sixth_Extra
-
 void
 sixth_extra()
 {
@@ -236,10 +214,8 @@ sixth_extra()
   delete[] lp_array;
   return;
 }
-
 #pragma endregion Sixth_Extra
 #pragma region Seventh_Extra
-
 void
 seventh_extra()
 {
@@ -262,10 +238,8 @@ seventh_extra()
   delete[] lp_array;
   return;
 }
-
 #pragma endregion Seventh_Extra
 #pragma region Eighth_Extra
-
 void
 eighth_extra()
 {
@@ -288,6 +262,5 @@ eighth_extra()
   delete[] lp_array;
   return;
 }
-
 #pragma endregion Eighth_Extra
 }

@@ -1,7 +1,6 @@
 #pragma once
 
-namespace lab_05 {
-
+namespace lab_06 {
 void
 first_variant();
 void
@@ -34,5 +33,4 @@ void
 fifteenth_variant();
 void
 sixteenth_variant();
-
 }

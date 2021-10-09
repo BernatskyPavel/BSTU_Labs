@@ -1,6 +1,15 @@
 #pragma once
 
-namespace lab_07 {
+namespace lab_03 {
+
+#define SPACE L' '
+
+enum Position
+{
+  RIGHT,
+  CENTER,
+  LEFT
+};
 
 void
 first_variant();

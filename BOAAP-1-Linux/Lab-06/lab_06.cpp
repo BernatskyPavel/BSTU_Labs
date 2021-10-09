@@ -1,12 +1,12 @@
-#include "lab_06.h"
-#include <cmath>
+#include "lab_06.hpp"
 #include <iostream>
+#include <math.h>
 #include <string>
 #include <vector>
 #include <wchar.h>
 
 namespace lab_06 {
-
+#pragma region Helpers
 template<typename T>
 T
 input_value()
@@ -50,9 +50,8 @@ gcd(int a, int b)
   }
   return abs(b);
 }
-
+#pragma endregion Helpers
 #pragma region First_Variant
-
 void
 first_variant()
 {
@@ -76,10 +75,8 @@ first_variant()
     std::wcout << L"\n";
   }
 }
-
 #pragma endregion First_Variant
 #pragma region Second_Variant
-
 void
 second_variant()
 {
@@ -103,10 +100,8 @@ second_variant()
   std::wcout << L"Sum of numbers dividable by 3 and lower than 200 is " << sum
              << L"\n";
 }
-
 #pragma endregion Second_Variant
 #pragma region Third_Variant
-
 void
 third_variant()
 {
@@ -133,10 +128,8 @@ third_variant()
   std::wcout << L"Number of numbers with sum of digits equal to " << n
              << L" is " << count << L"\n";
 }
-
 #pragma endregion Third_Variant
 #pragma region Fourth_Variant
-
 void
 fourth_variant()
 {
@@ -158,10 +151,8 @@ fourth_variant()
   std::wcout << L"Greatest common diviser of a = " << gcd_a << L" and b = "
              << gcd_b << L" is " << gcd(gcd_a, gcd_b) << L"\n";
 }
-
 #pragma endregion Fourth_Variant
 #pragma region Fifth_Variant
-
 void
 fifth_variant()
 {
@@ -202,10 +193,8 @@ fifth_variant()
   }
   std::wcout << L"\n";
 }
-
 #pragma endregion Fifth_Variant
 #pragma region Sixth_Variant
-
 void
 sixth_variant()
 {
@@ -227,10 +216,8 @@ sixth_variant()
     std::wcout << L"\n";
   }
 }
-
 #pragma endregion Sixth_Variant
 #pragma region Seventh_Variant
-
 void
 seventh_variant()
 {
@@ -257,10 +244,8 @@ seventh_variant()
   }
   std::wcout << L"\n";
 }
-
 #pragma endregion Seventh_Variant
 #pragma region Eighth_Variant
-
 void
 eighth_variant()
 {
@@ -283,10 +268,8 @@ eighth_variant()
   }
   std::wcout << L"\n";
 }
-
 #pragma endregion Eighth_Variant
 #pragma region Ninth_Variant
-
 void
 ninth_variant()
 {
@@ -311,10 +294,8 @@ ninth_variant()
     std::wcout << L"\n";
   }
 }
-
 #pragma endregion Ninth_Variant
 #pragma region Tenth_Variant
-
 void
 tenth_variant()
 {
@@ -334,10 +315,8 @@ tenth_variant()
   }
   std::wcout << sum << L"\n";
 }
-
 #pragma endregion Tenth_Variant
 #pragma region Eleventh_Variant
-
 void
 eleventh_variant()
 {
@@ -363,10 +342,8 @@ eleventh_variant()
                 L"of which is equal to "
              << f << L" is " << counter << L"\n";
 }
-
 #pragma endregion Eleventh_Variant
 #pragma region Twelfth_Variant
-
 void
 twelfth_variant()
 {
@@ -389,10 +366,8 @@ twelfth_variant()
              << gcd_y << L" and z = " << gcd_z << L" is "
              << gcd(gcd(gcd_x, gcd_y), gcd_z) << L"\n";
 }
-
 #pragma endregion Twelfth_Variant
 #pragma region Thirteenth_Variant
-
 void
 thirteenth_variant()
 {
@@ -426,10 +401,8 @@ thirteenth_variant()
   }
   std::wcout << L"\n";
 }
-
 #pragma endregion Thirteenth_Variant
 #pragma region Fourteenth_Variant
-
 void
 fourteenth_variant()
 {
@@ -459,10 +432,8 @@ fourteenth_variant()
     std::wcout << L"\n";
   }
 }
-
 #pragma endregion Fourteenth_Variant
 #pragma region Fifteenth_Variant
-
 void
 fifteenth_variant()
 {
@@ -488,10 +459,8 @@ fifteenth_variant()
   }
   std::wcout << L"\n";
 }
-
 #pragma endregion Fifteenth_Variant
 #pragma region Sixteenth_Variant
-
 void
 sixteenth_variant()
 {
@@ -526,6 +495,5 @@ sixteenth_variant()
     std::wcout << L"No negatives in the sequence!\n";
   }
 }
-
 #pragma endregion Sixteenth_Variant
 }

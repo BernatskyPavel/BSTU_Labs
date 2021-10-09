@@ -1,7 +1,9 @@
 #pragma once
+#include <stddef.h>
 
-namespace lab_06 {
-
+namespace lab_08 {
+void
+general_call(size_t index);
 void
 first_variant();
 void
@@ -34,5 +36,4 @@ void
 fifteenth_variant();
 void
 sixteenth_variant();
-
 }

@@ -1,11 +1,11 @@
-#include "lab_04.h"
+#include "lab_04.hpp"
 #include <cmath>
 #include <iostream>
 #include <string>
 #include <wchar.h>
 
 namespace lab_04 {
-
+#pragma region Helpers
 double
 input_number()
 {
@@ -40,7 +40,8 @@ partial_cmp(int a, int b)
 
   return result;
 }
-
+#pragma endregion Helpers
+#pragma region First_Variant
 void
 first_variant()
 {
@@ -65,7 +66,8 @@ first_variant()
   std::wcout << L"m = " << m << L", n = " << n << L", p = " << p
              << L", negatives = " << i << L"\n";
 }
-
+#pragma endregion First_Variant
+#pragma region Second_Variant
 void
 second_variant()
 {
@@ -84,7 +86,8 @@ second_variant()
   std::wcout << L"a = " << a << L", b = " << b << L", c = " << c
              << L", is any paired? = " << is_paired << L"\n";
 }
-
+#pragma endregion Second_Variant
+#pragma region Third_Variant
 void
 third_variant()
 {
@@ -105,7 +108,8 @@ third_variant()
   std::wcout << L"a = " << a << L", b = " << b << L", c = " << c << L", mean = "
              << mean << L"\n";
 }
-
+#pragma endregion Third_Variant
+#pragma region Fourth_Variant
 void
 fourth_variant()
 {
@@ -131,7 +135,8 @@ fourth_variant()
       break;
   }
 }
-
+#pragma endregion Fourth_Variant
+#pragma region Fifth_Variant
 void
 fifth_variant()
 {
@@ -159,7 +164,8 @@ fifth_variant()
   std::wcout << L"a = " << a << L", b = " << b << L", c = " << c << L", d = "
              << d << L", is any odds? = " << is_odd << L"\n";
 }
-
+#pragma endregion Fifth_Variant
+#pragma region Sixth_Variant
 void
 sixth_variant()
 {
@@ -176,7 +182,8 @@ sixth_variant()
 
   std::wcout << L"n = " << n << L", is any 0's or 9's? = " << is_ok << L"\n";
 }
-
+#pragma endregion Sixth_Variant
+#pragma region Seventh_Variant
 void
 seventh_variant()
 {
@@ -195,7 +202,8 @@ seventh_variant()
 
   std::wcout << L"year = " << year << L", is year leap? = " << is_leap << L"\n";
 }
-
+#pragma endregion Seventh_Variant
+#pragma region Eighth_Variant
 void
 eighth_variant()
 {
@@ -216,7 +224,8 @@ eighth_variant()
 
   std::wcout << L"n = " << n << L", is all digits unique? = " << is_ok << L"\n";
 }
-
+#pragma endregion Eighth_Variant
+#pragma region Ninth_Variant
 void
 ninth_variant()
 {
@@ -237,7 +246,8 @@ ninth_variant()
 
   std::wcout << L"\nМы нашли " << k << L" гриб" << end << L" в лесу!\n";
 }
-
+#pragma endregion Ninth_Variant
+#pragma region Tenth_Variant
 void
 tenth_variant()
 {
@@ -257,7 +267,8 @@ tenth_variant()
   std::wcout << L"n = " << n << L", is dividable on 3? = " << (sum % 3 == 0)
              << L"\n";
 }
-
+#pragma endregion Tenth_Variant
+#pragma region Eleventh_Variant
 void
 eleventh_variant()
 {
@@ -283,7 +294,8 @@ eleventh_variant()
   std::wcout << L"a = " << a << L", b = " << b << L", c = " << c << L", d = "
              << d << L"\n";
 }
-
+#pragma endregion Eleventh_Variant
+#pragma region Twelfth_Variant
 void
 twelfth_variant()
 {
@@ -310,7 +322,8 @@ twelfth_variant()
       break;
   }
 }
-
+#pragma endregion Twelfth_Variant
+#pragma region Thirteenth_Variant
 void
 thirteenth_variant()
 {
@@ -329,7 +342,8 @@ thirteenth_variant()
              << static_cast<double>(a) / static_cast<double>(b)
              << L", is proper fraction? = " << is_proper << L"\n";
 }
-
+#pragma endregion Thirteenth_Variant
+#pragma region Fourteenth_Variant
 void
 fourteenth_variant()
 {
@@ -348,7 +362,8 @@ fourteenth_variant()
       break;
   }
 }
-
+#pragma endregion Fourteenth_Variant
+#pragma region Fifteenth_Variant
 void
 fifteenth_variant()
 {
@@ -376,7 +391,8 @@ fifteenth_variant()
   std::wcout << L"a = " << a << L", b = " << b << L", c = " << c << L", d = "
              << d << L", is any evens? = " << is_even << L"\n";
 }
-
+#pragma endregion Fifteenth_Variant
+#pragma region Sixteenth_Variant
 void
 sixteenth_variant()
 {
@@ -395,7 +411,8 @@ sixteenth_variant()
       break;
   }
 }
-
+#pragma endregion Sixteenth_Variant
+#pragma region Dialog
 void
 dialog()
 {
@@ -448,5 +465,5 @@ restart:
 exit:
   return;
 }
-
+#pragma endregion Dialog
 }

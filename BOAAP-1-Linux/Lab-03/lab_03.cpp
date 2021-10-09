@@ -1,4 +1,4 @@
-#include "lab_03.h"
+#include "lab_03.hpp"
 #include <cmath>
 #include <cstdlib>
 #include <iomanip>
@@ -11,6 +11,10 @@
 
 typedef std::vector<std::vector<uint>> figure;
 extern struct winsize win_size;
+
+namespace lab_03 {
+
+#pragma region Helpers
 
 void
 print_figure(figure fig, wchar_t ch, Position pos)
@@ -69,7 +73,8 @@ input_number()
   }
   return temp;
 }
-
+#pragma endregion Helpers
+#pragma region First_Variant
 void
 first_variant()
 {
@@ -108,7 +113,8 @@ first_variant()
   std::wcout << L"After swap without variable: a = " << a << L", b = " << b
              << L"\n";
 }
-
+#pragma endregion First_Variant
+#pragma region Second_Variant
 void
 second_variant()
 {
@@ -132,7 +138,8 @@ second_variant()
 
   std::wcout << L"After: a = " << a << L", b = " << b << L"\n";
 }
-
+#pragma endregion Second_Variant
+#pragma region Third_Variant
 void
 third_variant()
 {
@@ -155,7 +162,8 @@ third_variant()
   std::wcout << L"n = " << n << L", S = " << pow(2.0 * n + 2.0, 2.0) / n
              << L"\n";
 }
-
+#pragma endregion Third_Variant
+#pragma region Fourth_Variant
 void
 fourth_variant()
 {
@@ -187,7 +195,8 @@ fourth_variant()
   std::wcout << L"x = " << x << L", y = " << y << L", z = " << z << L", Mean = "
              << mean << L", GMean =  " << geom_mean << L"\n";
 }
-
+#pragma endregion Fourth_Variant
+#pragma region Fifth_Variant
 void
 fifth_variant()
 {
@@ -223,7 +232,8 @@ fifth_variant()
   std::wcout << L"n = " << n << L", p = " << p << L", Dyn = " << dyn
              << L", Size = " << size << L"%\n";
 }
-
+#pragma endregion Fifth_Variant
+#pragma region Sixth_Variant
 void
 sixth_variant()
 {
@@ -253,7 +263,8 @@ sixth_variant()
   std::wcout << L"M1 = (" << x1 << L", " << y1 << L"), M2 = (" << x2 << L", "
              << y2 << L"), Dist = " << dist << L"\n";
 }
-
+#pragma endregion Sixth_Variant
+#pragma region Seventh_Variant
 void
 seventh_variant()
 {
@@ -275,7 +286,8 @@ seventh_variant()
 
   std::wcout << L"R = " << r << L", S = " << s << L"\n";
 }
-
+#pragma endregion Seventh_Variant
+#pragma region Eighth_Variant
 void
 eighth_variant()
 {
@@ -316,7 +328,8 @@ eighth_variant()
   std::wcout << L"x = " << x << L", y = " << y << L", z = " << z << L", S = "
              << area << L"\n";
 }
-
+#pragma endregion Eighth_Variant
+#pragma region Ninth_Variant
 void
 ninth_variant()
 {
@@ -352,7 +365,8 @@ ninth_variant()
 
   std::wcout << L"a = " << a << L", a^4 = " << quadro << L"\n";
 }
-
+#pragma endregion Ninth_Variant
+#pragma region Tenth_Variant
 void
 tenth_variant()
 {
@@ -376,7 +390,8 @@ tenth_variant()
   std::wcout << L"N = " << n << L", K = " << k << L", Apples each = "
              << (int)(k / n) << L"\n";
 }
-
+#pragma endregion Tenth_Variant
+#pragma region Eleventh_Variant
 void
 eleventh_variant()
 {
@@ -397,7 +412,8 @@ eleventh_variant()
 
   std::wcout << L"d = " << d << L", S = " << powf(d, 2.0) / 2.0 << L"\n";
 }
-
+#pragma endregion Eleventh_Variant
+#pragma region Twelfth_Variant
 void
 twelfth_variant()
 {
@@ -447,7 +463,8 @@ twelfth_variant()
 
   std::wcout << L"d = " << d << L", reversed d = " << rd << L"\n";
 }
-
+#pragma endregion Twelfth_Variant
+#pragma region Thirteenth_Variant
 void
 thirteenth_variant()
 {
@@ -473,7 +490,8 @@ thirteenth_variant()
   std::wcout << L"N = " << n << L", M = " << m << L", time = "
              << m + (temp / 60) << L":" << (int)temp % 60 << L"\n";
 }
-
+#pragma endregion Thirteenth_Variant
+#pragma region Fourteenth_Variant
 void
 fourteenth_variant()
 {
@@ -508,7 +526,8 @@ fourteenth_variant()
 
   std::wcout << L"Avg = " << avg << L"\n";
 }
-
+#pragma endregion Fourteenth_Variant
+#pragma region Fifteenth_Variant
 void
 fifteenth_variant()
 {
@@ -547,7 +566,8 @@ fifteenth_variant()
   std::wcout << L"app = " << app << L", hall = " << hall << L", floor = "
              << floor << L"\n";
 }
-
+#pragma endregion Fifteenth_Variant
+#pragma region Sixteenth_Variant
 void
 sixteenth_variant()
 {
@@ -577,4 +597,6 @@ sixteenth_variant()
 
   std::wcout << L"a = " << a << L", b = " << b << L", c = " << c
              << L", Score = " << a * 50 + b * 100 + c * 200 << L"\n";
+}
+#pragma endregion Sixteenth_Variant
 }

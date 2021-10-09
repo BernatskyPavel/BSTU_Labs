@@ -1,4 +1,4 @@
-#include "lab_05.h"
+#include "lab_05.hpp"
 #include <cmath>
 #include <iostream>
 #include <string>

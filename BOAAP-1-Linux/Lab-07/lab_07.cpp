@@ -1,4 +1,4 @@
-#include "lab_07.h"
+#include "lab_07.hpp"
 #include <cmath>
 #include <iostream>
 #include <string>
@@ -6,9 +6,7 @@
 #include <wchar.h>
 
 namespace lab_07 {
-
 #pragma region First_Variant
-
 void
 first_variant()
 {
@@ -24,10 +22,8 @@ first_variant()
   std::wcout << L"Value of h is " << h << L"\n";
   return;
 }
-
 #pragma endregion First_Variant
 #pragma region Second_Variant
-
 void
 second_variant()
 {
@@ -42,10 +38,8 @@ second_variant()
   std::wcout << L"Value of g is " << g << L"\n";
   return;
 }
-
 #pragma endregion Second_Variant
 #pragma region Third_Variant
-
 void
 third_variant()
 {
@@ -62,10 +56,8 @@ third_variant()
   std::wcout << L"Value of z is " << z << L"\n";
   return;
 }
-
 #pragma endregion Third_Variant
 #pragma region Fourth_Variant
-
 void
 fourth_variant()
 {
@@ -82,10 +74,8 @@ fourth_variant()
   }
   return;
 }
-
 #pragma endregion Fourth_Variant
 #pragma region Fifth_Variant
-
 void
 fifth_variant()
 {
@@ -99,10 +89,8 @@ fifth_variant()
 
   return;
 }
-
 #pragma endregion Fifth_Variant
 #pragma region Sixth_Variant
-
 void
 sixth_variant()
 {
@@ -121,10 +109,8 @@ sixth_variant()
   std::wcout << L"Value of a is " << a << L" and value of b is " << b << L"\n";
   return;
 }
-
 #pragma endregion Sixth_Variant
 #pragma region Seventh_Variant
-
 void
 seventh_variant()
 {
@@ -139,10 +125,8 @@ seventh_variant()
   std::wcout << L"Value of d is " << d << L"\n";
   return;
 }
-
 #pragma endregion Seventh_Variant
 #pragma region Eighth_Variant
-
 void
 eighth_variant()
 {
@@ -160,10 +144,8 @@ eighth_variant()
   std::wcout << L"Value of d is " << d << L"\n";
   return;
 }
-
 #pragma endregion Eighth_Variant
 #pragma region Ninth_Variant
-
 void
 ninth_variant()
 {
@@ -178,10 +160,8 @@ ninth_variant()
 
   return;
 }
-
 #pragma endregion Ninth_Variant
 #pragma region Tenth_Variant
-
 void
 tenth_variant()
 {
@@ -197,10 +177,8 @@ tenth_variant()
   std::wcout << L"Value of q is " << q << L"\n";
   return;
 }
-
 #pragma endregion Tenth_Variant
 #pragma region Eleventh_Variant
-
 void
 eleventh_variant()
 {
@@ -216,10 +194,8 @@ eleventh_variant()
              << (2. * a + (4. * mul) * sinf64(a)) << L"\n";
   return;
 }
-
 #pragma endregion Eleventh_Variant
 #pragma region Twelfth_Variant
-
 void
 twelfth_variant()
 {
@@ -236,10 +212,8 @@ twelfth_variant()
   std::wcout << L"Value of z is " << z << L" and value of y is " << (z * sum)
              << L"\n";
 }
-
 #pragma endregion Twelfth_Variant
 #pragma region Thirteenth_Variant
-
 void
 thirteenth_variant()
 {
@@ -256,10 +230,8 @@ thirteenth_variant()
   std::wcout << L"Value of p is " << p << L" and value of q is " << (mul + p)
              << L"\n";
 }
-
 #pragma endregion Thirteenth_Variant
 #pragma region Fourteenth_Variant
-
 void
 fourteenth_variant()
 {
@@ -274,10 +246,8 @@ fourteenth_variant()
              << (sum > c ? (powf64(sinf64(c), 2.)) : (powf64(cosf64(c), 2.)))
              << L"\n";
 }
-
 #pragma endregion Fourteenth_Variant
 #pragma region Fifteenth_Variant
-
 void
 fifteenth_variant()
 {
@@ -292,10 +262,8 @@ fifteenth_variant()
 
   std::wcout << L"Value of q is " << q << L"\n";
 }
-
 #pragma endregion Fifteenth_Variant
 #pragma region Sixteenth_Variant
-
 void
 sixteenth_variant()
 {
@@ -313,6 +281,5 @@ sixteenth_variant()
 
   return;
 }
-
 #pragma endregion Sixteenth_Variant
 }

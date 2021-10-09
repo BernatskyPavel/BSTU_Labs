@@ -3,8 +3,8 @@
 #include <random>
 #include <wchar.h>
 
+namespace lab_09::array {
 #pragma region Array::Proxy
-
 Array::Proxy::Proxy(Array& array, int& el)
   : element(el)
   , _array(array)
@@ -22,11 +22,8 @@ Array::Proxy::operator=(const int& rhs)
   _array.check_minmax(this->element);
   return *this;
 }
-
 #pragma endregion Array::Proxy
-
 #pragma region Array
-
 void
 Array::refresh_minmax()
 {
@@ -341,3 +338,4 @@ Array::operator[](size_t index)
   }
 }
 #pragma endregion Array
+}

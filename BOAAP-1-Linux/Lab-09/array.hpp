@@ -2,6 +2,8 @@
 #include <cstddef>
 #include <inttypes.h>
 
+namespace lab_09::array {
+
 class Array
 {
 public:
@@ -73,3 +75,4 @@ public:
     }
   }*/
 };
+}

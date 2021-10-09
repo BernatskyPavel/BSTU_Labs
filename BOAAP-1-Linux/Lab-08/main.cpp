@@ -1,8 +1,8 @@
-#include "lab_08.h"
-#include <cwchar>
+#include "lab_08.hpp"
 #include <iostream>
 #include <locale>
 #include <sys/ioctl.h>
+#include <wchar.h>
 
 typedef void (*task)();
 

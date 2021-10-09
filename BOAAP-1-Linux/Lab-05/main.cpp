@@ -1,9 +1,9 @@
-#include "extra.h"
-#include "lab_05.h"
-#include <cwchar>
+#include "extra.hpp"
+#include "lab_05.hpp"
 #include <iostream>
 #include <locale>
 #include <sys/ioctl.h>
+#include <wchar.h>
 
 typedef void (*task)();
 

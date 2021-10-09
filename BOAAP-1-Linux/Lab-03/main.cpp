@@ -1,4 +1,4 @@
-#include "lab_03.h"
+#include "lab_03.hpp"
 #include <cwchar>
 #include <iostream>
 #include <sys/ioctl.h>
@@ -15,12 +15,14 @@ main()
   ioctl(STDOUT_FILENO, TIOCGWINSZ, &win_size);
 
   variant variants[] = {
-    first_variant,      second_variant,     third_variant,
-    fourth_variant,     fifth_variant,      sixth_variant,
-    seventh_variant,    eighth_variant,     ninth_variant,
-    tenth_variant,      eleventh_variant,   twelfth_variant,
-    thirteenth_variant, fourteenth_variant, fifteenth_variant,
-    sixteenth_variant,
+    lab_03::first_variant,      lab_03::second_variant,
+    lab_03::third_variant,      lab_03::fourth_variant,
+    lab_03::fifth_variant,      lab_03::sixth_variant,
+    lab_03::seventh_variant,    lab_03::eighth_variant,
+    lab_03::ninth_variant,      lab_03::tenth_variant,
+    lab_03::eleventh_variant,   lab_03::twelfth_variant,
+    lab_03::thirteenth_variant, lab_03::fourteenth_variant,
+    lab_03::fifteenth_variant,  lab_03::sixteenth_variant,
   };
 
   for (;;) {

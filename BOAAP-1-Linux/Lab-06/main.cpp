@@ -1,5 +1,5 @@
-#include "extra.h"
-#include "lab_06.h"
+#include "extra.hpp"
+#include "lab_06.hpp"
 #include <cwchar>
 #include <iostream>
 #include <locale>

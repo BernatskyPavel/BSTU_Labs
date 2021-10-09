@@ -1,23 +1,6 @@
 #pragma once
 
-namespace lab_04 {
-
-#define SPACE L' '
-
-enum Position
-{
-  RIGHT,
-  CENTER,
-  LEFT
-};
-
-enum Order
-{
-  EQUAL,
-  LESS,
-  GREATER
-};
-
+namespace lab_05 {
 void
 first_variant();
 void
@@ -50,8 +33,4 @@ void
 fifteenth_variant();
 void
 sixteenth_variant();
-
-void
-dialog();
-
 }

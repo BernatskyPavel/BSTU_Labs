@@ -1,6 +1,6 @@
-#include "lab_08.h"
-#include <cmath>
+#include "lab_08.hpp"
 #include <iostream>
+#include <math.h>
 #include <string>
 #include <vector>
 #include <wchar.h>
@@ -273,172 +273,138 @@ part_two(size_t index)
   return;
 }
 #pragma endregion Part_Two
-
 void
 general_call(size_t index)
 {
   part_one(index);
   part_two(index);
 }
-
 #pragma region First_Variant
-
 void
 first_variant()
 {
   part_one(1);
   part_two(1);
 }
-
 #pragma endregion First_Variant
 #pragma region Second_Variant
-
 void
 second_variant()
 {
   part_one(2);
   part_two(2);
 }
-
 #pragma endregion Second_Variant
 #pragma region Third_Variant
-
 void
 third_variant()
 {
   part_one(3);
   part_two(3);
 }
-
 #pragma endregion Third_Variant
 #pragma region Fourth_Variant
-
 void
 fourth_variant()
 {
   part_one(4);
   part_two(4);
 }
-
 #pragma endregion Fourth_Variant
 #pragma region Fifth_Variant
-
 void
 fifth_variant()
 {
   part_one(5);
   part_two(5);
 }
-
 #pragma endregion Fifth_Variant
 #pragma region Sixth_Variant
-
 void
 sixth_variant()
 {
   part_one(6);
   part_two(6);
 }
-
 #pragma endregion Sixth_Variant
 #pragma region Seventh_Variant
-
 void
 seventh_variant()
 {
   part_one(7);
   part_two(7);
 }
-
 #pragma endregion Seventh_Variant
 #pragma region Eighth_Variant
-
 void
 eighth_variant()
 {
   part_one(8);
   part_two(8);
 }
-
 #pragma endregion Eighth_Variant
 #pragma region Ninth_Variant
-
 void
 ninth_variant()
 {
   part_one(9);
   part_two(9);
 }
-
 #pragma endregion Ninth_Variant
 #pragma region Tenth_Variant
-
 void
 tenth_variant()
 {
   part_one(10);
   part_two(10);
 }
-
 #pragma endregion Tenth_Variant
 #pragma region Eleventh_Variant
-
 void
 eleventh_variant()
 {
   part_one(11);
   part_two(11);
 }
-
 #pragma endregion Eleventh_Variant
 #pragma region Twelfth_Variant
-
 void
 twelfth_variant()
 {
   part_one(12);
   part_two(12);
 }
-
 #pragma endregion Twelfth_Variant
 #pragma region Thirteenth_Variant
-
 void
 thirteenth_variant()
 {
   part_one(13);
   part_two(13);
 }
-
 #pragma endregion Thirteenth_Variant
 #pragma region Fourteenth_Variant
-
 void
 fourteenth_variant()
 {
   part_one(14);
   part_two(14);
 }
-
 #pragma endregion Fourteenth_Variant
 #pragma region Fifteenth_Variant
-
 void
 fifteenth_variant()
 {
   part_one(15);
   part_two(15);
 }
-
 #pragma endregion Fifteenth_Variant
 #pragma region Sixteenth_Variant
-
 void
 sixteenth_variant()
 {
   part_one(16);
   part_two(16);
 }
-
 #pragma endregion Sixteenth_Variant
 }

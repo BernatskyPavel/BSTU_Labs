@@ -1,7 +1,6 @@
 #pragma once
 
 namespace extra {
-
 void
 first_extra();
 void

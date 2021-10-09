@@ -1,16 +1,12 @@
-#include "extra.h"
-#include <algorithm>
-#include <cmath>
-#include <functional>
+#include "extra.hpp"
 #include <iostream>
-#include <memory.h>
 #include <string>
 #include <tuple>
 #include <vector>
 #include <wchar.h>
 
 namespace extra {
-
+#pragma region Helpers
 template<typename T>
 T
 input_value()
@@ -30,7 +26,7 @@ input_value()
   }
   return temp;
 }
-
+#pragma endregion Helpers
 #pragma region First_Extra
 int
 sum_of_digits(int number)
@@ -126,9 +122,10 @@ third_extra()
 
   size_t male_counter = 0, female_counter = 0;
 
-  typeof(Student::height) male_max_height = 0, female_min_height = 999;
-  typeof(Student::weight) max_weight = 0;
-  typeof(Student::b_year) max_b_year = 0, male_sum_age = 0, female_sum_age = 0;
+  decltype(Student::height) male_max_height = 0, female_min_height = 999;
+  decltype(Student::weight) max_weight = 0;
+  decltype(Student::b_year) max_b_year = 0, male_sum_age = 0,
+                            female_sum_age = 0;
 
   for (size_t i = 0; i < sizeof(students) / sizeof(Student); i++) {
     switch (students[i].gender) {
