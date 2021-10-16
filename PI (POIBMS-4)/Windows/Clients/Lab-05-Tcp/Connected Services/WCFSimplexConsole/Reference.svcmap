@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="d495c6c3-ecc8-4f0e-8110-c288c69deb74" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8789/Design_Time_Addresses/Lab_05/WCFSimplex/" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WCFSimplex.wsdl" MetadataType="Wsdl" ID="3ab282e6-03a2-4f5e-8a9d-bb74ab6eee9b" SourceId="1" SourceUrl="http://localhost:8789/Design_Time_Addresses/Lab_05/WCFSimplex/?wsdl" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="8691f2b1-8244-49fd-88f2-1cd343debb01" SourceId="1" SourceUrl="http://localhost:8789/Design_Time_Addresses/Lab_05/WCFSimplex/?xsd=xsd2" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="36d73669-df93-4670-aee9-4a0ef7ad5db1" SourceId="1" SourceUrl="http://localhost:8789/Design_Time_Addresses/Lab_05/WCFSimplex/?disco" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="dbd8b7ea-75af-4db5-859f-2646028288b0" SourceId="1" SourceUrl="http://localhost:8789/Design_Time_Addresses/Lab_05/WCFSimplex/?xsd=xsd0" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="0d1c2461-0f70-4b72-a4ae-dd152525c730" SourceId="1" SourceUrl="http://localhost:8789/Design_Time_Addresses/Lab_05/WCFSimplex/?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
