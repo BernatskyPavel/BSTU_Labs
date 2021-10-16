@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div>
+     <a href="~/LabViews/Lab-04">Back</a>
+    </div>
+    <div>
+        Async Int 1:
+        <input type="number" id="add_s_1" /><br />
+        Async Int 2:
+        <input type="number" id="add_s_2" /><br />
+        Async Result:<input type="number" id="add_s_r" readonly /><br />
+        <button id="add_s_btn" onclick="adds()" text="Send Async">Send Async</button><br />
+    </div>
+    <script>
+        function adds() {
+            params = {
+                a: Number($("#add_s_1").val()),
+                b: Number($("#add_s_2").val()),
+            };
+            $.ajax({
+                url: "http://localhost:789/PI-POIBMS-4/Lab-04/Simplex.asmx/AddS",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(params),
+                type: 'POST',
+                success: function (res) {
+                    document.getElementById("add_s_r").value = res.d;
+                }
+            });
+        }
+    </script>
+</body>
+</html>

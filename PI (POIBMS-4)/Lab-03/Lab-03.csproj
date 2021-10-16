@@ -203,7 +203,6 @@
     <Compile Include="Context\PSQLStudentContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Filters\FormatFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
