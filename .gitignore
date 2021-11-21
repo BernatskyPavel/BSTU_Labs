@@ -538,3 +538,5 @@ Generated\ Files/
 ##############################
 **/.DS_Store
 **/.tern-project
+
+**/Lab-*/main
