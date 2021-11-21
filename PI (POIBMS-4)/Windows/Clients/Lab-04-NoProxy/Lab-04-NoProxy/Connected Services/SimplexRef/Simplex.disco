@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://localhost:789/PI-POIBMS-4/Lab-04/Simplex.asmx?wsdl" docRef="http://localhost:789/PI-POIBMS-4/Lab-04/Simplex.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://localhost:789/PI-POIBMS-4/Lab-04/Simplex.asmx" xmlns:q1="http://BPV/" binding="q1:SimplexSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://localhost:789/PI-POIBMS-4/Lab-04/Simplex.asmx" xmlns:q2="http://BPV/" binding="q2:SimplexSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

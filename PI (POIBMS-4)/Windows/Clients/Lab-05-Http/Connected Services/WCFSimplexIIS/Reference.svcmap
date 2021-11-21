@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="a9600f93-ad8c-4fba-84ad-07f021ae1208" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:789/PI-POIBMS-4/Lab-05/WCFSimplex.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WCFSimplex.xsd" MetadataType="Schema" ID="3490aaa2-e4ab-4cf7-b3f2-bbbec0900e50" SourceId="1" SourceUrl="http://localhost:789/PI-POIBMS-4/Lab-05/WCFSimplex.svc?xsd=xsd0" />
+    <MetadataFile FileName="WCFSimplex.wsdl" MetadataType="Wsdl" ID="4501be6a-8ed6-4b4a-bfe8-0bef2cbe2ee8" SourceId="1" SourceUrl="http://localhost:789/PI-POIBMS-4/Lab-05/WCFSimplex.svc?wsdl" />
+    <MetadataFile FileName="WCFSimplex1.xsd" MetadataType="Schema" ID="36acec01-f1f7-46b3-816a-0c73f4c373ca" SourceId="1" SourceUrl="http://localhost:789/PI-POIBMS-4/Lab-05/WCFSimplex.svc?xsd=xsd2" />
+    <MetadataFile FileName="WCFSimplex.disco" MetadataType="Disco" ID="854071fa-5cb9-43b0-8d84-185c2166c720" SourceId="1" SourceUrl="http://localhost:789/PI-POIBMS-4/Lab-05/WCFSimplex.svc?disco" />
+    <MetadataFile FileName="WCFSimplex2.xsd" MetadataType="Schema" ID="389167a5-e00c-4f4a-8e77-68895cec31fb" SourceId="1" SourceUrl="http://localhost:789/PI-POIBMS-4/Lab-05/WCFSimplex.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
