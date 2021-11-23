@@ -13,9 +13,9 @@ namespace Lab_06.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PII6Entities : DbContext
+    public partial class Entities : DbContext
     {
-        public PII6Entities()
+        public Entities()
             : base("name=PII6Entities")
         {
         }

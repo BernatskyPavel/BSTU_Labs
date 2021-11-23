@@ -14,6 +14,7 @@ namespace Lab_06.Model
     
     public partial class Notes
     {
+        public int NoteId { get; set; }
         public int Id { get; set; }
         public string Subj { get; set; }
         public short Note { get; set; }

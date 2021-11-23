@@ -7,11 +7,11 @@
       <Schema Namespace="PII6Model.Store" Provider="Npgsql" ProviderManifestToken="13.3" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Notes">
           <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="Subj" />
+            <PropertyRef Name="NoteId" />
           </Key>
+          <Property Name="NoteId" Type="int4" Nullable="false" />
           <Property Name="Id" Type="int4" Nullable="false" />
-          <Property Name="Subj" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Subj" Type="text" Nullable="false" />
           <Property Name="Note" Type="int2" Nullable="false" />
         </EntityType>
         <EntityType Name="Students">
@@ -21,7 +21,7 @@
           <Property Name="Id" Type="int4" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
-        <Association Name="FK_IDS">
+        <Association Name="FK_StudentId_NoteId">
           <End Role="Students" Type="Self.Students" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -38,7 +38,7 @@
         <EntityContainer Name="PII6ModelStoreContainer">
           <EntitySet Name="Notes" EntityType="Self.Notes" Schema="public" store:Type="Tables" />
           <EntitySet Name="Students" EntityType="Self.Students" Schema="public" store:Type="Tables" />
-          <AssociationSet Name="FK_IDS" Association="Self.FK_IDS">
+          <AssociationSet Name="FK_StudentId_NoteId" Association="Self.FK_StudentId_NoteId">
             <End Role="Students" EntitySet="Students" />
             <End Role="Notes" EntitySet="Notes" />
           </AssociationSet>
@@ -50,13 +50,13 @@
       <Schema Namespace="PII6Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Notes">
           <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="Subj" />
+            <PropertyRef Name="NoteId" />
           </Key>
+          <Property Name="NoteId" Type="Int32" Nullable="false" />
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Subj" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Subj" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Note" Type="Int16" Nullable="false" />
-          <NavigationProperty Name="Students" Relationship="Self.FK_IDS" FromRole="Notes" ToRole="Students" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_StudentId_NoteId" FromRole="Notes" ToRole="Students" />
         </EntityType>
         <EntityType Name="Students">
           <Key>
@@ -64,9 +64,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Notes" Relationship="Self.FK_IDS" FromRole="Students" ToRole="Notes" />
+          <NavigationProperty Name="Notes" Relationship="Self.FK_StudentId_NoteId" FromRole="Students" ToRole="Notes" />
         </EntityType>
-        <Association Name="FK_IDS">
+        <Association Name="FK_StudentId_NoteId">
           <End Role="Students" Type="Self.Students" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -80,10 +80,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PII6Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Notes" EntityType="Self.Notes" />
           <EntitySet Name="Students" EntityType="Self.Students" />
-          <AssociationSet Name="FK_IDS" Association="Self.FK_IDS">
+          <AssociationSet Name="FK_StudentId_NoteId" Association="Self.FK_StudentId_NoteId">
             <End Role="Students" EntitySet="Students" />
             <End Role="Notes" EntitySet="Notes" />
           </AssociationSet>
@@ -93,10 +93,11 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PII6ModelStoreContainer" CdmEntityContainer="PII6Entities">
+        <EntityContainerMapping StorageEntityContainer="PII6ModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Notes">
             <EntityTypeMapping TypeName="PII6Model.Notes">
               <MappingFragment StoreEntitySet="Notes">
+                <ScalarProperty Name="NoteId" ColumnName="NoteId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Subj" ColumnName="Subj" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
