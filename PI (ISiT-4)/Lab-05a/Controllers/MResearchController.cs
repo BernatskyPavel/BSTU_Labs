@@ -8,12 +8,6 @@ namespace Lab_05a.Controllers
 {
     public class MResearchController : Controller
     {
-        // GET: MResearch
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
         public void M01(int? id)
         {
