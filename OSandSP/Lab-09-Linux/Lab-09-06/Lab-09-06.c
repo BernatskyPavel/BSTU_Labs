@@ -4,14 +4,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <wchar.h>
 
 #define BUFFER_SIZE 64
 
 int
 main(int argc, char* argv[])
 {
-
   if (argc < 2) {
     printf("Missing argument! (Use: ./Lab-09-06 <int>)\n");
     exit(-1);

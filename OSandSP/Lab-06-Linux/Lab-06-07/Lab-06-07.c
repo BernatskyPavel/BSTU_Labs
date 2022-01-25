@@ -1,24 +1,26 @@
-#include <stdio.h>
-#include <wchar.h>
-#include <unistd.h>
 #include <malloc.h>
+#include <stdio.h>
+#include <unistd.h>
 
-int main() {
+#define KB 1024
+#define MB 1024 * KB
 
-    wprintf(L"Process %d start working!\n", getpid());
+int
+main()
+{
+  printf("Process %d start working!\n", getpid());
 
-    int size = 256*1024*1024;
-    int* array = (int*)malloc(size);
+  int size = 256 * MB;
+  int* array = (int*)malloc(size);
 
-    wprintf(L"Address of array: %p!\n", array);
+  printf("Address of array: %p!\n", array);
 
-    for(size_t i = 0; i < size/sizeof(int); i++) {
+  for (size_t i = 0; i < size / sizeof(int); i++) {
+    array[i] = i;
+  };
 
-        array[i] = i;
-    };
-
-    sleep(60);
-    free(array);
-    wprintf(L"Process end working!\n");
-    return 0;
+  sleep(60);
+  free(array);
+  printf("Process end working!\n");
+  return 0;
 }
