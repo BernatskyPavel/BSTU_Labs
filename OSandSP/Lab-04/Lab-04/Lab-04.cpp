@@ -2,10 +2,14 @@
 #include <stdio.h>
 #include <tchar.h>
 
-int _tmain()
+int
+_tmain()
 {
-    for (;;) {
-        _tprintf_s(_T("Process id: (%u); Thread id: (%u)\n"), GetCurrentProcessId(), GetCurrentThreadId());
-        Sleep(1000);
-    }
+  unsigned long long i = 0;
+  for (i; i < MAXULONGLONG; i++) {
+    if (!(i % 1000000))
+      _tprintf_s(_T("Process id: (%u); Thread id: (%u)\n"),
+                 GetCurrentProcessId(),
+                 GetCurrentThreadId());
+  }
 }
