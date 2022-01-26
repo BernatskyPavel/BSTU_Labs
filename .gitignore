@@ -538,10 +538,13 @@ Generated\ Files/
 ##############################
 **/.DS_Store
 **/.tern-project
-<<<<<<< HEAD
 
 **/Lab-*/main
 =======
 /PI (POIBMS-4)/Lab-06-OData4
 /PI (POIBMS-4)/Windows/Clients/Lab-06
->>>>>>> d4351bcdd824d9a8bd91b7cd9cef2dd3fad5cffc
+
+##############################
+## Rust
+##############################
+**/Cargo.lock
