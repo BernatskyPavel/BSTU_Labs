@@ -11,7 +11,6 @@ using System.Text;
 
 namespace Lab_07
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Feed1" in both code and config file together.
     public class NotesFeed : INotesFeed
     {
         private ODataClient client = new ODataClient(new Uri("http://localhost:789/PI-POIBMS-4/Lab-06/WCFDataSimplex.svc/"));
@@ -33,23 +32,22 @@ namespace Lab_07
                 return null;
             }
 
-
             string s_id = WebOperationContext.Current.IncomingRequest.UriTemplateMatch.QueryParameters["id"];
             int id = 0;
             SyndicationFeed feed = null;
             List<SyndicationItem> items = new List<SyndicationItem>();
-            //string query = WebOperationContext.Current.IncomingRequest.UriTemplateMatch.QueryParameters["id"];
             if (!int.TryParse(s_id, out id))
             {
                 feed = new SyndicationFeed("Students List", "A students available for subscription.", null);
                 System.Threading.Tasks.Task<IEnumerable<PII6Model.Students>> task = client.For<PII6Model.Students>().FindEntriesAsync();
                 task.Wait();
-                foreach(PII6Model.Students student in task.Result)
+                foreach (PII6Model.Students student in task.Result)
                 {
                     SyndicationItem item = new SyndicationItem($"Student №{student.Id}", student.Name, null);
                     items.Add(item);
                 }
-            } else
+            }
+            else
             {
                 try
                 {
@@ -73,18 +71,9 @@ namespace Lab_07
                     }
                     return null;
                 }
-            }
-
-            // Create a new Syndication Feed.
-            
-
-            // Create a new Syndication Item.
+            }  
             
             feed.Items = items;
-
-            // Return ATOM or RSS based on query string
-            // rss -> http://localhost:8733/Design_Time_Addresses/Lab_07/Feed1/
-            // atom -> http://localhost:8733/Design_Time_Addresses/Lab_07/Feed1/?format=atom
             string query = WebOperationContext.Current.IncomingRequest.UriTemplateMatch.QueryParameters["format"];
             SyndicationFeedFormatter formatter = null;
             if (query == "atom")
