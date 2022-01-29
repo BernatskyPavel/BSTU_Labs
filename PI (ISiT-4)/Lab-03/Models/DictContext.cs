@@ -16,8 +16,6 @@ namespace Lab_03.Models
         private Timer timer;
         public DictContext()
         {
-
-
             FtpWebRequest ftp_request = (FtpWebRequest)WebRequest.Create(System.Configuration.ConfigurationManager.AppSettings["DictPath"]);
             ftp_request.Method = WebRequestMethods.Ftp.DownloadFile;
             ftp_request.Credentials = new NetworkCredential("anonymous", "janeDoe@example.com");
