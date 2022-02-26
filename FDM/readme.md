@@ -1,0 +1,1 @@
+Fundamentals of Data Mining (POIT, ISiT 6 semester)
