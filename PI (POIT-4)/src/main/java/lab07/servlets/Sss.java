@@ -2,7 +2,6 @@ package lab07.servlets;
 
 import java.io.IOException;
 
-import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lab06.helpers.CBean;
 
-public class Sss extends HttpServlet implements Servlet {
+public class Sss extends HttpServlet {
 
 	/**
 	 * 
@@ -48,15 +47,15 @@ public class Sss extends HttpServlet implements Servlet {
 		CBean newCBean = new CBean(param1, param2, param3);
 		HttpSession session = req.getSession();
 		switch (paramBean.toLowerCase()) {
-		case "new":
-			session.setAttribute("CBean", newCBean);
-			break;
-		case "old":
-			this.replace((CBean) session.getAttribute("CBean"), newCBean);
-			break;
-		default:
-			resp.getWriter().write("Error: Wrong CBean value. Value can be only 'old' or 'new'!");
-			break;
+			case "new":
+				session.setAttribute("CBean", newCBean);
+				break;
+			case "old":
+				this.replace((CBean) session.getAttribute("CBean"), newCBean);
+				break;
+			default:
+				resp.getWriter().write("Error: Wrong CBean value. Value can be only 'old' or 'new'!");
+				break;
 		}
 		resp.sendRedirect("./Sss.jsp");
 	}

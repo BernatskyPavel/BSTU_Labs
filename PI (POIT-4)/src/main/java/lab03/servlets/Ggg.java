@@ -3,14 +3,13 @@ package lab03.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class Ggg extends HttpServlet implements Servlet {
+public class Ggg extends HttpServlet {
 
 	/**
 	 * 
@@ -19,7 +18,6 @@ public class Ggg extends HttpServlet implements Servlet {
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
 		super.init(config);
 		print(":init");
 	}
@@ -37,12 +35,12 @@ public class Ggg extends HttpServlet implements Servlet {
 				return;
 			}
 			switch (mode.toLowerCase()) {
-			case "forward":
-				req.getRequestDispatcher("./forward.xhtml").forward(req, resp);
-				break;
-			case "redirect":
-				resp.sendRedirect("./forward.xhtml");
-				break;
+				case "forward":
+					req.getRequestDispatcher("./forward.xhtml").forward(req, resp);
+					break;
+				case "redirect":
+					resp.sendRedirect("./forward.xhtml");
+					break;
 			}
 		} else {
 			PrintWriter pw = resp.getWriter();
@@ -62,7 +60,6 @@ public class Ggg extends HttpServlet implements Servlet {
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
 		super.destroy();
 		print(":destroy");
 	}

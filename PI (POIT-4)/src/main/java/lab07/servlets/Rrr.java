@@ -2,14 +2,13 @@ package lab07.servlets;
 
 import java.io.IOException;
 
-import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lab06.helpers.CBean;
 
-public class Rrr extends HttpServlet implements Servlet {
+public class Rrr extends HttpServlet {
 
 	/**
 	 * 
@@ -46,15 +45,15 @@ public class Rrr extends HttpServlet implements Servlet {
 		param3 = req.getParameter("Value3");
 		CBean newCBean = new CBean(param1, param2, param3);
 		switch (paramBean.toLowerCase()) {
-		case "new":
-			req.setAttribute("CBean", newCBean);
-			break;
-		case "old":
-			this.replace((CBean) req.getAttribute("CBean"), newCBean);
-			break;
-		default:
-			resp.getWriter().write("Error: Wrong CBean value. Value can be only 'old' or 'new'!");
-			break;
+			case "new":
+				req.setAttribute("CBean", newCBean);
+				break;
+			case "old":
+				this.replace((CBean) req.getAttribute("CBean"), newCBean);
+				break;
+			default:
+				resp.getWriter().write("Error: Wrong CBean value. Value can be only 'old' or 'new'!");
+				break;
 		}
 		resp.sendRedirect("./Rrr.jsp");
 	}

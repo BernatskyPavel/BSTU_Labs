@@ -4,13 +4,12 @@ import java.io.IOException;
 
 import org.apache.http.HttpStatus;
 
-import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class Sss_XML extends HttpServlet implements Servlet {
+public class Sss_XML extends HttpServlet {
 
 	/**
 	 * 

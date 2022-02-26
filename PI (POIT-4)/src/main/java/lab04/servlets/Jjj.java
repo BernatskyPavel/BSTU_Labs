@@ -13,13 +13,12 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class Jjj extends HttpServlet implements Servlet {
+public class Jjj extends HttpServlet {
 
 	/**
 	 * 
@@ -70,29 +69,30 @@ public class Jjj extends HttpServlet implements Servlet {
 		else
 			page = "evening.jsp";
 		switch (param.toLowerCase()) {
-		case "simple":
-			resp.sendRedirect("./" + page);
-			break;
-		case "get":
-			try {
-				HttpGet httpGet = new HttpGet(req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort()
-						+ "/IPLabs-0.0.1-SNAPSHOT/Lab04/" + page);
-				String responseBody = httpclient.execute(httpGet, responseHandler);
-				resp.getWriter().write(responseBody);
-			} finally {
-				httpclient.close();
-			}
-			break;
-		case "post":
-			try {
-				HttpPost httpPost = new HttpPost(req.getScheme() + "://" + req.getServerName() + ":"
-						+ req.getServerPort() + "/IPLabs-0.0.1-SNAPSHOT/Lab04/" + page);
-				String responseBody = httpclient.execute(httpPost, responseHandler);
-				resp.getWriter().write(responseBody);
-			} finally {
-				httpclient.close();
-			}
-			break;
+			case "simple":
+				resp.sendRedirect("./" + page);
+				break;
+			case "get":
+				try {
+					HttpGet httpGet = new HttpGet(
+							req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort()
+									+ "/IPLabs-0.0.1-SNAPSHOT/Lab04/" + page);
+					String responseBody = httpclient.execute(httpGet, responseHandler);
+					resp.getWriter().write(responseBody);
+				} finally {
+					httpclient.close();
+				}
+				break;
+			case "post":
+				try {
+					HttpPost httpPost = new HttpPost(req.getScheme() + "://" + req.getServerName() + ":"
+							+ req.getServerPort() + "/IPLabs-0.0.1-SNAPSHOT/Lab04/" + page);
+					String responseBody = httpclient.execute(httpPost, responseHandler);
+					resp.getWriter().write(responseBody);
+				} finally {
+					httpclient.close();
+				}
+				break;
 		}
 	}
 

@@ -1,6 +1,8 @@
 package lab16.servlets;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import jakarta.websocket.OnClose;
 import jakarta.websocket.OnError;
@@ -28,11 +30,28 @@ public class Socket {
 	@OnMessage
 	public void onMessage(String message, Session session) {
 		System.out.printf("Message received. Session id: %s Message: %s%n", session.getId(), message);
-		try {
-			session.getBasicRemote().sendText(String.format("We received your message: %s%n", message));
-		} catch (IOException ex) {
-			ex.printStackTrace();
+		switch (message) {
+			case "loopme": {
+				try {
+					DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+					while (true) {
+						session.getBasicRemote().sendText(LocalDateTime.now().format(myFormatObj));
+						Thread.sleep(2000);
+					}
+				} catch (InterruptedException | IOException ex) {
+					ex.printStackTrace();
+				}
+			}
+			default: {
+				try {
+					session.getBasicRemote().sendText(String.format("We received your message: %s%n", message));
+				} catch (IOException ex) {
+					ex.printStackTrace();
+				}
+			}
+				break;
 		}
+
 	}
 
 	@OnError
@@ -43,5 +62,10 @@ public class Socket {
 	@OnClose
 	public void onClose(Session session) {
 		System.out.printf("Session closed with id: %s%n", session.getId());
+		try {
+			session.getBasicRemote().sendText("Bye, we are successfully disconnected.");
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
 	}
 }

@@ -6,14 +6,12 @@ import jakarta.annotation.Resource;
 import jakarta.mail.MessagingException;
 import jakarta.mail.Session;
 import jakarta.mail.Store;
-import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-
-public class MailServlet extends HttpServlet implements Servlet {
+public class MailServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -46,21 +44,21 @@ public class MailServlet extends HttpServlet implements Servlet {
 			return;
 		}
 		switch (box.toLowerCase()) {
-		case "lab15box1":
-			try {
-				Store store = mailSession.getStore("pop3");
-				store.connect();
-				getServletContext().setAttribute("folder", store.getFolder("INBOX"));
-				resp.sendRedirect("./mail.jsp");
-			} catch (MessagingException e) {
-				e.printStackTrace();
-			}
-			break;
-		case "lab15box2":
-			break;
-		default:
-			resp.getWriter().write("Error: Such Box does not exist!");
-			break;
+			case "lab15box1":
+				try {
+					Store store = mailSession.getStore("pop3");
+					store.connect();
+					getServletContext().setAttribute("folder", store.getFolder("INBOX"));
+					resp.sendRedirect("./mail.jsp");
+				} catch (MessagingException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "lab15box2":
+				break;
+			default:
+				resp.getWriter().write("Error: Such Box does not exist!");
+				break;
 		}
 	}
 

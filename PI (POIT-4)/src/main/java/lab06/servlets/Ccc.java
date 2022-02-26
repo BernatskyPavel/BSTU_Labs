@@ -2,14 +2,13 @@ package lab06.servlets;
 
 import java.io.IOException;
 
-import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lab06.helpers.CBean;
 
-public class Ccc extends HttpServlet implements Servlet {
+public class Ccc extends HttpServlet {
 
 	/**
 	 * 
@@ -47,15 +46,15 @@ public class Ccc extends HttpServlet implements Servlet {
 		param3 = req.getParameter("Value3");
 		CBean newCBean = new CBean(param1, param2, param3);
 		switch (paramBean.toLowerCase()) {
-		case "new":
-			getServletContext().setAttribute("CBean", newCBean);
-			break;
-		case "old":
-			this.replace((CBean) getServletContext().getAttribute("CBean"), newCBean);
-			break;
-		default:
-			resp.getWriter().write("Error: Wrong CBean value. Value can be only 'old' or 'new'!");
-			break;
+			case "new":
+				getServletContext().setAttribute("CBean", newCBean);
+				break;
+			case "old":
+				this.replace((CBean) getServletContext().getAttribute("CBean"), newCBean);
+				break;
+			default:
+				resp.getWriter().write("Error: Wrong CBean value. Value can be only 'old' or 'new'!");
+				break;
 		}
 		resp.sendRedirect("./Ccc.jsp");
 	}

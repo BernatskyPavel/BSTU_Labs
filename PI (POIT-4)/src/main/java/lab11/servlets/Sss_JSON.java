@@ -4,13 +4,12 @@ import java.io.IOException;
 
 import org.apache.http.HttpStatus;
 
-import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class Sss_JSON extends HttpServlet implements Servlet {
+public class Sss_JSON extends HttpServlet {
 
 	/**
 	 * 
@@ -65,7 +64,7 @@ public class Sss_JSON extends HttpServlet implements Servlet {
 		json = json + "]\n}";
 		resp.setContentType("application/json");
 		resp.getWriter().write(json);
-		
+
 	}
 
 	@Override

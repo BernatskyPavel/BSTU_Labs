@@ -2,12 +2,11 @@ package lab06.servlets;
 
 import java.io.IOException;
 
-import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class Sss extends lab02.servlets.Sss implements Servlet {
+public class Sss extends lab02.servlets.Sss {
 
 	/**
 	 * 
@@ -23,13 +22,13 @@ public class Sss extends lab02.servlets.Sss implements Servlet {
 			return;
 		}
 		switch (urlparam) {
-		case "1":
-		case "2":
-			resp.sendRedirect(getServletContext().getInitParameter("URL" + urlparam));
-			break;
-		default:
-			resp.getWriter().write("Error: Wrong urln value. Value can be only '1' or '2'!");
-			break;
+			case "1":
+			case "2":
+				resp.sendRedirect(getServletContext().getInitParameter("URL" + urlparam));
+				break;
+			default:
+				resp.getWriter().write("Error: Wrong urln value. Value can be only '1' or '2'!");
+				break;
 		}
 	}
 

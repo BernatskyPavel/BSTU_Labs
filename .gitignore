@@ -539,10 +539,14 @@ Generated\ Files/
 **/.DS_Store
 **/.tern-project
 
+##############################
+## Labs
+##############################
 **/Lab-*/main
-=======
 /PI (POIBMS-4)/Lab-06-OData4
 /PI (POIBMS-4)/Windows/Clients/Lab-06
+/FDM/private
+/FDM/cache
 
 ##############################
 ## Rust

@@ -2,14 +2,13 @@ package lab09.filters;
 
 import java.io.IOException;
 
-import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class F1 extends HttpFilter implements Filter {
+public class F1 extends HttpFilter {
 
 	/**
 	 * 

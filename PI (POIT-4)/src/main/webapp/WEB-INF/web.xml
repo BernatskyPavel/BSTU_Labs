@@ -1,292 +1,289 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app version="5.0"
-	xmlns="https://jakarta.ee/xml/ns/jakartaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
-	<display-name>IPLabs</display-name>
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
-		<welcome-file>index.xhtml</welcome-file>
-		<welcome-file>Ttt.jsp</welcome-file>
-	</welcome-file-list>
-	<!--Init params -->
-	<context-param>
-		<param-name>URL1</param-name>
-		<param-value>./index.xhtml</param-value>
-	</context-param>
-	<context-param>
-		<param-name>URL2</param-name>
-		<param-value>./GoCcc</param-value>
-	</context-param>
-	<!-- Lab13.Init -->
-	<context-param>
-		<param-name>Lab13Files</param-name>
-		<param-value>E:/Files</param-value>
-	</context-param>
-	<!--FacesServlet -->
-	<servlet>
-		<servlet-name>Faces Servlet</servlet-name>
-		<servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.xhtml</url-pattern>
-	</servlet-mapping>
-	<!-- Lab02 -->
-	<servlet>
-		<servlet-name>Sss</servlet-name>
-		<servlet-class>lab02.servlets.Sss</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Sss</servlet-name>
-		<url-pattern>/Lab02/GoSss</url-pattern>
-	</servlet-mapping>
-	<!-- Lab03 -->
-	<servlet>
-		<servlet-name>Sss3</servlet-name>
-		<servlet-class>lab03.servlets.Sss</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Sss3</servlet-name>
-		<url-pattern>/Lab03/GoSss</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>Ggg3</servlet-name>
-		<servlet-class>lab03.servlets.Ggg</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Ggg3</servlet-name>
-		<url-pattern>/Lab03/GoGgg</url-pattern>
-	</servlet-mapping>
-	<!-- Lab04 -->
-	<servlet>
-		<servlet-name>Afternoon</servlet-name>
-		<servlet-class>lab04.servlets.Afternoon</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Afternoon</servlet-name>
-		<url-pattern>/Lab04/GoAfternoon</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>Jjj4</servlet-name>
-		<servlet-class>lab04.servlets.Jjj</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Jjj4</servlet-name>
-		<url-pattern>/Lab04/GoJjj</url-pattern>
-	</servlet-mapping>
-	<!-- Lab05 -->
-	<servlet>
-		<servlet-name>Ttt5</servlet-name>
-		<servlet-class>lab05.servlets.Ttt</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Ttt5</servlet-name>
-		<url-pattern>/Lab05/GoTtt</url-pattern>
-	</servlet-mapping>
-	<!-- Lab06 -->
-	<servlet>
-		<servlet-name>Ccc6</servlet-name>
-		<servlet-class>lab06.servlets.Ccc</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Ccc6</servlet-name>
-		<url-pattern>/Lab06/GoCcc</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>Sss6</servlet-name>
-		<servlet-class>lab06.servlets.Sss</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Sss6</servlet-name>
-		<url-pattern>/Lab06/GoSss</url-pattern>
-	</servlet-mapping>
-	<!-- Lab07 -->
-	<servlet>
-		<servlet-name>Rrr7</servlet-name>
-		<servlet-class>lab07.servlets.Rrr</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Rrr7</servlet-name>
-		<url-pattern>/Lab07/GoRrr</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>Sss7</servlet-name>
-		<servlet-class>lab07.servlets.Sss</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Sss7</servlet-name>
-		<url-pattern>/Lab07/GoSss</url-pattern>
-	</servlet-mapping>
-	<!-- Lab08 -->
-	<servlet>
-		<servlet-name>Aaa8</servlet-name>
-		<servlet-class>lab08.servlets.Aaa</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Aaa8</servlet-name>
-		<url-pattern>/Lab08/GoAaa</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>Bbb8</servlet-name>
-		<servlet-class>lab08.servlets.Bbb</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Bbb8</servlet-name>
-		<url-pattern>/Lab08/GoBbb</url-pattern>
-	</servlet-mapping>
-	<!-- Lab09 -->
-	<servlet>
-		<servlet-name>Ccc9</servlet-name>
-		<servlet-class>lab09.servlets.Ccc</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Ccc9</servlet-name>
-		<url-pattern>/Lab09/GoCcc</url-pattern>
-	</servlet-mapping>
-	<!-- Lab09.Filters -->
-	<filter>
-		<filter-name>F3</filter-name>
-		<filter-class>lab09.filters.F3</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>F3</filter-name>
-		<servlet-name>Ccc9</servlet-name>
-	</filter-mapping>
-	<filter>
-		<filter-name>F2</filter-name>
-		<filter-class>lab09.filters.F2</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>F2</filter-name>
-		<url-pattern>/Lab09/Ccc.jsp</url-pattern>
-	</filter-mapping>
-	<filter>
-		<filter-name>F1</filter-name>
-		<filter-class>lab09.filters.F1</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>F1</filter-name>
-		<servlet-name>Ccc9</servlet-name>
-	</filter-mapping>
-	<!-- Lab09.Listeners -->
-	<listener>
-		<listener-class>lab09.listeners.L1</listener-class>
-	</listener>
-	<listener>
-		<listener-class>lab09.listeners.L2</listener-class>
-	</listener>
-	<!-- Lab10 -->
-	<servlet>
-		<servlet-name>DB10</servlet-name>
-		<servlet-class>lab10.servlets.DBServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>DB10</servlet-name>
-		<url-pattern>/Lab10/GoDb</url-pattern>
-	</servlet-mapping>
-	<!-- Lab11 -->
-	<servlet>
-		<servlet-name>Header11</servlet-name>
-		<servlet-class>lab11.servlets.Sss_Header</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Header11</servlet-name>
-		<url-pattern>/Lab11/GoHeader</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>XML11</servlet-name>
-		<servlet-class>lab11.servlets.Sss_XML</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>XML11</servlet-name>
-		<url-pattern>/Lab11/GoXML</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>JSON11</servlet-name>
-		<servlet-class>lab11.servlets.Sss_JSON</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>JSON11</servlet-name>
-		<url-pattern>/Lab11/GoJSON</url-pattern>
-	</servlet-mapping>
-	<!-- Lab12 -->
-	<servlet>
-		<servlet-name>Sss12</servlet-name>
-		<servlet-class>lab12.servlets.Sss</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Sss12</servlet-name>
-		<url-pattern>/Lab12/GoSss</url-pattern>
-	</servlet-mapping>
-	<!-- Lab12.JAAS.Basic -->
-	<!-- <security-constraint> <web-resource-collection> <web-resource-name>JSP-Servlet 
-		Sss </web-resource-name> <url-pattern>/Lab12/index.jsp</url-pattern> <url-pattern>/Lab12/GoSss</url-pattern> 
-		<http-method>GET</http-method> <http-method>POST</http-method> </web-resource-collection> 
-		<auth-constraint> <role-name>Role0XX</role-name> </auth-constraint> </security-constraint> 
-		<login-config> <auth-method>BASIC</auth-method> </login-config> <security-role> 
-		<role-name>Role0XX</role-name> </security-role> -->
-	<!-- Lab12.JAAS.Form -->
-	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>JSP-Servlet Sss</web-resource-name>
-			<url-pattern>/Lab12/index.jsp</url-pattern>
-			<url-pattern>/Lab12/GoSss</url-pattern>
-			<http-method>GET</http-method>
-			<http-method>POST</http-method>
-		</web-resource-collection>
-		<auth-constraint>
-			<role-name>Role0XX</role-name>
-		</auth-constraint>
-	</security-constraint>
-	<login-config>
-		<auth-method>FORM</auth-method>
-		<form-login-config>
-			<form-login-page>/Lab12/login.jsp</form-login-page>
-			<form-error-page>/Lab12/error.jsp</form-error-page>
-		</form-login-config>
-	</login-config>
-	<security-role>
-		<role-name>Role0XX</role-name>
-	</security-role>
-	<!-- Lab13 -->
-	<servlet>
-		<servlet-name>Sss13</servlet-name>
-		<servlet-class>lab13.servlets.Sss</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Sss13</servlet-name>
-		<url-pattern>/Lab13/GoSss</url-pattern>
-	</servlet-mapping>
-	<!-- Lab15 -->
-	<servlet>
-		<servlet-name>Mail15</servlet-name>
-		<servlet-class>lab15.servlets.MailServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Mail15</servlet-name>
-		<url-pattern>/Lab15/GoMail</url-pattern>
-	</servlet-mapping>
-	<!-- Lab16 -->
-	<!-- LabX -->
-	<servlet>
-		<servlet-name>WebDAV</servlet-name>
-		<servlet-class>labX.servlets.WebDAV</servlet-class>
-		<multipart-config>
-			<location>E:/Uploads/</location>
-		</multipart-config>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>WebDAV</servlet-name>
-		<url-pattern>/LabX/GoDAV</url-pattern>
-	</servlet-mapping>
+<?xml version="1.0" encoding="utf-8"?>
+<web-app version="5.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
+    <display-name>IPLabs</display-name>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>default.html</welcome-file>
+        <welcome-file>default.htm</welcome-file>
+        <welcome-file>default.jsp</welcome-file>
+        <welcome-file>index.xhtml</welcome-file>
+        <welcome-file>Ttt.jsp</welcome-file>
+    </welcome-file-list>
+    <!--Init params -->
+    <context-param>
+        <param-name>URL1</param-name>
+        <param-value>./index.xhtml</param-value>
+    </context-param>
+    <context-param>
+        <param-name>URL2</param-name>
+        <param-value>./GoCcc</param-value>
+    </context-param>
+    <!-- Lab13.Init -->
+    <context-param>
+        <param-name>Lab13Files</param-name>
+        <param-value>E:/Files</param-value>
+    </context-param>
+    <!--FacesServlet -->
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    <!-- Lab02 -->
+    <servlet>
+        <servlet-name>Sss</servlet-name>
+        <servlet-class>lab02.servlets.Sss</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Sss</servlet-name>
+        <url-pattern>/Lab02/GoSss</url-pattern>
+    </servlet-mapping>
+    <!-- Lab03 -->
+    <servlet>
+        <servlet-name>Sss3</servlet-name>
+        <servlet-class>lab03.servlets.Sss</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Sss3</servlet-name>
+        <url-pattern>/Lab03/GoSss</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Ggg3</servlet-name>
+        <servlet-class>lab03.servlets.Ggg</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Ggg3</servlet-name>
+        <url-pattern>/Lab03/GoGgg</url-pattern>
+    </servlet-mapping>
+    <!-- Lab04 -->
+    <servlet>
+        <servlet-name>Afternoon</servlet-name>
+        <servlet-class>lab04.servlets.Afternoon</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Afternoon</servlet-name>
+        <url-pattern>/Lab04/GoAfternoon</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Jjj4</servlet-name>
+        <servlet-class>lab04.servlets.Jjj</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Jjj4</servlet-name>
+        <url-pattern>/Lab04/GoJjj</url-pattern>
+    </servlet-mapping>
+    <!-- Lab05 -->
+    <servlet>
+        <servlet-name>Ttt5</servlet-name>
+        <servlet-class>lab05.servlets.Ttt</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Ttt5</servlet-name>
+        <url-pattern>/Lab05/GoTtt</url-pattern>
+    </servlet-mapping>
+    <!-- Lab06 -->
+    <servlet>
+        <servlet-name>Ccc6</servlet-name>
+        <servlet-class>lab06.servlets.Ccc</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Ccc6</servlet-name>
+        <url-pattern>/Lab06/GoCcc</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Sss6</servlet-name>
+        <servlet-class>lab06.servlets.Sss</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Sss6</servlet-name>
+        <url-pattern>/Lab06/GoSss</url-pattern>
+    </servlet-mapping>
+    <!-- Lab07 -->
+    <servlet>
+        <servlet-name>Rrr7</servlet-name>
+        <servlet-class>lab07.servlets.Rrr</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Rrr7</servlet-name>
+        <url-pattern>/Lab07/GoRrr</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Sss7</servlet-name>
+        <servlet-class>lab07.servlets.Sss</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Sss7</servlet-name>
+        <url-pattern>/Lab07/GoSss</url-pattern>
+    </servlet-mapping>
+    <!-- Lab08 -->
+    <servlet>
+        <servlet-name>Aaa8</servlet-name>
+        <servlet-class>lab08.servlets.Aaa</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Aaa8</servlet-name>
+        <url-pattern>/Lab08/GoAaa</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Bbb8</servlet-name>
+        <servlet-class>lab08.servlets.Bbb</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Bbb8</servlet-name>
+        <url-pattern>/Lab08/GoBbb</url-pattern>
+    </servlet-mapping>
+    <!-- Lab09 -->
+    <servlet>
+        <servlet-name>Ccc9</servlet-name>
+        <servlet-class>lab09.servlets.Ccc</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Ccc9</servlet-name>
+        <url-pattern>/Lab09/GoCcc</url-pattern>
+    </servlet-mapping>
+    <!-- Lab09.Filters -->
+    <filter>
+        <filter-name>F3</filter-name>
+        <filter-class>lab09.filters.F3</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>F3</filter-name>
+        <servlet-name>Ccc9</servlet-name>
+    </filter-mapping>
+    <filter>
+        <filter-name>F2</filter-name>
+        <filter-class>lab09.filters.F2</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>F2</filter-name>
+        <url-pattern>/Lab09/Ccc.jsp</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>F1</filter-name>
+        <filter-class>lab09.filters.F1</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>F1</filter-name>
+        <servlet-name>Ccc9</servlet-name>
+    </filter-mapping>
+    <!-- Lab09.Listeners -->
+    <listener>
+        <listener-class>lab09.listeners.L1</listener-class>
+    </listener>
+    <listener>
+        <listener-class>lab09.listeners.L2</listener-class>
+    </listener>
+    <!-- Lab10 -->
+    <servlet>
+        <servlet-name>DB10</servlet-name>
+        <servlet-class>lab10.servlets.DBServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DB10</servlet-name>
+        <url-pattern>/Lab10/GoDb</url-pattern>
+    </servlet-mapping>
+    <!-- Lab11 -->
+    <servlet>
+        <servlet-name>Header11</servlet-name>
+        <servlet-class>lab11.servlets.Sss_Header</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Header11</servlet-name>
+        <url-pattern>/Lab11/GoHeader</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>XML11</servlet-name>
+        <servlet-class>lab11.servlets.Sss_XML</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>XML11</servlet-name>
+        <url-pattern>/Lab11/GoXML</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>JSON11</servlet-name>
+        <servlet-class>lab11.servlets.Sss_JSON</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JSON11</servlet-name>
+        <url-pattern>/Lab11/GoJSON</url-pattern>
+    </servlet-mapping>
+    <!-- Lab12 -->
+    <servlet>
+        <servlet-name>Sss12</servlet-name>
+        <servlet-class>lab12.servlets.Sss</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Sss12</servlet-name>
+        <url-pattern>/Lab12/GoSss</url-pattern>
+    </servlet-mapping>
+    <!-- Lab12.JAAS.Basic -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>JSP-Servlet Sss</web-resource-name>
+            <url-pattern>/Lab12/index.jsp</url-pattern>
+            <url-pattern>/Lab12/GoSss</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Role0XX</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>BASIC</auth-method>
+    </login-config>
+    <security-role>
+        <role-name>Role0XX</role-name>
+    </security-role>
+    <!-- Lab12.JAAS.Form -->
+    <!--<security-constraint>
+                <web-resource-collection>
+                        <web-resource-name>JSP-Servlet Sss</web-resource-name>
+                        <url-pattern>/Lab12/index.jsp</url-pattern>
+                        <url-pattern>/Lab12/GoSss</url-pattern>
+                        <http-method>GET</http-method>
+                        <http-method>POST</http-method>
+                </web-resource-collection>
+                <auth-constraint>
+                        <role-name>Role0XX</role-name>
+                </auth-constraint>
+        </security-constraint>
+        <login-config>
+                <auth-method>FORM</auth-method>
+                <form-login-config>
+                        <form-login-page>/Lab12/login.jsp</form-login-page>
+                        <form-error-page>/Lab12/error.jsp</form-error-page>
+                </form-login-config>
+        </login-config>
+        <security-role>
+                <role-name>Role0XX</role-name>
+        </security-role>-->
+    <!-- Lab13 -->
+    <servlet>
+        <servlet-name>Sss13</servlet-name>
+        <servlet-class>lab13.servlets.Sss</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Sss13</servlet-name>
+        <url-pattern>/Lab13/GoSss</url-pattern>
+    </servlet-mapping>
+    <!-- Lab15 -->
+    <servlet>
+        <servlet-name>Mail15</servlet-name>
+        <servlet-class>lab15.servlets.MailServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Mail15</servlet-name>
+        <url-pattern>/Lab15/GoMail</url-pattern>
+    </servlet-mapping>
+    <!-- Lab16 -->
 </web-app>

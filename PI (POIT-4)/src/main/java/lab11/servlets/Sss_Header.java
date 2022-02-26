@@ -4,13 +4,12 @@ import java.io.IOException;
 
 import org.apache.http.HttpStatus;
 
-import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class Sss_Header extends HttpServlet implements Servlet {
+public class Sss_Header extends HttpServlet {
 
 	/**
 	 * 
@@ -56,9 +55,9 @@ public class Sss_Header extends HttpServlet implements Servlet {
 		int x, y;
 		x = Integer.parseInt(xvalue);
 		y = Integer.parseInt(yvalue);
-		
+
 		resp.setHeader("Value-Z", Integer.toString(x + y));
-		
+
 	}
 
 	@Override

@@ -2,13 +2,12 @@ package lab04.servlets;
 
 import java.io.IOException;
 
-import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class Afternoon extends HttpServlet implements Servlet {
+public class Afternoon extends HttpServlet {
 
 	/**
 	 * 

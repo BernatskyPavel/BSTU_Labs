@@ -5,9 +5,55 @@
       xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 	<title>Index.xhtml</title>
-	<script src="../scripts/jquery-3.4.1.min.js"></script>
+      <script src="../scripts/modernizr-custom.js"></script>
 </h:head> 
 <body>
-	<applet code="Trifle.class"></applet>
+	<header><h1>Web Socket</h1></header>
+        <section style="width: 800px; float: left;">
+            <div id = "wsproperties">
+                Web Sockets supported?:<span id="support"></span><br/>
+            </div>
+        </section>
+        <br/>
+        <section style="width: 225px; border: solid;">
+            <div style = "margin: 5px 5px 5px 5px">
+                <input id = "bstart" type="button" value="Start" onclick="exe_start()" style="width: 100px;"/>
+                <input id = "bstop" type="button" value="Stop" onclick="exe_stop()" style="width: 100px;"/>
+                <textarea id="ta" rows="20" cols="24" style="text-align: center;" readonly="true"></textarea>
+            </div>
+        </section>
+        <script type="text/javascript">
+            var ws = null;
+            window.onload = function () {
+                if (Modernizr.websockets) {
+                    document.getElementById("support").innerHTML = "Yes";
+                    document.getElementById("bstart").disabled = false;
+                    document.getElementById("bstop").disabled = true;
+                } else {
+                    document.getElementById("support").innerHTML = "No";
+                    document.getElementById("bstart").disabled = true;
+                    document.getElementById("bstop").disabled = true;
+                }
+            }
+
+            function exe_start() {
+                if(ws == null) {
+                    ws = new WebSocket("ws://"+location.host+location.pathname+"/socket");
+                    ws.onopen = function() { ws.send("loopme"); }
+                    ws.onclose = function(event) { console.log("onclose ", event); }
+                    ws.onmessage = function(event) { document.getElementById("ta").innerHTML += "\n" + event.data; }
+                    document.getElementById("bstart").disabled = true;
+                    document.getElementById("bstop").disabled = false;
+                }
+            }
+
+            function exe_stop() {
+                ws.close(3001, "stopapplication");
+                ws = null;
+                document.getElementById("bstart").disabled = false;
+                document.getElementById("bstop").disabled = true;
+            }
+
+        </script>
 </body> 
 </html>
