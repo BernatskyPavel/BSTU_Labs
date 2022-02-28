@@ -1,0 +1,3 @@
+Lab-01: deno run --allow-net=0.0.0.0:8000 <filename>.ts
+Lab-02: deno run --allow-net=0.0.0.0:5000 --allow-read=index.xhtml <filename>.ts
+Lab-03: deno run --allow-net=0.0.0.0:5000 --allow-read=index.xhtml <filename>.ts
