@@ -1,0 +1,22 @@
+<html>
+
+<head>
+    <title>Lab-03</title>
+</head>
+
+<body>
+    <h1>Factorials:</h1>
+    <p id="cout"></p>
+    <script>
+        var startTime = performance.now();
+        for (let index = 0; index <= 20; index++) {
+            fetch(`./fact?k=${index}`).then((response) => {
+                response.json().then((json) => {
+                    document.getElementById("cout").innerText += `${index}.Результат: ${(performance.now() - startTime).toFixed(0)}-${index}/${json["fact"]}\n`;
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

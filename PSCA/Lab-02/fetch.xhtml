@@ -1,0 +1,22 @@
+<html>
+
+<head>
+    <title>Lab-02 FETCH</title>
+</head>
+
+<body>
+    <h1>Info:</h1>
+    <p>Name: <label id="name-label"></label></p>
+    <button type="button" onclick="btnclick()">Get Name!</button>
+    <script>
+        function btnclick() {
+            fetch("./api/name").then((response)=>{
+                response.text().then((text)=>{
+                    document.getElementById("name-label").innerText = text;
+                });
+            }); 
+        }
+    </script>
+</body>
+
+</html>

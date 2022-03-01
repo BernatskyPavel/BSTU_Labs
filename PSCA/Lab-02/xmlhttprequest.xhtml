@@ -1,0 +1,25 @@
+<html>
+
+<head>
+    <title>Lab-02 XHR</title>
+</head>
+
+<body>
+    <h1>Info:</h1>
+    <p>Name: <label id="name-label"></label></p>
+    <button type="button" onclick="btnclick()">Get Name!</button>
+    <script>
+        function btnclick() {
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200) {
+                    document.getElementById("name-label").innerText = this.responseText;
+                }
+            }
+            xhr.open("GET", "./api/name", true);
+            xhr.send();
+        }
+    </script>
+</body>
+
+</html>
