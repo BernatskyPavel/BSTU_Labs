@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lorem ipsum dolor sit amet</title>
+    <style>
+        @font-face {
+            font-family: "Caveat";
+            src: url("fonts/Caveat.woff");
+        }
+
+        @font-face {
+            font-family: "Exo2";
+            src: url("fonts/Exo2.woff");
+        }
+
+        @font-face {
+            font-family: "Comfortaa";
+            src: url("fonts/Comfortaa.woff");
+        }
+
+        h1 {
+            font-family: Caveat;
+            line-height: 100%;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 45px;
+            text-shadow: 1px 1px 2px red;
+        }
+
+        h2 {
+            font-family: Exo2;
+            margin-bottom: 1.2em;
+            margin-top: 0.2rem;
+            text-indent: 25px;
+            text-align: left;
+        }
+
+            h2:last-of-type {
+                margin-bottom: 0;
+            }
+
+        ol li {
+            list-style-type: none;
+            counter-increment: item;
+        }
+
+        ol li:before {
+            content: counter(item, upper-roman) ". ";
+            color: blue;
+        }
+
+        p, li {
+            font-family: Comfortaa;
+            font-size: 20px;
+        }
+
+        li {
+            color: black;
+        }
+
+        p {
+            text-align: justify;
+            line-height: 200%;
+            text-indent: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+            p::first-letter {
+                font-weight: bold;
+                font-size: 45px;
+                color: white;
+                background: hsla(275, 100%, 10%, 1);
+            }
+    </style>
+</head>
+<body>
+    <h1>Lorem ipsum dolor sit amet</h1>
+    <h2>Surprise steepest recurred landlord mr wandered amounted of. Continuing devonshire but considered its. Rose past oh shew roof is song neat. Do depend better praise do friend garden an wonder to.</h2>
+    <p>Surprise steepest recurred landlord mr wandered amounted of. Continuing devonshire but considered its. Rose past oh shew roof is song neat. Do depend better praise do friend garden an wonder to. Intention age nay otherwise but breakfast. Around garden beyond to extent by. </p>
+    <p>Friendship contrasted solicitude insipidity in introduced literature it. He seemed denote except as oppose do spring my. Between any may mention evening age shortly can ability regular. He shortly sixteen of colonel colonel evening cordial to. Although jointure an my of mistress servants am weddings. Age why the therefore education unfeeling for arranging. Above again money own scale maids ham least led. Returned settling produced strongly ecstatic use yourself way. Repulsive extremity enjoyment she perceived nor. </p>
+    <h2>Was drawing natural fat respect husband.</h2>
+    <p>Was drawing natural fat respect husband. An as noisy an offer drawn blush place. These tried for way joy wrote witty. In mr began music weeks after at begin. Education no dejection so direction pretended household do to. Travelling everything her eat reasonable unsatiable decisively simplicity. Morning request be lasting it fortune demands highest of. </p>
+    <h2>Lorem ipsum dolor sit amet.</h2>
+    <ol>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+        <li>Auctor elit sed vulputate mi sit amet mauris commodo.</li>
+        <li>Lectus arcu bibendum at varius.</li>
+        <li>Quisque egestas diam in arcu cursus euismod quis.</li>
+        <li>Adipiscing elit ut aliquam purus sit.</li>
+        <li>Sed augue lacus viverra vitae congue eu.</li>
+    </ol>
+</body>
+</html>
