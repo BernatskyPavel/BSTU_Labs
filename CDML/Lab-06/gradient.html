@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Gradient</title>
+    <style>
+
+        #main-container {
+            display: inline-flex;
+        }
+
+            #main-container > div {
+                width: 100px;
+                height: 100px;
+                background-color: black;
+                margin: 10px;
+            }
+
+        #g1 {
+            background-image: linear-gradient(blue, red);
+        }
+
+        #g2 {
+            background-image: repeating-linear-gradient(45deg, red, red 5px, blue 5px, blue 10px);
+        }
+
+        #g3 {
+            background-image: radial-gradient(yellow, green);
+        }
+
+        #g4 {
+            background-image: repeating-radial-gradient(green, green 5px, yellow 5px, yellow 10px);
+        }
+
+        #g5 {
+            background-image: radial-gradient(circle closest-side, yellow 5px, green, transparent), linear-gradient(blue, transparent), linear-gradient(transparent, magenta);
+        }
+
+        #g6 {
+            background-image: linear-gradient(to right, yellow, green ,transparent), linear-gradient(black 5%, white 75%, blue 80%, magenta 90%);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="main-container">
+        <div id="g1"></div>
+        <div id="g2"></div>
+        <div id="g3"></div>
+        <div id="g4"></div>
+        <div id="g5"></div>
+        <div id="g6"></div>
+    </div>
+</body>
+</html>

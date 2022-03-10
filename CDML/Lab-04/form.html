@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Form</title>
-    </head>
+<head>
+    <meta charset="utf-8">
+    <title>Form</title>
     <style>
         table {
             background-color: indigo;
@@ -39,86 +38,89 @@
             box-shadow: inset 0 0 10px rgba(255, 255, 255, .75);
         }
 
-        input[type="text"]:focus, input[type="number"]:focus {
-            background-color: white;
-            color: black;
-        }
-
+            input[type="text"]:focus, input[type="number"]:focus {
+                background-color: white;
+                color: black;
+            }
     </style>
-    <body>
-        <table>
-            <thead>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
                 <th colspan="2">
                     <h3>Регистрация постоянного клиента</h3>
                 </th>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Фамилия:</td>
-                    <td>
-                        <input type="text" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Имя:</td>
-                    <td>
-                        <input type="text" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Отчество:</td>
-                    <td>
-                        <input type="text" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Ваш возраст:</td>
-                    <td>
-                        <input type="number" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Пол:</td>
-                    <td>
-                        <input type="radio" name="age" />мужской <input type="radio" name="age" />женский
-                    </td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td>
-                        <input type="email" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Страна проживания:</td>
-                    <td>
-                        <input type="text" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Откуда вы узнали о<br />нас</td>
-                    <td>
-                        <select>
-                            <option disabled selected>Выберите варант</option>
-                            <option>От друзей</option>
-                            <option>В соцсетях</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Дата заполнения:</td>
-                    <td>
-                        <input type="date" />
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <input type="submit" value="Регистрация" />
-                        <input type="reset" value="Отмена" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </body>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Фамилия:</td>
+                <td>
+                    <input type="text" />
+                </td>
+            </tr>
+            <tr>
+                <td>Имя:</td>
+                <td>
+                    <input type="text" />
+                </td>
+            </tr>
+            <tr>
+                <td>Отчество:</td>
+                <td>
+                    <input type="text" />
+                </td>
+            </tr>
+            <tr>
+                <td>Ваш возраст:</td>
+                <td>
+                    <input type="number" />
+                </td>
+            </tr>
+            <tr>
+                <td>Пол:</td>
+                <td>
+                    <input type="radio" name="age" />мужской <input type="radio" name="age" />женский
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>
+                    <input type="email" />
+                </td>
+            </tr>
+            <tr>
+                <td>Страна проживания:</td>
+                <td>
+                    <input type="text" />
+                </td>
+            </tr>
+            <tr>
+                <td>Откуда вы узнали о<br />нас</td>
+                <td>
+                    <select>
+                        <option disabled selected>Выберите варант</option>
+                        <option>От друзей</option>
+                        <option>В соцсетях</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Дата заполнения:</td>
+                <td>
+                    <input type="date" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Регистрация" />
+                    <input type="reset" value="Отмена" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
 </html>
