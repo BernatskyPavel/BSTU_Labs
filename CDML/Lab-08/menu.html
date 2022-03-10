@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Menu</title>
+    <style>
+
+        nav ul, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+        }
+
+        p {
+            background-color: yellow;
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        nav li:hover a {
+            display: block;
+        }
+
+        p ~ ul, p ~ ul > li {
+            width: 100px;
+        }
+
+        nav > ul > li {
+            width: 180px;
+            height: 30px;
+            position: relative;
+            float: left;
+        }
+
+        .second-level a {
+            display: none;
+            background-color: orangered;
+            width: 100px;
+            border: 1px dotted black;
+            border-collapse: collapse;
+            padding: 5px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>
+                <p>Меню</p>
+                <ul class="second-level">
+                    <li><a href="../Lab-04/form.html">Форма</a></li>
+                    <li><a href="../Lab-04/chess.html">Шахматная доска</a></li>
+                    <li><a href="../Lab-06/gallery.html">Фотогалерея</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>
