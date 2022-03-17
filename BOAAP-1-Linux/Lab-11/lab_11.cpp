@@ -50,6 +50,25 @@ compare(const void* a, const void* b)
   return (*(int32_t*)a - *(int32_t*)b);
 }
 
+int32_t
+compare_desc(const void* b, const void* a)
+{
+  return (*(int32_t*)a - *(int32_t*)b);
+}
+
+int
+is_prime(size_t n)
+{
+  unsigned int p;
+  if (!(n & 1) || n < 2)
+    return n == 2;
+
+  for (p = 3; p <= n / p; p += 2)
+    if (!(n % p))
+      return 0;
+  return 1;
+}
+
 bool
 is_number_fits(size_t number)
 {
@@ -61,14 +80,12 @@ is_number_fits(size_t number)
     case 4:
       return true;
     default: {
-      bool result = true;
-      for (size_t i = 5; i < static_cast<size_t>(sqrt(number)); i++) {
-        if (number % i == 0 && is) {
-          result = false;
-          break;
+      for (size_t i = 5; i < number; i++) {
+        if (is_prime(i) && number % i == 0) {
+          return false;
         }
       }
-      return result;
+      return number % 2 == 0 || number % 3 == 0;
     } break;
   }
 }
@@ -160,6 +177,10 @@ second_variant()
   print_array<int32_t>(A, n, L"A", true);
   print_array<int32_t>(B, n, L"B", true);
   print_array<int32_t>(S, n, L"S", true);
+
+  delete[] A;
+  delete[] B;
+  delete[] S;
 }
 
 #ifdef RANDOM_MIN
@@ -215,6 +236,9 @@ third_variant()
     print_array<int32_t>(B, n, L"B", true);
     print_array<int32_t>(A, n, L"A", true);
   }
+
+  delete[] A;
+  delete[] B;
 }
 
 #ifdef RANDOM_MIN
@@ -581,23 +605,7 @@ eighth_variant()
 void
 ninth_variant()
 {
-  std::wcout << L"Input N:";
-  size_t n = input_value<size_t>();
-
-  int32_t* X = new int32_t[n];
-
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_int_distribution<int32_t> distribution(RANDOM_MIN, RANDOM_MAX);
-  for (size_t i = 0; i < n; i++) {
-    *(X + i) = distribution(gen);
-  }
-
-  qsort(X, n, sizeof(int32_t), compare);
-
-  print_array<int32_t>(X, n, L"X", true);
-
-  delete[] X;
+  // In process
 }
 
 #ifdef RANDOM_MIN
@@ -609,38 +617,368 @@ ninth_variant()
 #endif
 #pragma endregion Ninth_Variant
 #pragma region Tenth_Variant
+#ifdef RANDOM_MIN
+#undef RANDOM_MIN
+#endif
+#define RANDOM_MIN 0
+
+#ifdef RANDOM_MAX
+#undef RANDOM_MAX
+#endif
+#define RANDOM_MAX 20
+
+#ifndef ARRAY_SIZE
+#define ARRAY_SIZE 10
+#endif
+
 void
 tenth_variant()
-{}
+{
+  int32_t *A = new int32_t[ARRAY_SIZE], *B = new int32_t[ARRAY_SIZE];
+  int32_t* min = A;
+
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<int32_t> distribution(RANDOM_MIN, RANDOM_MAX);
+  for (size_t i = 0; i < ARRAY_SIZE; i++) {
+    *(B + i) = distribution(gen);
+  }
+
+  for (size_t i = 0; i < ARRAY_SIZE; i++) {
+    *(A + i) = distribution(gen);
+
+    int temp = 0;
+    for (size_t j = 0; j < ARRAY_SIZE; j++) {
+      if (*(A + i) != *(B + j)) {
+        temp += 1;
+      } else {
+        break;
+      }
+    }
+    if (temp == ARRAY_SIZE) {
+      if (*(A + i) < *min) {
+        min = &*(A + i);
+      }
+    }
+  }
+
+  print_array<int32_t>(A, ARRAY_SIZE, L"A", true);
+  print_array<int32_t>(B, ARRAY_SIZE, L"B", true);
+  std::wcout << L"Min: " << *min << "\n";
+  delete[] A;
+  delete[] B;
+}
+#ifdef RANDOM_MIN
+#undef RANDOM_MIN
+#endif
+
+#ifdef RANDOM_MAX
+#undef RANDOM_MAX
+#endif
 #pragma endregion Tenth_Variant
 #pragma region Eleventh_Variant
 void
 eleventh_variant()
-{}
+{
+  std::wcout << L"Input n:";
+  size_t n = input_value<size_t>();
+
+  u_int32_t* A = new u_int32_t[n];
+
+  for (size_t i = 0; i < n; i++) {
+    *(A + i) = input_value<u_int32_t>();
+  }
+
+  qsort(A, n, sizeof(u_int32_t), compare);
+
+  u_int32_t missing = 0;
+  for (size_t i = 0; i < n; i++) {
+    if (missing < *(A + i)) {
+      break;
+    }
+    if (missing == *(A + i)) {
+      missing += 1;
+    }
+  }
+
+  print_array<u_int32_t>(A, n, L"A", true);
+  std::wcout << L"Min: " << missing << "\n";
+  delete[] A;
+  return;
+}
 #pragma endregion Eleventh_Variant
 #pragma region Twelfth_Variant
+#ifdef RANDOM_MIN
+#undef RANDOM_MIN
+#endif
+#define RANDOM_MIN 0
+
+#ifdef RANDOM_MAX
+#undef RANDOM_MAX
+#endif
+#define RANDOM_MAX 20
+
 void
 twelfth_variant()
-{}
+{
+  std::wcout << L"Input n:";
+  size_t n = input_value<size_t>();
+
+  int32_t* A = new int32_t[n];
+  int32_t* B = new int32_t[n];
+
+  size_t lt = 0, eq = 0, gt = 0;
+
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<int32_t> distribution(RANDOM_MIN, RANDOM_MAX);
+  for (size_t i = 0; i < n; i++) {
+    *(A + i) = distribution(gen);
+    *(B + i) = distribution(gen);
+    if (*(A + i) > *(B + i)) {
+      gt += 1;
+    } else if (*(A + i) < *(B + i)) {
+      lt += 1;
+    } else {
+      eq += 1;
+    }
+  }
+
+  print_array<int32_t>(A, n, L"A", true);
+  print_array<int32_t>(B, n, L"B", true);
+  std::wcout << L"A[k] > B[k]: " << gt << "\n"
+             << L"A[k] < B[k]: " << lt << "\n"
+             << L"A[k] == B[k]: " << eq << "\n";
+
+  delete[] A;
+  delete[] B;
+  return;
+}
+#ifdef RANDOM_MIN
+#undef RANDOM_MIN
+#endif
+
+#ifdef RANDOM_MAX
+#undef RANDOM_MAX
+#endif
 #pragma endregion Twelfth_Variant
 #pragma region Thirteenth_Variant
+#ifdef RANDOM_MIN
+#undef RANDOM_MIN
+#endif
+#define RANDOM_MIN 0
+
+#ifdef RANDOM_MAX
+#undef RANDOM_MAX
+#endif
+#define RANDOM_MAX 20
+
 void
 thirteenth_variant()
-{}
+{
+  std::wcout << L"Input n:";
+  size_t n = input_value<size_t>();
+
+  int32_t* X = new int32_t[n];
+  bool is_breaked = false;
+  size_t counter = 0;
+
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<int32_t> distribution(RANDOM_MIN, RANDOM_MAX);
+  for (size_t i = 0; i < n; i++) {
+    *(X + i) = distribution(gen);
+    for (size_t j = 0; j < i; j++) {
+      if (*(X + i) == *(X + j)) {
+        is_breaked = true;
+        break;
+      }
+    }
+    if (!is_breaked) {
+      counter += 1;
+    } else {
+      is_breaked = false;
+    }
+  }
+
+  print_array<int32_t>(X, n, L"X", true);
+  std::wcout << L"Number of different values in array X is " << counter << "\n";
+
+  delete[] X;
+  return;
+}
+#ifdef RANDOM_MIN
+#undef RANDOM_MIN
+#endif
+
+#ifdef RANDOM_MAX
+#undef RANDOM_MAX
+#endif
 #pragma endregion Thirteenth_Variant
 #pragma region Fourteenth_Variant
+#ifdef RANDOM_MIN
+#undef RANDOM_MIN
+#endif
+#define RANDOM_MIN 0
+
+#ifdef RANDOM_MAX
+#undef RANDOM_MAX
+#endif
+#define RANDOM_MAX 20
 void
 fourteenth_variant()
-{}
+{
+  std::wcout << L"Input n:";
+  size_t n = input_value<size_t>();
+  std::wcout << L"Input m:";
+  size_t m = input_value<size_t>();
+
+  int32_t* X = new int32_t[n];
+  int32_t* Y = new int32_t[m];
+
+  bool is_first = true;
+  size_t counter = 0;
+
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<int32_t> distribution(RANDOM_MIN, RANDOM_MAX);
+  for (size_t i = 0; i < n; i++) {
+    *(X + i) = distribution(gen);
+  }
+  for (size_t i = 0; i < m; i++) {
+    *(Y + i) = distribution(gen);
+  }
+
+  print_array<int32_t>(X, n, L"X", true);
+  print_array<int32_t>(Y, m, L"Y", true);
+  std::wcout << L"Same elements of array:\n";
+
+  for (size_t i = 0; i < n; i++) {
+    for (size_t j = 0; j < m; j++) {
+      if (*(X + i) == *(Y + j)) {
+        counter += 1;
+        if (!is_first) {
+          std::wcout << L", ";
+        } else {
+          is_first = false;
+        }
+        std::wcout << L"(X[" << i << L"], Y[" << j << L"])";
+      }
+    }
+  }
+  std::wcout << L'\n' << L"Number of same elements: " << counter << L'\n';
+
+  delete[] X;
+  delete[] Y;
+  return;
+}
+#ifdef RANDOM_MIN
+#undef RANDOM_MIN
+#endif
+
+#ifdef RANDOM_MAX
+#undef RANDOM_MAX
+#endif
 #pragma endregion Fourteenth_Variant
 #pragma region Fifteenth_Variant
+#ifdef RANDOM_MIN
+#undef RANDOM_MIN
+#endif
+#define RANDOM_MIN -20
+
+#ifdef RANDOM_MAX
+#undef RANDOM_MAX
+#endif
+#define RANDOM_MAX 20
 void
 fifteenth_variant()
-{}
+{
+  std::wcout << L"Input n:";
+  size_t n = input_value<size_t>();
+
+  int32_t* A = new int32_t[n];
+
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<int32_t> distribution(RANDOM_MIN, RANDOM_MAX);
+  for (size_t i = 0; i < n; i++) {
+    *(A + i) = distribution(gen);
+  }
+
+  qsort(A, n, sizeof(int32_t), compare_desc);
+
+  print_array<int32_t>(A, n, L"A", true);
+
+  delete[] A;
+  return;
+}
+#ifdef RANDOM_MIN
+#undef RANDOM_MIN
+#endif
+
+#ifdef RANDOM_MAX
+#undef RANDOM_MAX
+#endif
 #pragma endregion Fifteenth_Variant
 #pragma region Sixteenth_Variant
+#ifdef RANDOM_MIN
+#undef RANDOM_MIN
+#endif
+#define RANDOM_MIN 0
+
+#ifdef RANDOM_MAX
+#undef RANDOM_MAX
+#endif
+#define RANDOM_MAX 20
 void
 sixteenth_variant()
-{}
+{
+  std::wcout << L"Input k:";
+  size_t k = input_value<size_t>();
+  std::wcout << L"Input n:";
+  size_t n = input_value<size_t>();
+  std::wcout << L"Input q:";
+  int32_t q = input_value<int32_t>();
+
+  int32_t* X = new int32_t[k];
+  int32_t* Y = new int32_t[n];
+
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<int32_t> distribution(RANDOM_MIN, RANDOM_MAX);
+  for (size_t i = 0; i < k; i++) {
+    *(X + i) = distribution(gen);
+  }
+  for (size_t i = 0; i < n; i++) {
+    *(Y + i) = distribution(gen);
+  }
+
+  print_array<int32_t>(X, k, L"X", true);
+  print_array<int32_t>(Y, n, L"Y", true);
+
+  int32_t dist = INT32_MAX, sum = 0;
+
+  for (size_t i = 0; i < k; i++) {
+    for (size_t j = 0; j < n; j++) {
+      if (abs(q - *(X + i) - *(Y + j)) < dist) {
+        sum = *(X + i) + *(Y + j);
+        dist = abs(q - sum);
+      }
+    }
+  }
+
+  std::wcout << L"Closest sum is " << sum << L"\n";
+
+  delete[] X;
+  delete[] Y;
+  return;
+}
+#ifdef RANDOM_MIN
+#undef RANDOM_MIN
+#endif
+
+#ifdef RANDOM_MAX
+#undef RANDOM_MAX
+#endif
 #pragma endregion Sixteenth_Variant
 }
