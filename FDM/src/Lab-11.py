@@ -94,20 +94,20 @@ X_test_scaled = (X_test - mean_on_training) / std_on_training
 mlp.fit(X_train_scaled, y_train)
 print(
     f"""Правильность на масштабированном обучающем наборе: {mlp.score(X_train_scaled, y_train):.3f}
-    Правильность на масштабированном тестовом наборе: {mlp.score(X_test_scaled, y_test):.3f}"""
+Правильность на масштабированном тестовом наборе: {mlp.score(X_test_scaled, y_test):.3f}"""
 )
 
 mlp = MLPClassifier(max_iter=1000, random_state=0).fit(X_train_scaled, y_train)
 print(
     f"""Правильность на масштабированном обучающем наборе: {mlp.score(X_train_scaled, y_train):.3f}
-    Правильность на масштабированном тестовом наборе: {mlp.score(X_test_scaled, y_test):.3f}"""
+Правильность на масштабированном тестовом наборе: {mlp.score(X_test_scaled, y_test):.3f}"""
 )
 
 mlp = MLPClassifier(max_iter=1000, alpha=1,
                     random_state=0).fit(X_train_scaled, y_train)
 print(
     f"""Правильность на масштабированном обучающем наборе: {mlp.score(X_train_scaled, y_train):.3f}
-    Правильность на масштабированном тестовом наборе: {mlp.score(X_test_scaled, y_test):.3f}"""
+Правильность на масштабированном тестовом наборе: {mlp.score(X_test_scaled, y_test):.3f}"""
 )
 
 plt.figure(figsize=(20, 5))

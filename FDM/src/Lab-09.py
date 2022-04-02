@@ -40,7 +40,7 @@ forest = RandomForestClassifier(n_estimators=100,
                                 random_state=0).fit(X_train, y_train)
 print(
     f"""Правильность на обучающем наборе: {forest.score(X_train, y_train):.3f}
-"Правильность на тестовом наборе: {forest.score(X_test, y_test):.3f}""")
+Правильность на тестовом наборе: {forest.score(X_test, y_test):.3f}""")
 
 
 def plot_feature_importances_cancer(model):

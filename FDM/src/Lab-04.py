@@ -34,8 +34,8 @@ for alpha in alphas:
     ridge = Ridge(alpha=alpha).fit(X_train, y_train)
     coefs_[alpha] = ridge.coef_
     print(f"""Значение параметра alpha: {alpha}
-    Правильность на обучающем наборе: {ridge.score(X_train, y_train):.2f}
-    Правильность на тестовом наборе: {ridge.score(X_test, y_test):.2f}""")
+Правильность на обучающем наборе: {ridge.score(X_train, y_train):.2f}
+Правильность на тестовом наборе: {ridge.score(X_test, y_test):.2f}""")
 
 for alpha, symbol in zip(alphas, symbols):
     plt.plot(coefs_[alpha], symbol, label=f"Гребневая регрессия alpha={alpha}")
@@ -64,8 +64,8 @@ for alpha, iter in zip(lasso_alphas, lasso_iters):
     lasso_coefs_[alpha] = lasso.coef_
     print(
         f"""Правильность на обучающем наборе: {lasso.score(X_train, y_train):.2f}
-        Правильность на тестовом наборе: {lasso.score(X_test, y_test):.2f}
-        Количество использованных признаков: {np.sum(lasso.coef_ != 0)}""")
+Правильность на тестовом наборе: {lasso.score(X_test, y_test):.2f}
+Количество использованных признаков: {np.sum(lasso.coef_ != 0)}""")
 
 for alpha, symbol in zip(lasso_alphas, lasso_symbols):
     plt.plot(lasso_coefs_[alpha], symbol, label=f"Лассо alpha={alpha}")

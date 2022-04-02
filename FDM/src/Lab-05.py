@@ -42,7 +42,7 @@ for C, marker in zip([1, 100, 0.001], ["o", "^", "v"]):
     ).fit(X_train, y_train)
     print(
         f"""Правильность на обучении логрегрессии с C={C:.3f}: {lr.score(X_train, y_train):.3f}
-        Правильность на обучении логрегрессии с C={C:.3f}: {lr.score(X_test, y_test):.3f}"""
+Правильность на обучении логрегрессии с C={C:.3f}: {lr.score(X_test, y_test):.3f}"""
     )
     plt.plot(lr.coef_.T, marker, label=f"C={C:.3f}")
 
@@ -64,7 +64,7 @@ for C, marker in zip([1, 100, 0.001], ["o", "^", "v"]):
                                max_iter=10000).fit(X_train, y_train)
     print(
         f"""Правильность на обучении логрегрессии l1 с C={C:.3f}: {lr_l1.score(X_train, y_train):.3f}
-        Правильность на обучении логрегрессии l1 с C={C:.3f}: {lr_l1.score(X_test, y_test):.3f}"""
+Правильность на обучении логрегрессии l1 с C={C:.3f}: {lr_l1.score(X_test, y_test):.3f}"""
     )
     plt.plot(lr_l1.coef_.T, marker, label=f"C={C:.3f}")
 
