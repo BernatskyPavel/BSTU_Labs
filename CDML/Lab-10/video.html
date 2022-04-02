@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8" />
+    <title>Video</title>
+    <style>
+        nav {
+            display: inline-block;
+            border: 1px solid black;
+        }
+
+            nav li {
+                display: inline;
+                float: left;
+            }
+
+            nav a {
+                display: inline-block;
+                padding: 0px 0px 0px 10px;
+                text-decoration: none;
+                width: 100px;
+                height: 30px;
+                line-height: 200%;
+            }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        #content {
+            border: 1px solid black;
+            width: 560px;
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+            
+        }
+
+        #container {
+            display: flex;
+            flex-direction: row;
+        }
+
+        #menu-header {
+            height: 30px;
+            width: 110px;
+            margin: 0;
+            text-align: center;
+            line-height: 200%;
+        }
+
+        nav > ul > li, .second-level {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media(max-width:560px) {
+            nav li:hover a {
+                display: block;
+            }
+
+            .second-level a {
+                display: none;
+                border-collapse: collapse;
+            }
+
+            nav > ul > li, .second-level {
+                display: grid;
+            }
+
+            #container {
+                flex-direction: column;
+            }
+
+            #content {
+                margin: 0;
+                height: fit-content;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <nav>
+            <ul>
+                <li>
+                    <p id="menu-header">Меню:</p>
+                    <ul class="second-level">
+                        <li><a href="https://youtube.com/">1. Youtube</a></li>
+                        <li><a href="https://www.kinopoisk.ru/">2. Kinopoisk</a></li>
+                        <li><a href="https://z2.fm/">3. z2.fm</a></li>
+                        <li><a href="https://www.netflix.com/">4. Netflix</a></li>
+                        <li><a href="https://www.spotify.com/ru-ru/">5. Spotify</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div id="content">
+            <label style="align-self:center;">Аудио</label>
+            <audio controls="controls" title="Neffex - Sometimes" src="./audio/Sometimes.mp3"></audio>
+            <audio controls="controls" title="Neffex - New Beginnings" src="./audio/New Beginnings.mp3"></audio>
+            <label style="align-self:center;">Видео</label>
+            <video controls="controls" src="./video/ASHWGA.mp4" poster="./images/ASHWGA_cover.jpg"></video>
+            <video controls="controls" src="./video/ARGO.mp4" poster="./images/ARGO_cover.jpg"></video>
+            <video controls="controls" src="./video/MGM.mp4" poster="./images/MGM_cover.jpeg"></video>
+        </div>
+    </div>
+</body>
+</html>

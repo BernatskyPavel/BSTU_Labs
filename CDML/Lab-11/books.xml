@@ -1,0 +1,11 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<?xml-stylesheet href="./css/books.css" type="text/css"?>
+<shelf>
+    <book>
+        <author></author>
+        <title></title>
+        <year></year>
+        <genre></genre>
+        <cover></cover>
+    </book>
+</shelf>

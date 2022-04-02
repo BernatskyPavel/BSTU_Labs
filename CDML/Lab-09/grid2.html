@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<head>
+    <meta charset="utf-8" />
+    <title>Grid 2</title>
+    <style>
+        img {
+            width: 75%;
+            height: auto;
+        }
+
+        .container {
+            display: grid;
+            grid-template-rows: 1.5fr 2.5fr 1fr;
+            grid-template-columns: 1fr 4fr 2fr;
+            width: 400px;
+            height: 300px;
+            justify-self: center;
+            gap: 5px;
+        }
+
+        .container > div {
+            background-color: lime;
+        }
+
+        .container-nav {
+            grid-row-start: 1;
+            grid-row-end: 3;
+        }
+
+        .container-header {
+            grid-column-start: 2;
+            grid-column-end: 4;
+        }
+
+        .container-footer {
+            grid-column-start: 1;
+            grid-column-end: 4;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        a:visited {
+            text-decoration: none;
+        }
+
+        a:link{
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="container-nav">
+            <ul>
+                <li><a href="grid.html">Grid</a></li>
+                <li><a href="skeleton.html">Skeleton</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </div>
+        <div class="container-header">Content Header</div>
+        <div class="container-article">Content Article</div>
+        <div class="container-aside">Content Aside</div>
+        <div class="container-footer">Content Footer</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8" />
+    <title>Menu</title>
+    <style>
+        nav {
+            display: inline-block;
+        }
+
+            nav li {
+                display: inline;
+                float: left;
+            }
+
+            nav a {
+                display: inline-block;
+                border: 1px solid black;
+                padding: 0px 0px 0px 30px;
+                text-decoration: none;
+                width: 80px;
+                background: url(images/facultet.png) no-repeat 0 0;
+                height: 30px;
+                line-height: 200%;
+            }
+
+            nav li:nth-of-type(2) a:hover {
+                background: url(images/facultet.png) no-repeat 0 -30px;
+            }
+
+            nav li:nth-of-type(3) a:hover {
+                background: url(images/facultet.png) no-repeat 0 -90px;
+            }
+
+            nav li:nth-of-type(4) a:hover {
+                background: url(images/facultet.png) no-repeat 0 -60px;
+            }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        #menu-header {
+            height: 30px;
+            width: 110px;
+            border: 1px solid black;
+            margin: 0;
+            text-align: center;
+            line-height: 200%;
+        }
+
+        nav > ul > li {
+            display: flex;
+        }
+
+        @media(max-width:560px) {
+            nav li:hover a {
+                display: block;
+            }
+
+            .second-level a {
+                display: none;
+                border-collapse: collapse;
+            }
+
+            nav > ul > li, .second-level {
+                display: grid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>
+                <p id="menu-header">Меню:</p>
+                <ul class="second-level">
+                    <li><a href="https://belstu.by/">БГТУ</a></li>
+                    <li><a href="https://it.belstu.by/">ИТ</a></li>
+                    <li><a href="https://pim.belstu.by/">ПиМ</a></li>
+                    <li><a href="http://htit.belstu.by/">ХТиТ</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>

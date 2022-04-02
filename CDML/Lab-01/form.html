@@ -1,64 +1,68 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Form</title>
-    </head>
-    <body>
-        <table>
-            <thead>
-                <tr>
-                    <th colspan="2" bgcolor="lightgrey" align="left">
-                        <h3>Оформить заказ</h3>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Имя</td>
-                    <td><input type="text" /></td>
-                </tr>
-                <tr>
-                    <td>Телефон</td>
-                    <td><input type="tel" /></td>
-                </tr>
-                <tr>
-                    <td>Адрес</td>
-                    <td><textarea cols="45" rows="10"></textarea></td>
-                </tr>
-                <tr>
-                    <td>Способ оплаты</td>
-                    <td>
-                        <input type="radio" name="payment" /><label>Наличными</label><br />
-                        <input type="radio" name="payment" /><label>Пластиковая карта</label><br />
-                        <input type="radio" name="payment" /><label>Безналичный расчёт</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Желаемый день<br /> доставки</td>
-                    <td>
-                        <select>
-                            <option selected>Понедельник</option>
-                            <option>Вторник</option>
-                            <option>Среда</option>
-                            <option>Четверг</option>
-                            <option>Пятница</option>
-                            <option>Суббота</option>
-                            <option>Воскресенье</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Дополнительно</td>
-                    <td><input type="checkbox" name="additional" /><label>Перед доставкой свяжитесь со
-                            мной</label><br />
-                        <input type="checkbox" name="additional" /><label>Курьер должен быть трезвый</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" value="Отправить" /></td>
-                </tr>
-            </tbody>
-        </table>
-    </body>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8" />
+    <title>Form</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2" bgcolor="lightgrey" align="left">
+                    <h3>Оформить заказ</h3>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Имя</td>
+                <td><input type="text" /></td>
+            </tr>
+            <tr>
+                <td>Телефон</td>
+                <td><input type="tel" /></td>
+            </tr>
+            <tr>
+                <td>Адрес</td>
+                <td><textarea cols="45" rows="10"></textarea></td>
+            </tr>
+            <tr>
+                <td>Способ оплаты</td>
+                <td>
+                    <input type="radio" name="payment" /><label>Наличными</label><br />
+                    <input type="radio" name="payment" /><label>Пластиковая карта</label><br />
+                    <input type="radio" name="payment" /><label>Безналичный расчёт</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Желаемый день<br /> доставки</td>
+                <td>
+                    <select>
+                        <option selected>Понедельник</option>
+                        <option>Вторник</option>
+                        <option>Среда</option>
+                        <option>Четверг</option>
+                        <option>Пятница</option>
+                        <option>Суббота</option>
+                        <option>Воскресенье</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Дополнительно</td>
+                <td>
+                    <input type="checkbox" name="additional" /><label>
+                        Перед доставкой свяжитесь со
+                        мной
+                    </label><br />
+                    <input type="checkbox" name="additional" /><label>Курьер должен быть трезвый</label>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Отправить" /></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
 </html>
