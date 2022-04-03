@@ -1,5 +1,14 @@
 <?xml version="1.1" encoding="UTF-8"?>
-<?xml-stylesheet href="./css/books.css" type="text/css"?>
+<!DOCTYPE shelf [
+    <!ELEMENT shelf (book*)>
+    <!ELEMENT book (author, title, year, pages, publisher, cover)>
+    <!ELEMENT author (#PCDATA)>
+    <!ELEMENT title (#PCDATA)>
+    <!ELEMENT year (#PCDATA)>
+    <!ELEMENT pages (#PCDATA)>
+    <!ELEMENT publisher (#PCDATA)>
+    <!ELEMENT cover (#PCDATA)>
+]>
 <shelf>
     <book>
         <author>Джейсон Уилкс</author>

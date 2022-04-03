@@ -1,6 +1,6 @@
-<?xml version="1.1" encoding="UTF-8"?>
-<?xml-stylesheet href="./css/books.css" type="text/css"?>
-<shelf>
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="books.xslt" type="text/xsl"?>
+<shelf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="books.xsd">
     <book>
         <author>Джейсон Уилкс</author>
         <title>Математика в огне. Нескучный учебник</title>
