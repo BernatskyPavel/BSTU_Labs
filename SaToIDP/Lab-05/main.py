@@ -25,7 +25,6 @@ cv_score = cross_val_score(clf, X_train, y_train, cv=5)
 print(f"DTC score: {cv_score}\n"
       f"DTC mean score: {np.mean(cv_score)}")
 
-import time as t
 from sklearn.model_selection import GridSearchCV
 
 tree_params = {
