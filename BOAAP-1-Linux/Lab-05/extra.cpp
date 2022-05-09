@@ -1,15 +1,64 @@
 #include "extra.hpp"
+#include <algorithm>
+#include <cmath>
+#include <functional>
 #include <iostream>
 #include <string>
-#include <tuple>
 #include <vector>
 #include <wchar.h>
 
 namespace extra {
 #pragma region Helpers
+struct InputRules
+{
+public:
+  template<typename T>
+  static bool empty(T arg)
+  {
+    return true;
+  }
+  static bool chess_row(int row) { return (row >= 1 && row <= 8); }
+  static bool chess_col(wchar_t col) { return (col >= L'a' && col <= L'h'); }
+};
+
+class Calculator
+{
+public:
+  double Calculate(double x, wchar_t oper, double y)
+  {
+    switch (oper) {
+      case L'+':
+        return x + y;
+        break;
+      case L'-':
+        return x - y;
+        break;
+      case L'*':
+        return x * y;
+        break;
+      case L'/':
+        return x / y;
+        break;
+      case L'%':
+        return fmodf64(x, y);
+        break;
+      default:
+        return 0.0;
+        break;
+    }
+  }
+};
+
+double
+scalar_multiple(int a[2], int b[2])
+{
+  return fabs(static_cast<double>(a[0]) * static_cast<double>(b[0]) +
+              static_cast<double>(a[1]) * static_cast<double>(b[1]));
+}
+
 template<typename T>
 T
-input_value()
+input_value(bool func(T) = InputRules::empty)
 {
   T temp;
   for (;;) {
@@ -21,6 +70,9 @@ input_value()
       std::wcin >> x;
       std::wcout << L"Invalid input! Try again: ";
       continue;
+    } else if (!func(temp)) {
+      std::wcout << L"Invalid input! Try again: ";
+      continue;
     }
     break;
   }
@@ -28,312 +80,300 @@ input_value()
 }
 #pragma endregion Helpers
 #pragma region First_Extra
-int
-sum_of_digits(int number)
-{
-  std::wstring s_number = std::to_wstring(number);
-  int result = 0;
-  for (auto iterator = s_number.cbegin(); iterator != s_number.cend();
-       iterator++) {
-    wchar_t temp = *iterator;
-    result += (int)(temp - L'0');
-  }
-  return result;
-}
-
 void
 first_extra()
 {
-  size_t min = 100000, max = 999999;
-  std::vector<std::tuple<size_t, size_t>> lucky_pairs =
-    std::vector<std::tuple<size_t, size_t>>();
-  for (size_t i = min; i < max; i++) {
-    if (sum_of_digits(i) % 7 == 0 && sum_of_digits(i + 1) % 7 == 0) {
-      lucky_pairs.push_back(std::make_tuple(i, i + 1));
-    }
-  }
-  if (lucky_pairs.size() != 0) {
-    std::wcout << L"There is at least one pair of consecutive lucky tickets!\n";
-    for (auto iterator = lucky_pairs.cbegin(); iterator != lucky_pairs.cend();
-         iterator++) {
-      std::wcout << L"Pair: " << std::get<0>(*iterator) << L", "
-                 << std::get<1>(*iterator) << "\n";
-    }
+  std::wcout << L"Input a:";
+  int a = input_value<int>();
+  std::wcout << L"Input b:";
+  int b = input_value<int>();
+  std::wcout << L"Input c:";
+  int c = input_value<int>();
+
+  int sum = 0;
+
+  sum += a % 5 == 0 ? a : 0;
+  sum += b % 5 == 0 ? b : 0;
+  sum += c % 5 == 0 ? c : 0;
+
+  if (sum == 0) {
+    std::wcout << L"Sum: Error\n";
   } else {
-    std::wcout << L"There are no pairs of consecutive lucky tickets!\n";
+    std::wcout << L"Sum: " << sum << L'\n';
   }
+  return;
 }
-#pragma endregion Firest_Extra
+#pragma endregion First_Extra
 #pragma region Second_Extra
 void
 second_extra()
 {
-  std::wcout << L"Input P:";
-  double p = input_value<double>();
-  std::wcout << L"Input Q:";
-  double q = input_value<double>();
+  std::wcout << L"Input k:";
+  wchar_t k = input_value<wchar_t>(InputRules::chess_col);
+  std::wcout << L"Input m:";
+  wchar_t m = input_value<wchar_t>(InputRules::chess_col);
+  std::wcout << L"Input n:";
+  int n = input_value<int>(InputRules::chess_row);
 
-  p *= 1000.0;
-
-  size_t days = 0;
-  while (p <= q) {
-    p *= 1.03;
-    days += 1;
+  if (abs((int)(k - m)) == abs(n - 1)) {
+    std::wcout << L"Figure at " << m << n << " is under threat!\n";
+  } else {
+    std::wcout << L"Figure at " << m << n << " is safe!\n";
   }
-  std::wcout << L"The revenue value exceeded the target value and is equal to "
-             << p << ". It took " << days << " day(s) for this!\n";
 }
 #pragma endregion Second_Extra
 #pragma region Third_Extra
-
-enum Gender
-{
-  Male,
-  Female,
-};
-
-struct Student
-{
-  Gender gender;
-  unsigned short b_year;
-  unsigned short height;
-  unsigned short weight;
-};
-
 void
 third_extra()
 {
-  Student students[] = {
-    { Gender::Male, 1998, 181, 72 }, { Gender::Female, 1999, 172, 48 },
-    { Gender::Male, 1997, 179, 69 }, { Gender::Female, 1989, 168, 51 },
-    { Gender::Male, 1996, 185, 78 }, { Gender::Female, 2000, 165, 52 },
-    { Gender::Male, 1999, 185, 80 }, { Gender::Female, 1997, 175, 56 },
-    { Gender::Male, 2000, 168, 61 }, { Gender::Female, 1996, 180, 49 },
-    { Gender::Male, 1998, 190, 79 }, { Gender::Female, 2000, 163, 54 },
-    { Gender::Male, 1996, 175, 68 }, { Gender::Female, 2000, 170, 52 }
-  };
+  std::wcout << L"Input a:";
+  double a = input_value<double>();
+  std::wcout << L"Input b:";
+  double b = input_value<double>();
+  double houses[2][2];
+  std::wcout << L"Input p:";
+  houses[0][0] = input_value<double>();
+  std::wcout << L"Input q:";
+  houses[0][1] = input_value<double>();
+  std::wcout << L"Input r:";
+  houses[1][0] = input_value<double>();
+  std::wcout << L"Input s:";
+  houses[1][1] = input_value<double>();
 
-  time_t current = time(NULL);
-  tm* local_current = localtime(&current);
-  int current_year = local_current->tm_year + 1900;
+  size_t combinations[][2] = { { 0, 0 }, { 0, 1 }, { 1, 0 }, { 1, 1 } };
 
-  size_t male_highest_index = 0, male_fattest_index = 0,
-         female_youngest_index = 0, female_lowest_index = 0;
-
-  size_t male_counter = 0, female_counter = 0;
-
-  decltype(Student::height) male_max_height = 0, female_min_height = 999;
-  decltype(Student::weight) max_weight = 0;
-  decltype(Student::b_year) max_b_year = 0, male_sum_age = 0,
-                            female_sum_age = 0;
-
-  for (size_t i = 0; i < sizeof(students) / sizeof(Student); i++) {
-    switch (students[i].gender) {
-      case Gender::Female:
-        female_counter += 1;
-        female_sum_age += current_year - students[i].b_year;
-        if (students[i].height <= female_min_height) {
-          female_lowest_index = i;
-          female_min_height = students[i].height;
-        }
-        if (students[i].b_year > max_b_year) {
-          female_youngest_index = i;
-          max_b_year = students[i].b_year;
-        } else if (students[i].b_year == max_b_year) {
-          if (students[i].height <= female_min_height) {
-            female_youngest_index = i;
-            max_b_year = students[i].b_year;
-            female_lowest_index = i;
-            female_min_height = students[i].height;
-          }
-        }
-        break;
-
-      case Gender::Male:
-        male_counter += 1;
-        male_sum_age += current_year - students[i].b_year;
-        if (students[i].weight >= max_weight) {
-          male_fattest_index = i;
-          max_weight = students[i].weight;
-        }
-        if (students[i].height > male_max_height) {
-          male_highest_index = i;
-          male_max_height = students[i].height;
-        } else if (students[i].height == male_max_height) {
-          if (students[i].weight >= max_weight) {
-            male_highest_index = i;
-            male_max_height = students[i].height;
-            male_fattest_index = i;
-            max_weight = students[i].weight;
-          }
-        }
-        break;
-    }
+  double houses_area_sum = 0.0;
+  for (size_t i = 0; i < 2; i++) {
+    houses_area_sum += houses[i][0] * houses[0][1];
   }
 
-  std::wcout << L"Statistic: \n - Number of boys: " << male_counter
-             << L"\n - Number of girls: " << female_counter
-             << "\n - Average age of boys: "
-             << (double)male_sum_age / (double)male_counter
-             << "\n - Average age of girls: "
-             << (double)female_sum_age / (double)female_counter << L'\n'
-             << "Answer on the first question: "
-             << (male_highest_index == male_fattest_index ? L"Yes\n" : L"No\n")
-             << "Answer on the second question: "
-             << (female_lowest_index == female_youngest_index ? L"Yes\n"
-                                                              : L"No\n");
+  if (a * b < houses_area_sum) {
+    std::wcout << L"Buildings doesn't fit!\n";
+  } else {
+    bool result = false;
+    double area_max_side = std::max(a, b);
+    double area_min_side = std::min(a, b);
+
+    for (size_t i = 0; i < 4; i++) {
+      double sum =
+               houses[0][combinations[i][0]] + houses[1][combinations[i][1]],
+             max = std::max(houses[0][1 - combinations[i][0]],
+                            houses[1][1 - combinations[i][1]]);
+      result = result || (area_max_side >= std::max(sum, max) &&
+                          area_min_side >= std::min(sum, max));
+    }
+
+    if (result) {
+      std::wcout << L"Buildings does fit!\n";
+    } else {
+      std::wcout << L"Buildings doesn't fit!\n";
+    }
+  }
 }
 #pragma endregion Third_Extra
 #pragma region Fourth_Extra
 void
 fourth_extra()
 {
-  std::wcout << L"Input N:";
-  int n = input_value<int>();
-
-  double* expenses = (double*)malloc(n * sizeof(double));
-  for (size_t i = 0; i < n; i++) {
-    std::wcout << L"Input S" << i + 1 << L":";
-    expenses[i] = input_value<double>();
-  }
-
-  std::wcout << L"Input P:";
+  std::wcout << L"Input r:";
+  double r = input_value<double>();
+  std::wcout << L"Input p:";
   double p = input_value<double>();
+  std::wcout << L"Input q:";
+  double q = input_value<double>();
 
-  double sum = 0;
-
-  for (size_t i = 0; i < n; i++) {
-    sum += expenses[i];
-    sum *= (1.0 - p / 100.0);
+  double inner_radius = (p * q) / (2 * hypot(p, q));
+  if (r <= inner_radius) {
+    std::wcout << L"Sphere does fit!\n";
+  } else {
+    std::wcout << L"Sphere doesn't fit!\n";
   }
-  free(expenses);
-  std::wcout << L"The cost of accumulated equipment is " << sum << L"\n";
 }
 #pragma endregion Fourth_Extra
 #pragma region Fifth_Extra
-
-enum SIGN
-{
-  POSITIVE,
-  NEGATIVE,
-  ZERO,
-  EMPTY
-};
-
 void
 fifth_extra()
 {
+  std::wcout << L"Input a:";
+  double a = input_value<double>();
+  std::wcout << L"Input b:";
+  double b = input_value<double>();
+  std::wcout << L"Input c:";
+  double c = input_value<double>();
+  std::wcout << L"Input r:";
+  double r = input_value<double>();
+  std::wcout << L"Input s:";
+  double s = input_value<double>();
+  std::wcout << L"Input t:";
+  double t = input_value<double>();
 
-  SIGN prev = SIGN::EMPTY;
-  size_t swaps = 0;
-  int n = 0;
-  do {
-    std::wcout << L"Input N:";
-    n = input_value<int>();
-    if (prev == SIGN::EMPTY) {
-      prev = n > 0 ? SIGN::POSITIVE : (n < 0 ? SIGN::NEGATIVE : SIGN::ZERO);
-    } else {
-      SIGN temp =
-        n > 0 ? SIGN::POSITIVE : (n < 0 ? SIGN::NEGATIVE : SIGN::ZERO);
-      if (temp != prev) {
-        swaps += 1;
-      }
-      prev = temp;
-    }
-  } while (n != 0);
+  if (a * b * c > r * s * t) {
+    std::wcout << L"Package doesn't fit!\n";
+    return;
+  }
 
-  std::wcout << L"Number of swaps of sign of numbers is " << swaps - 1 << L"\n";
+  std::vector<double> box = { a, b, c };
+  std::sort(box.begin(), box.end(), std::greater<double>());
+  std::vector<double> pkg = { r, s, t };
+  std::sort(pkg.begin(), pkg.end(), std::greater<double>());
+  if (box[0] <= pkg[0] && box[1] <= pkg[1] && box[2] <= pkg[2]) {
+    std::wcout << L"Package does fit!\n";
+  } else {
+    std::wcout << L"Package doesn't fit!\n";
+  }
 }
 #pragma endregion Fifth_Extra
 #pragma region Sixth_Extra
 void
 sixth_extra()
 {
-  std::wcout << L"Input K:";
-  uint k = input_value<uint>();
+  std::wcout << L"Input Rook column:";
+  wchar_t r_col = input_value<wchar_t>(InputRules::chess_col);
+  std::wcout << L"Input Rook row:";
+  int r_row = input_value<int>(InputRules::chess_row);
+  std::wcout << L"Input Bishop column:";
+  wchar_t b_col = input_value<wchar_t>(InputRules::chess_col);
+  std::wcout << L"Input Bishop row:";
+  int b_row = input_value<int>(InputRules::chess_row);
+  std::wcout << L"Input King column:";
+  wchar_t k_col = input_value<wchar_t>(InputRules::chess_col);
+  std::wcout << L"Input King row:";
+  int k_row = input_value<int>(InputRules::chess_row);
 
-  if (k == 0) {
-    std::wcout << L"K must be positive number bigger than 0!\n";
+  if ((r_col == k_col && r_row == k_row) ||
+      (b_col == k_col && b_row == k_row) ||
+      (r_col == b_col && r_row == b_row)) {
+    std::wcout << L"Invalid input: Overlapped figures!\n";
     return;
   }
 
-  uint last_power = 1;
-  size_t digit_counter = 1;
-  while (digit_counter < k) {
-    last_power *= 2;
-    std::wstring temp = std::to_wstring(last_power);
-    digit_counter += temp.length();
+  bool is_danger_from_rook = false, is_danger_from_bishop = false;
+
+  is_danger_from_rook = (r_col == k_col) || (r_row == k_row);
+  is_danger_from_bishop =
+    (abs(static_cast<short>(b_col) - static_cast<short>(k_col)) ==
+     abs(b_row - k_row));
+  if (is_danger_from_bishop && is_danger_from_rook) {
+    std::wcout << L"Danger for king from both figures!\n";
+  } else if (is_danger_from_bishop) {
+    std::wcout << L"Danger for king from Bishop!\n";
+  } else if (is_danger_from_rook) {
+    std::wcout << L"Danger for king from Rook!\n";
+  } else {
+    std::wcout << L"No danger for king!\n";
   }
-
-  std::wstring str = std::to_wstring(last_power);
-  std::reverse(str.begin(), str.end());
-
-  std::wcout << L"Digit at position K is " << str[digit_counter - k] << L"\n";
 }
 #pragma endregion Sixth_Extra
 #pragma region Seventh_Extra
-// Task was changed from KOT+KOT=TOK to KOT+KTO=TOK, because original task has
-// no solution
 void
 seventh_extra()
 {
-  for (int k = 1; k <= 9; k++) {
-    for (int o = 0; o <= 9; o++) {
-      for (int t = 0; t <= 9; t++) {
-        if (k == o || k == t || o == t) {
-          continue;
-        } else {
-          if ((199 * k + o - 89 * t) == 0) {
-            std::wcout << (100 * k + 10 * o + t) << L" + "
-                       << (100 * k + 10 * t + o) << " = "
-                       << (100 * t + 10 * o + k) << L"\n";
-          }
-        }
-      }
-    }
+  int xs[4] = { 0, 0, 0, 0 };
+  int ys[4] = { 0, 0, 0, 0 };
+
+  for (size_t i = 0; i < 4; i++) {
+    std::wcout << L"Input x" << i + 1 << L":";
+    xs[i] = input_value<int>();
+    std::wcout << L"Input y" << i + 1 << L":";
+    ys[i] = input_value<int>();
+  }
+
+  if ((xs[0] == xs[2] && ys[0] == ys[2]) ||
+      (xs[1] == xs[2] && ys[1] == ys[2]) ||
+      (xs[0] == xs[3] && ys[0] == ys[3]) ||
+      (xs[1] == xs[3] && ys[1] == ys[3])) {
+    std::wcout << L"Two vectors are criss crossing each other!\n";
+    return;
+  }
+
+  int xa1_min = std::min(xs[0], xs[1]), xa1_max = std::max(xs[0], xs[1]),
+      xa2_min = std::min(xs[2], xs[3]), xa2_max = std::max(xs[2], xs[3]);
+
+  int xa_min = std::max(xa1_min, xa2_min), xa_max = std::min(xa1_max, xa2_max);
+
+  if (xa1_max < xa2_min) {
+    std::wcout << L"Two vectors aren't criss crossing each other!\n";
+    return;
+  }
+
+  double a1 = static_cast<double>(ys[0] - ys[1]) /
+              static_cast<double>(xs[0] - xs[1]),
+         a2 = static_cast<double>(ys[2] - ys[3]) /
+              static_cast<double>(xs[2] - xs[3]);
+  double b1 = ys[0] - a1 * xs[0], b2 = ys[2] - a2 * xs[2];
+
+  double xa = (b2 - b1) / (a1 - a2);
+  if (xa < xa_min || xa > xa_max) {
+    std::wcout << L"Two vectors aren't criss crossing each other!\n";
+  } else {
+    std::wcout << L"Two vectors are criss crossing each other!\n";
   }
 }
 #pragma endregion Seventh_Extra
-#pragma region Eighth_Extra
+#pragma region Old_Seventh_Extra
 void
-eighth_extra()
+old_seventh_extra()
 {
-  u_long absolute_primes[] = { 2,
-                               3,
-                               5,
-                               7,
-                               11,
-                               13,
-                               17,
-                               31,
-                               37,
-                               71,
-                               73,
-                               79,
-                               97,
-                               113,
-                               131,
-                               199,
-                               311,
-                               337,
-                               373,
-                               733,
-                               919,
-                               991,
-                               1111111111111111111 };
-  std::wcout << L"Input N:";
-  u_long n = input_value<u_long>();
+  int xs[4] = { 0, 0, 0, 0 };
+  int ys[4] = { 0, 0, 0, 0 };
 
-  std::wcout << L"Absolute primes before N: \n";
-  for (size_t i = 0; i < sizeof(absolute_primes) / sizeof(u_long); i++) {
-    if (absolute_primes[i] < n) {
-      std::wcout << absolute_primes[i] << L"\n";
-    } else {
-      if (i == 0) {
-        std::wcout << L"None\n";
+  for (size_t i = 0; i < 4; i++) {
+    std::wcout << L"Input x" << i + 1 << L":";
+    xs[i] = input_value<int>();
+    std::wcout << L"Input y" << i + 1 << L":";
+    ys[i] = input_value<int>();
+  }
+
+  int vecs[][2] = {
+    { xs[1] - xs[0], ys[1] - ys[0] },
+    { xs[2] - xs[1], ys[2] - ys[1] },
+    { xs[3] - xs[2], ys[3] - ys[2] },
+    { xs[0] - xs[3], ys[0] - ys[3] },
+  };
+
+  double vecs_r[] = {
+    std::hypot(vecs[0][0], vecs[0][1]),
+    std::hypot(vecs[1][0], vecs[1][1]),
+    std::hypot(vecs[2][0], vecs[2][1]),
+    std::hypot(vecs[3][0], vecs[3][1]),
+  };
+
+  bool collinearity[] = {
+    fabs(scalar_multiple(vecs[0], vecs[2]) - fabs(vecs_r[0] * vecs_r[2])) <
+      1e-14,
+    fabs(scalar_multiple(vecs[1], vecs[3]) - fabs(vecs_r[1] * vecs_r[3])) <
+      1e-14,
+  };
+
+  if (collinearity[0] && collinearity[1]) {
+    if (scalar_multiple(vecs[0], vecs[1]) == 0) {
+      if (vecs_r[0] == vecs_r[1]) {
+        if (vecs_r[0] != vecs_r[3]) {
+          std::wcout << L"Shape: RHOMBUS!\n";
+        } else {
+          std::wcout << L"Shape: SQUARE!\n";
+        }
+        return;
+      } else if (vecs_r[0] == vecs_r[2] && vecs_r[1] == vecs_r[3]) {
+        std::wcout << L"Shape: RECTANGLE!\n";
+        return;
       }
+      std::wcout << L"Shape: ?!\n";
+    } else {
+      if (vecs_r[0] == vecs_r[1]) {
+        std::wcout << L"Shape: RHOMBUS!\n";
+      } else {
+        std::wcout << L"Shape: PARALLELOGRAM!\n";
+      }
+      return;
     }
+  } else if (collinearity[0] || collinearity[1]) {
+    std::wcout << L"Shape: TRAPEZOID!\n";
+    return;
+  } else {
+    std::wcout << L"Shape: IRREGULAR!\n";
+    return;
   }
 }
-#pragma endregion Eighth_Extra
+#pragma endregion Old_Seventh_Extra
 }

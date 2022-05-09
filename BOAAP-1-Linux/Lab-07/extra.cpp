@@ -1,5 +1,11 @@
 #include "extra.hpp"
+#include <chrono>
+#include <iomanip>
 #include <iostream>
+#include <map>
+#include <math.h>
+#include <string>
+#include <vector>
 
 namespace extra {
 #pragma region Helpers
@@ -23,244 +29,333 @@ input_value()
   return temp;
 }
 
-template<typename T>
-T*
-input_array(size_t len)
+int
+sum_of_digits(int number)
 {
-  T* array = new T[len];
-  for (size_t i = 0; i < len; i++) {
-    std::wcout << L"Input array elem[" << (i + 1) << L"]:";
-    array[i] = input_value<T>();
+  std::wstring s_number = std::to_wstring(number);
+  int result = 0;
+  for (auto iterator = s_number.cbegin(); iterator != s_number.cend();
+       iterator++) {
+    wchar_t temp = *iterator;
+    result += (int)(temp - L'0');
   }
-  return array;
+  return result;
 }
 #pragma endregion Helpers
 #pragma region First_Extra
+bool
+is_prime(unsigned int n)
+{
+  if (n <= 1)
+    return false;
+  if (n == 2)
+    return true;
+  for (unsigned int i = 2; i <= sqrt(n); ++i)
+    if (n % i == 0)
+      return false;
+  return true;
+}
+
 void
 first_extra()
 {
-  std::wcout << L"Input array length:";
-  size_t len = input_value<size_t>();
-  int* lp_array = input_array<int>(len);
-
-  int sum = 0;
-  for (size_t i = 0; i < len; i++) {
-    if ((i + 1) % 2 == 0) {
-      sum += lp_array[i];
+  std::wcout << L"Full square numbers:\n";
+  for (int i = 1; i <= 9; i++) {
+    for (int j = 0; j <= 9; j++) {
+      for (int k = 0; k <= 9; k++) {
+        if (i < j && j < k) {
+          int num = i * 100 + j * 10 + k;
+          double root = sqrt(num);
+          if (root == (double)(int)root && is_prime((uint)root)) {
+            std::wcout << num << L" ";
+          }
+        }
+      }
     }
   }
-
-  std::wcout << L"Sum of even elements is " << sum << L"\n";
-  delete[] lp_array;
-  return;
+  std::wcout << L"\n";
 }
-#pragma endregion First_Extra
+#pragma endregion Firest_Extra
 #pragma region Second_Extra
+
+using ll = long long;
+
+ll dp[1000001];
+const int MOD = (int)1e9 + 7;
+
 void
 second_extra()
 {
-  std::wcout << L"Input array length:";
-  size_t len = input_value<size_t>();
-  int* lp_array = input_array<int>(len);
-
-  size_t pos = 0;
-  for (size_t i = 0; i < len; i++) {
-    if (lp_array[i] < 0) {
-      pos = i + 1;
-      break;
-    }
-  }
-
-  if (pos != 0) {
-    std::wcout << L"Position of first negative element is " << pos << L"\n";
-  } else {
-    std::wcout << L"There are no negative elements in the array!\n";
-  }
-
-  delete[] lp_array;
-  return;
-}
-#pragma endregion Second_Extra
-#pragma region Third_Extra
-void
-third_extra()
-{
-  std::wcout << L"Input array length:";
-  size_t len = input_value<size_t>();
-  double* lp_array = input_array<double>(len);
-  std::wcout << L"Input minimal value:";
-  double min = input_value<double>();
-  std::wcout << L"Input maximal value:";
-  double max = input_value<double>();
-
-  size_t counter = 0;
-  for (size_t i = 0; i < len; i++) {
-    if (lp_array[i] > min && lp_array[i] < max) {
-      counter += 1;
-    }
-  }
-
-  std::wcout << L"Number of elements between " << min << L" and " << max
-             << L" is " << counter << L"\n";
-
-  delete[] lp_array;
-  return;
-}
-#pragma endregion Third_Extra
-#pragma region Fourth_Extra
-enum SIGN
-{
-  POSITIVE,
-  NEGATIVE,
-  ZERO,
-  EMPTY
-};
-
-void
-fourth_extra()
-{
-  SIGN prev = SIGN::EMPTY;
-  std::wcout << L"Input array length:";
-  size_t len = input_value<size_t>();
-  int* lp_array = input_array<int>(len);
-
-  size_t swaps = 0;
-  for (size_t i = 0; i < len; i++) {
-    if (lp_array[i] != 0) {
-      switch (prev) {
-        case SIGN::EMPTY:
-          prev = lp_array[i] > 0 ? SIGN::POSITIVE : SIGN::NEGATIVE;
-          break;
-        case SIGN::NEGATIVE:
-          if (lp_array[i] > 0) {
-            swaps += 1;
-            prev = SIGN::POSITIVE;
-          }
-          break;
-        case SIGN::POSITIVE:
-          if (lp_array[i] < 0) {
-            swaps += 1;
-            prev = SIGN::NEGATIVE;
-          }
-          break;
-        case SIGN::ZERO:
-          break;
+  std::vector<int> coins = { 2, 5, 20, 50 };
+  int goal = 100;
+  dp[0] = 1;
+  for (int i = 1; i <= 4; i++) {
+    for (int weight = 0; weight <= goal; weight++) {
+      if (weight - coins[i - 1] >= 0) {
+        dp[weight] += dp[weight - coins[i - 1]];
+        dp[weight] %= MOD;
       }
     }
   }
 
-  std::wcout << L"Number of swaps of sign of numbers in the array is " << swaps
-             << L"\n";
-  delete[] lp_array;
-  return;
+  std::wcout << dp[goal] << '\n';
+}
+#pragma endregion Second_Extra
+#pragma region Third_Extra
+
+void
+third_extra()
+{
+  std::wcout << L"Input C1:";
+  double c1 = input_value<double>();
+  std::wcout << L"Input C2:";
+  double c2 = input_value<double>();
+
+  size_t counter = 0;
+
+  do {
+    if (counter % 2 == 0) {
+      c2 += c1 / 2.0;
+      c1 /= 2.0;
+    } else {
+      c1 += c2 / 2.0;
+      c2 /= 2.0;
+    }
+    counter += 1;
+  } while (counter < 12);
+
+  std::wcout << L"After 12 transfusions values of C1 and C2 are " << c1
+             << L" and " << c2 << L"\n";
+}
+#pragma endregion Third_Extra
+#pragma region Fourth_Extra
+void
+fourth_extra()
+{
+  int mask = 1111;
+  int variants[] = { 1001, 0101, 1100, 1000, 0100, 0010, 0001,
+                     0110, 1010, 0011, 0111, 1011, 1101, 1110 };
+  for (int i = 0; i <= 9; i++) {
+    for (int j = 0; j <= 9; j++) {
+      if (i != j) {
+        for (int v = 0; v < sizeof(variants) / sizeof(variants[0]); v++) {
+          int variant = variants[v] * i + (mask - variants[v]) * j;
+          if (sum_of_digits(variant) == 30 && variant % (2 * 7 * 11) == 0) {
+            std::wcout << L"Car plate is " << variant << L"\n";
+            return;
+          }
+        }
+      }
+    }
+  }
+  std::wcout << L"Can't find such car plate!\n";
 }
 #pragma endregion Fourth_Extra
+
+#pragma region Old_Extras
 #pragma region Fifth_Extra
+
+double
+formula(double n)
+{
+  return n * sinf64(n);
+}
+
 void
 fifth_extra()
 {
-  std::wcout << L"Input array length:";
-  size_t len = input_value<size_t>();
-  int* lp_array = input_array<int>(len);
-
-  char prev = '\0';
-  bool is_saw = true;
-
-  for (size_t i = 0; i < len - 1; i++) {
-    char temp = '\0';
-    if (lp_array[i] < lp_array[i + 1]) {
-      temp = '<';
-    } else if (lp_array[i] > lp_array[i + 1]) {
-      temp = '>';
-    } else {
-      is_saw = false;
-      break;
-    }
-
-    if (temp == prev) {
-      is_saw = false;
-      break;
-    }
-
-    prev = temp;
+  double first_sum = 0.0;
+  for (int i = 10; i <= 99; i++) {
+    first_sum += formula(static_cast<double>(i));
+  }
+  double second_sum = 0.0;
+  for (int i = 1; i <= 100; i++) {
+    double temp = formula(static_cast<double>(i));
+    if (temp > 0)
+      second_sum += temp;
+  }
+  double third_sum = 0.0;
+  for (int i = 1; i <= 100; i++) {
+    double temp = formula(static_cast<double>(i));
+    if (fabsf64(temp) < 0.5)
+      third_sum += temp;
   }
 
-  std::wcout << std::boolalpha << L"Is sequence sawtooth? Answer: " << is_saw
-             << std::noboolalpha << L"\n";
-
-  delete[] lp_array;
-  return;
+  std::wcout
+    << L"Sum of sequence term with double digit positions is " << first_sum
+    << L"\n"
+    << L"Sum of sequence positive terms within first hundred is " << second_sum
+    << L"\n"
+    << L"Sum of sequence terms with absolute value less than 0.5 within "
+       L"first hundred is "
+    << third_sum << L"\n";
 }
 #pragma endregion Fifth_Extra
 #pragma region Sixth_Extra
 void
 sixth_extra()
 {
-  std::wcout << L"Input array length:";
-  size_t len = input_value<size_t>();
-  int* lp_array = input_array<int>(len);
-
-  int sum = 0, mul = 1;
-  for (size_t i = 0; i < len; i++) {
-    if (lp_array[i] > 0) {
-      sum += lp_array[i];
-    } else if (lp_array[i] < 0) {
-      mul *= lp_array[i];
-    }
+  std::wcout << L"Input N:";
+  size_t n = input_value<size_t>();
+  size_t old_n = n;
+  if (n == 0 || n == 1) {
+    std::wcout << L"0 or 1 don't have canonical representation!\n";
+    return;
   }
 
-  std::wcout << L"Sum of positive elements is " << sum
-             << L" and multiplication of negative elements is " << mul << L"\n";
-  delete[] lp_array;
-  return;
+  if (is_prime(n)) {
+    std::wcout << L"Canonical representation of " << n << L" is 1 *" << n
+               << L"!\n";
+    return;
+  }
+
+  std::map<size_t, int> powers = std::map<size_t, int>();
+  size_t i = 2;
+  std::pair<std::map<size_t, int>::iterator, bool> result;
+  while (n != 1) {
+    if (is_prime(i) && n % i == 0) {
+      result = powers.try_emplace(i, 1);
+      if (result.second == false) {
+        result.first->second += 1;
+      }
+      n /= i;
+      i = 1;
+    }
+    i += 1;
+  }
+  std::wstring str;
+  for (std::map<size_t, int>::iterator iter = powers.begin();
+       iter != powers.end();
+       ++iter) {
+    str +=
+      (std::to_wstring(iter->first) + L"^" + std::to_wstring(iter->second));
+    if (iter != --powers.end()) {
+      str += L" * ";
+    }
+  }
+  std::wcout << L"Canonical representation of " << old_n << L" is "
+             << str.c_str() << L"!\n";
 }
 #pragma endregion Sixth_Extra
 #pragma region Seventh_Extra
+
+tm
+make_date(int d, int m, int y)
+{
+  return std::tm{
+    /* .tm_sec  = */ 0,
+    /* .tm_min  = */ 0,
+    /* .tm_hour = */ 0,
+    /* .tm_mday = */ d,
+    /* .tm_mon  = */ m - 1,
+    /* .tm_year = */ y - 1900,
+  };
+}
+
+void
+print_mdy(std::tm const* date)
+{
+  std::wcout << std::setw(2) << std::setfill(L'0') << date->tm_mday << L'.'
+             << std::setw(2) << (date->tm_mon + 1) << L'.' << std::setw(4)
+             << (date->tm_year + 1900);
+}
+
 void
 seventh_extra()
 {
-  std::wcout << L"Input array length:";
-  size_t len = input_value<size_t>();
-  int* lp_array = input_array<int>(len);
 
-  int max_pos = 0, max_neg = INT32_MIN;
-  for (size_t i = 0; i < len; i++) {
-    if (lp_array[i] > 0 && lp_array[i] > max_pos) {
-      max_pos = lp_array[i];
+  std::wcout << L"All 'Black' Tuesdays and Fridays:\n";
+
+  int d = 13, m = 1, y = 2016;
+  std::tm date;
+  while (y != 2018) {
+    date = make_date(d, m, y);
+    std::time_t time_temp = std::mktime(&date);
+    std::tm const* time_out = std::localtime(&time_temp);
+
+    switch (time_out->tm_wday) {
+      case 2: {
+        std::wcout << L"'Black' Tuesday: ";
+        print_mdy(time_out);
+        std::wcout << L"\n";
+      } break;
+      case 5: {
+        std::wcout << L"'Black' Friday: ";
+        print_mdy(time_out);
+        std::wcout << L"\n";
+      } break;
+      default:
+        break;
     }
-    if (lp_array[i] < 0 && lp_array[i] > max_neg) {
-      max_neg = lp_array[i];
+
+    m += 1;
+    if (m == 13) {
+      y += 1;
+      m = 1;
     }
   }
-
-  std::wcout << L"Maximal positive element is " << max_pos
-             << L" and Maximal negative element is " << max_neg << L"\n";
-  delete[] lp_array;
-  return;
 }
 #pragma endregion Seventh_Extra
 #pragma region Eighth_Extra
+
+uint
+count_vector_sum(const std::vector<size_t>& v, const std::vector<uint>& s)
+{
+  uint sum = 0;
+  for (size_t i = 0; i < 4; ++i)
+    sum += (s[v[i]] * s[v[i]]);
+  return sum;
+}
+
+bool
+is_several_variants(uint number, bool is_zero_included = false)
+{
+  uint sums = 0;
+
+  std::vector<uint> v_numbers;
+  for (size_t i = (is_zero_included ? 0 : 1); i <= (size_t)sqrt(number); i++) {
+    v_numbers.push_back(i);
+  };
+  size_t v_length = v_numbers.size() - 1;
+  std::vector<size_t> v(5, 0);
+  while (true) {
+    for (size_t i = 0; i < 4; ++i) { // vai um
+      if (v[i] > v_length) {
+        v[i + 1] += 1;
+        for (int k = i; k >= 0; --k) {
+          v[k] = v[i + 1];
+        }
+      }
+    }
+
+    if (v[4] > 0)
+      break;
+
+    if (count_vector_sum(v, v_numbers) == number) {
+      sums += 1;
+    }
+
+    v[0] += 1;
+  }
+
+  return sums > 1 ? true : false;
+}
+
 void
 eighth_extra()
 {
-  std::wcout << L"Input array length:";
-  size_t len = input_value<size_t>();
-  int* lp_array = input_array<int>(len);
-
-  int sum = 0;
-  size_t count = 0;
-  for (size_t i = 0; i < len; i++) {
-    if ((i + 1) % 2 != 0) {
-      sum += lp_array[i];
-      count += 1;
-    }
+  uint non_zero_result = 0;
+  size_t i = 0;
+  while (!is_several_variants(++i)) {
   }
-
-  std::wcout << L"Arithmetic mean of negative elements is "
-             << (static_cast<double>(sum) / static_cast<double>(count))
-             << L"\n";
-  delete[] lp_array;
-  return;
+  non_zero_result = i;
+  i = 0;
+  while (!is_several_variants(++i, true)) {
+  }
+  std::wcout << L"Minimal zero-include four-square number is " << i << L"\n"
+             << L"Minimal zero-exclude four-square number is "
+             << non_zero_result << L"\n";
 }
 #pragma endregion Eighth_Extra
+#pragma endregion Old_Extras
 }

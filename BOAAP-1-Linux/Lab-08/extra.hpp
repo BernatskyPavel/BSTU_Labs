@@ -1,7 +1,6 @@
 #pragma once
 
 namespace extra {
-
 void
 first_extra();
 void
@@ -12,14 +11,4 @@ void
 fourth_extra();
 void
 fifth_extra();
-void
-sixth_extra();
-void
-seventh_extra();
-void
-eighth_extra();
-void
-ninth_extra();
-void
-tenth_extra();
 }

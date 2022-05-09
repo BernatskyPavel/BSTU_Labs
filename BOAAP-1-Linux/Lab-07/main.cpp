@@ -25,9 +25,10 @@ main()
   };
 
   task extra[] = {
-    extra::first_extra,   extra::second_extra, extra::third_extra,
-    extra::fourth_extra,  extra::fifth_extra,  extra::sixth_extra,
-    extra::seventh_extra, extra::eighth_extra,
+    extra::first_extra,
+    extra::second_extra,
+    extra::third_extra,
+    extra::fourth_extra,
   };
 
   for (;;) {
@@ -35,7 +36,7 @@ main()
     std::wcout << std::endl;
     system("clear");
     std::wcout << L"Please select task:\n1)Part one (16 "
-                  L"tasks).\n2)Extra (8 tasks)\n0)Exit\nYour choice is ";
+                  L"tasks).\n2)Extra (4 tasks)\n0)Exit\nYour choice is ";
     int choice;
     std::wcin >> choice;
     switch (choice) {
@@ -63,7 +64,7 @@ main()
       case 2:
         for (;;) {
           std::wcout
-            << L"Please input number of extra (1-8, 0 or letter - exit):";
+            << L"Please input number of extra (1-4, 0 or letter - exit):";
           int choice;
           std::wcin >> choice;
           switch (choice) {

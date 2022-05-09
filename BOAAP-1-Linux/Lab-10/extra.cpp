@@ -4,7 +4,7 @@
 #include <iostream>
 #include <wchar.h>
 
-using namespace lab_09::array;
+using namespace lab_10::array;
 
 namespace extra {
 #pragma region Helpers
@@ -34,12 +34,12 @@ first_extra()
 {
   std::wcout << L"Input array length:";
   size_t len = input_value<size_t>();
-  Array array = Array(len, true, 0, 20);
+  Array<int32_t> array = Array<int32_t>(len, true, 0, 20);
 
   std::wcout << L"Array:\n";
   array.print(true);
 
-  int max = 0;
+  int32_t max = 0;
   size_t last_day = 7;
 
   if (array.size() <= 7) {
@@ -47,7 +47,7 @@ first_extra()
   } else {
     for (size_t i = 0; i < 7; i++)
       max += array[i];
-    int next = max;
+    int32_t next = max;
     for (size_t i = 7; i < array.size(); i++) {
       next = next - array[i - 7] + array[i];
       if (next > max) {
@@ -69,40 +69,12 @@ second_extra()
 {
   std::wcout << L"Input array length:";
   size_t len = input_value<size_t>();
-  Array array = Array(len, true, 0, 100);
-
-  std::wcout << L"Array before swaps:\n";
-  array.print(true);
-
-  int max = array.max(), min = array.min();
-
-  size_t index_max = array.find_first(max), index_min = array.find_first(min);
-
-  size_t from = std::min(index_max, index_min),
-         to = (index_max + index_min) - from;
-
-  size_t steps = (to - from - 1) / 2;
-
-  for (size_t i = 1; i <= steps; i++)
-    array.swap(from + i, to - i);
-
-  std::wcout << L"Array after swaps:\n";
-  array.print(true);
-  return;
-}
-#pragma endregion Second_Extra
-#pragma region Third_Extra
-void
-third_extra()
-{
-  std::wcout << L"Input array length:";
-  size_t len = input_value<size_t>();
-  Array array = Array(len, true, 0, 20);
+  Array<int32_t> array = Array<int32_t>(len, true, 0, 20);
 
   std::wcout << L"Array:\n";
   array.print(true);
 
-  int pairs = 0;
+  int32_t pairs = 0;
 
   for (size_t i = 0; i < array.size() - 1; i++)
     if (array[i] == array[i + 1])
@@ -113,14 +85,14 @@ third_extra()
   return;
 }
 
-#pragma endregion Third_Extra
-#pragma region Fourth_Extra
+#pragma endregion Second_Extra
+#pragma region Third_Extra
 void
-fourth_extra()
+third_extra()
 {
   std::wcout << L"Input array length:";
   size_t len = input_value<size_t>();
-  Array array = Array(len, true, 0, 5);
+  Array<int32_t> array = Array<int32_t>(len, true, 0, 5);
 
   std::wcout << L"Array:\n";
   array.print(true);
@@ -152,18 +124,18 @@ fourth_extra()
 
   return;
 }
-#pragma endregion Fourth_Extra
-#pragma region Fifth_Extra
+#pragma endregion Third_Extra
+#pragma region Fourth_Extra
 void
-fifth_extra()
+fourth_extra()
 {
   std::wcout << L"Input array length:";
   size_t len = input_value<size_t>();
-  Array array = Array(len, true, 0, 10);
+  Array<int32_t> array = Array<int32_t>(len, true, 0, 10);
 
   std::wcout << L"Array:\n";
   array.print(true);
-  int dict_size = abs(array.max()) + abs(array.min());
+  int32_t dict_size = abs(array.max()) + abs(array.min());
   size_t* dict = new size_t[dict_size];
 
   for (size_t i = 0; i < dict_size; i++)
@@ -186,85 +158,23 @@ fifth_extra()
 
   return;
 }
-#pragma endregion Fifth_Extra
-#pragma region Sixth_Extra
+#pragma endregion Fourth_Extra
+#pragma region Fifth_Extra
 void
-sixth_extra()
+fifth_extra()
 {
   std::wcout << L"Input array length:";
   size_t len = input_value<size_t>();
-  Array array = Array(len, true, 1, 100);
+  Array<int32_t> array = Array<int32_t>(2 * len + 1, true, 1, 25);
 
   std::wcout << L"Array:\n";
   array.print(true);
 
-  bool is_fib = false;
-  int max = array.max(), fib_0 = 0, fib_1 = 1;
-
-  do {
-    fib_0 = fib_1;
-    fib_1 += fib_0;
-
-    if (array.find_first(fib_1) != (size_t)-1) {
-      is_fib = true;
-      break;
-    }
-
-  } while (fib_1 < max);
-
-  std::wcout << std::boolalpha
-             << L"Is there any Fibonacci number in the array? Answer is "
-             << is_fib << std::noboolalpha << L"\n";
-
-  return;
-}
-#pragma endregion Sixth_Extra
-#pragma region Seventh_Extra
-void
-seventh_extra()
-{
-  std::wcout << L"Input array length:";
-  size_t len = input_value<size_t>();
-  Array array_k = Array(len, true), array_l = Array(0), array_m = Array(0);
-
-  std::wcout << L"Array K:\n";
-  array_k.print(true);
-
-  int avg = array_k.avg();
-
-  for (size_t i = 0; i < array_k.size(); i++) {
-    if (array_k[i] < avg) {
-      array_l.push(array_k[i], Array::Push::BACK);
-    } else if (array_k[i] > avg) {
-      array_m.push(array_k[i], Array::Push::BACK);
-    }
-  }
-
-  std::wcout << L"Array L (size: " << array_l.size()
-             << L") with elements lower than average:\n";
-  array_l.print(true);
-  std::wcout << L"Array M (size: " << array_m.size()
-             << L") with elements lower than average:\n";
-  array_m.print(true);
-  return;
-}
-#pragma endregion Seventh_Extra
-#pragma region Eighth_Extra
-void
-eighth_extra()
-{
-  std::wcout << L"Input array length:";
-  size_t len = input_value<size_t>();
-  Array array = Array(2 * len + 1, true, 1, 25);
-
-  std::wcout << L"Array:\n";
-  array.print(true);
-
-  int median = 0;
+  int32_t median = 0;
   size_t index = 0;
 
   for (size_t i = 0; i < array.size(); i++) {
-    int temp = 0;
+    int32_t temp = 0;
     for (size_t j = 0; j < array.size(); j++) {
       if (array[i] < array[j])
         temp += 1;
@@ -281,5 +191,59 @@ eighth_extra()
 
   return;
 }
-#pragma endregion Eighth_Extra
+#pragma endregion Fifth_Extra
+#pragma region Sixth_Extra
+void
+sixth_extra()
+{
+  std::wcout << L"Input array length:";
+  size_t len = input_value<size_t>();
+  if (len > 100) {
+    std::wcout << L"Array length can not be bigger than 100!\n";
+    return;
+  }
+  Array<int32_t> array = Array<int32_t>(len, true, -100, 100),
+                 seq = Array<int32_t>(0);
+
+  int64_t max_sum = 0, cur_sum = 0;
+  size_t start_index = 0, end_index = 0, cur_start_index = 0;
+  bool is_prev_negative = true;
+
+  for (size_t i = 0; i < len; i++) {
+    if (is_prev_negative && array[i] > 0) {
+      cur_start_index = i;
+    }
+    if (array[i] < 0) {
+      if (!is_prev_negative && cur_sum > max_sum) {
+        end_index = i - 1;
+        start_index = cur_start_index;
+        max_sum = cur_sum;
+      }
+
+      is_prev_negative = true;
+      cur_sum = 0;
+      continue;
+    }
+    is_prev_negative = false;
+    cur_sum += static_cast<int64_t>(array[i]);
+  }
+
+  if (cur_sum > max_sum) {
+    start_index = cur_start_index;
+    end_index = len - 1;
+  }
+
+  for (size_t i = start_index; i <= end_index; i++) {
+    seq.push(array[i], Array<int32_t>::Push::BACK);
+  }
+
+  std::wcout << L"Array:\n";
+  array.print(true);
+
+  std::wcout << L"Sequence with maximal sum:\n";
+  seq.print(true);
+
+  return;
+}
+#pragma endregion Sixth_Extra
 }

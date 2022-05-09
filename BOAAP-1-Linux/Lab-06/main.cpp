@@ -1,9 +1,9 @@
 #include "extra.hpp"
 #include "lab_06.hpp"
-#include <cwchar>
 #include <iostream>
 #include <locale>
 #include <sys/ioctl.h>
+#include <wchar.h>
 
 typedef void (*task)();
 
@@ -25,9 +25,8 @@ main()
   };
 
   task extra[] = {
-    extra::first_extra,   extra::second_extra, extra::third_extra,
-    extra::fourth_extra,  extra::fifth_extra,  extra::sixth_extra,
-    extra::seventh_extra, extra::eighth_extra,
+    extra::first_extra,  extra::second_extra, extra::third_extra,
+    extra::fourth_extra, extra::fifth_extra,  extra::sixth_extra,
   };
 
   for (;;) {
@@ -35,7 +34,7 @@ main()
     std::wcout << std::endl;
     system("clear");
     std::wcout << L"Please select task:\n1)Part one (16 "
-                  L"tasks).\n2)Extra (8 tasks)\n0)Exit\nYour choice is ";
+                  L"tasks).\n2)Extra (6 tasks)\n0)Exit\nYour choice is ";
     int choice;
     std::wcin >> choice;
     switch (choice) {
@@ -63,11 +62,11 @@ main()
       case 2:
         for (;;) {
           std::wcout
-            << L"Please input number of extra (1-8, 0 or letter - exit):";
+            << L"Please input number of extra (1-6, 0 or letter - exit):";
           int choice;
           std::wcin >> choice;
           switch (choice) {
-            case 1 ... 8:
+            case 1 ... 6:
               std::wcout << std::endl;
               system("clear");
               std::wcout << L"Extra " << choice << L":\n";

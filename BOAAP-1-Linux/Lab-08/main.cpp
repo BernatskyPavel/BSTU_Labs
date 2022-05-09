@@ -1,8 +1,9 @@
+#include "extra.hpp"
 #include "lab_08.hpp"
+#include <cwchar>
 #include <iostream>
 #include <locale>
 #include <sys/ioctl.h>
-#include <wchar.h>
 
 typedef void (*task)();
 
@@ -23,13 +24,19 @@ main()
     lab_08::fifteenth_variant,  lab_08::sixteenth_variant,
   };
 
+  task extra[] = { extra::first_extra,
+                   extra::second_extra,
+                   extra::third_extra,
+                   extra::fourth_extra,
+                   extra::fifth_extra };
+
   for (;;) {
   outer:
     std::wcout << std::endl;
     system("clear");
     std::wcout << L"Please select task:\n1)Part one (16 "
-                  L"tasks).\n0)Exit\nYour choice is ";
-    size_t choice;
+                  L"tasks).\n2)Extra (5 tasks)\n0)Exit\nYour choice is ";
+    int choice;
     std::wcin >> choice;
     switch (choice) {
       case 1:
@@ -43,7 +50,28 @@ main()
               std::wcout << std::endl;
               system("clear");
               std::wcout << L"Variant " << choice << L":\n";
-              lab_08::general_call(choice);
+              variants[choice - 1]();
+              break;
+            case 0:
+              goto outer;
+              break;
+            default:
+              break;
+          }
+        }
+        break;
+      case 2:
+        for (;;) {
+          std::wcout
+            << L"Please input number of extra (1-5, 0 or letter - exit):";
+          int choice;
+          std::wcin >> choice;
+          switch (choice) {
+            case 1 ... 5:
+              std::wcout << std::endl;
+              system("clear");
+              std::wcout << L"Extra " << choice << L":\n";
+              extra[choice - 1]();
               break;
             case 0:
               goto outer;
