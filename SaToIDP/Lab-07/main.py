@@ -13,7 +13,7 @@ feature_cols = [
 X = indians[feature_cols]
 y = indians['Outcome']
 
-from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.model_selection import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split(X,
                                                     y,
