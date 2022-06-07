@@ -1,0 +1,65 @@
+$text_color: blue;
+$text_size: 16pt;
+
+$h1_font: "Noto sans";
+$h1_color: red;
+
+$p1_font: "Sans serif";
+$p1_font_size: 3;
+$p1_color: #62d322;
+
+$p2_font: "Mono";
+$p2_font_size: 4;
+$p2_color: #25625a;
+
+$p3_font: "Times New Roman";
+$p3_font_size: 5;
+$p3_color: green;
+
+$p4_font: "Lato";
+$p4_font_size: 6;
+$p4_color: darkorange;
+
+$p5_font: "Hack";
+$p5_font_size: 3;
+$p5_color: gray;
+
+text {
+  font-size: $text_size;
+  color: $text_color;
+}
+
+#index-h1 {
+  color: $h1_color;
+  font-family: $h1_font;
+}
+
+#index-p1 {
+  color: $p1_color;
+  font-family: $p1_font;
+  font-size: $p1_font_size;
+}
+
+#index-p2 {
+  color: $p2_color;
+  font-family: $p2_font;
+  font-size: $p2_font_size;
+}
+
+#index-p3 {
+  color: $p3_color;
+  font-family: $p3_font;
+  font-size: $p3_font_size;
+}
+
+#index-p4 {
+  color: $p4_color;
+  font-family: $p4_font;
+  font-size: $p4_font_size;
+}
+
+#index-p5 {
+  color: $p5_color;
+  font-family: $p5_font;
+  font-size: $p5_font_size;
+}

@@ -5,14 +5,14 @@
             <xs:sequence>
                 <xs:element name="book" maxOccurs="unbounded">
                     <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="author" type="xs:string" minOccurs="1" maxOccurs="1" />
-                            <xs:element name="title" type="xs:string" minOccurs="1" maxOccurs="1" />
-                            <xs:element name="year" type="xs:unsignedInt" minOccurs="1" maxOccurs="1" />
-                            <xs:element name="pages" type="xs:unsignedInt" minOccurs="1" maxOccurs="1" />
-                            <xs:element name="publisher" type="xs:string" minOccurs="1" maxOccurs="1" />
-                            <xs:element name="cover" type="xs:string" minOccurs="1" maxOccurs="1" />
-                        </xs:sequence>
+                        <xs:all>
+                            <xs:element name="author" type="xs:string" minOccurs="1" />
+                            <xs:element name="title" type="xs:string" minOccurs="1" />
+                            <xs:element name="year" type="xs:positiveInteger" minOccurs="1" />
+                            <xs:element name="pages" type="xs:positiveInteger" minOccurs="1" />
+                            <xs:element name="publisher" type="xs:string" minOccurs="1" />
+                            <xs:element name="cover" type="xs:string" minOccurs="1" />
+                        </xs:all>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAGA,AAAA,IAAI,CAAC;EACH,SAAS,EAHC,IAAI;EAId,KAAK,EALM,IAAI;CAMhB;;AAED,AAAA,SAAS,CAAC;EACR,IAAI,EAAE,iCAAiC;CACxC",
+    "sources": [
+        "../Lab-14/css/style.scss"
+    ],
+    "names": [],
+    "file": "style.css"
+}
