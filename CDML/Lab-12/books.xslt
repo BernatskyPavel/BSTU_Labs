@@ -20,23 +20,23 @@
                                 <td>
                                     <p>
                                         Автор:
-                                        <xsl:value-of slect="author" />
+                                        <xsl:value-of select="author" />
                                     </p>
                                     <p>
                                         Название:
-                                        <xsl:value-of slect="title" />
+                                        <xsl:value-of select="title" />
                                     </p>
                                     <p>
                                         Издательство:
-                                        <xsl:value-of slect="publisher" />
+                                        <xsl:value-of select="publisher" />
                                     </p>
                                     <p>
                                         Год издания:
-                                        <xsl:value-of slect="pages" />
+                                        <xsl:value-of select="pages" />
                                     </p>
                                     <p>
                                         Кол-во страниц:
-                                        <xsl:value-of slect="year" />
+                                        <xsl:value-of select="year" />
                                     </p>
                                 </td>
                                 <td>
