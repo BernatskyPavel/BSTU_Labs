@@ -2,11 +2,13 @@
 
 namespace lab_04 {
 
-enum Order
+#define SPACE L' '
+
+enum Position
 {
-  EQUAL,
-  LESS,
-  GREATER
+  RIGHT,
+  CENTER,
+  LEFT
 };
 
 void
@@ -41,8 +43,5 @@ void
 fifteenth_variant();
 void
 sixteenth_variant();
-
-void
-dialog();
 
 }

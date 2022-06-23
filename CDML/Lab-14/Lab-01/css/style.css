@@ -1,0 +1,34 @@
+text {
+  font-size: 16pt;
+  color: blue; }
+
+#index-h1 {
+  color: red;
+  font-family: "Noto sans"; }
+
+#index-p1 {
+  color: #62d322;
+  font-family: "Sans serif";
+  font-size: 3; }
+
+#index-p2 {
+  color: #25625a;
+  font-family: "Mono";
+  font-size: 4; }
+
+#index-p3 {
+  color: green;
+  font-family: "Times New Roman";
+  font-size: 5; }
+
+#index-p4 {
+  color: darkorange;
+  font-family: "Lato";
+  font-size: 6; }
+
+#index-p5 {
+  color: gray;
+  font-family: "Hack";
+  font-size: 3; }
+
+/*# sourceMappingURL=style.css.map */

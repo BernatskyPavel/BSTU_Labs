@@ -1,7 +1,7 @@
 #pragma once
-#include <string>
 
 namespace lab_10 {
+
 void
 first_variant();
 void
@@ -34,4 +34,5 @@ void
 fifteenth_variant();
 void
 sixteenth_variant();
+
 }

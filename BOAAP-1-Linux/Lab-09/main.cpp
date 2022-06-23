@@ -1,4 +1,3 @@
-#include "extra.hpp"
 #include "lab_09.hpp"
 #include <iostream>
 #include <locale>
@@ -24,19 +23,13 @@ main()
     lab_09::fifteenth_variant,  lab_09::sixteenth_variant,
   };
 
-  task extra[] = {
-    extra::first_extra,   extra::second_extra, extra::third_extra,
-    extra::fourth_extra,  extra::fifth_extra,  extra::sixth_extra,
-    extra::seventh_extra, extra::eighth_extra,
-  };
-
   for (;;) {
   outer:
     std::wcout << std::endl;
     system("clear");
     std::wcout << L"Please select task:\n1)Part one (16 "
-                  L"tasks).\n2)Extra (8 tasks)\n0)Exit\nYour choice is ";
-    int choice;
+                  L"tasks).\n0)Exit\nYour choice is ";
+    size_t choice;
     std::wcin >> choice;
     switch (choice) {
       case 1:
@@ -50,28 +43,7 @@ main()
               std::wcout << std::endl;
               system("clear");
               std::wcout << L"Variant " << choice << L":\n";
-              variants[choice - 1]();
-              break;
-            case 0:
-              goto outer;
-              break;
-            default:
-              break;
-          }
-        }
-        break;
-      case 2:
-        for (;;) {
-          std::wcout
-            << L"Please input number of extra (1-8, 0 or letter - exit):";
-          int choice;
-          std::wcin >> choice;
-          switch (choice) {
-            case 1 ... 8:
-              std::wcout << std::endl;
-              system("clear");
-              std::wcout << L"Extra " << choice << L":\n";
-              extra[choice - 1]();
+              lab_09::general_call(choice);
               break;
             case 0:
               goto outer;

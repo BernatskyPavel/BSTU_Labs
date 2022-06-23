@@ -1,0 +1,41 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="certification">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="student" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="firstname" type="xs:string" minOccurs="1" />
+                            <xs:element name="lastname" type="xs:string" minOccurs="1" />
+                            <xs:element name="fathername" type="xs:string" minOccurs="0" />
+                            <xs:element name="group" type="xs:string" minOccurs="1" />
+                            <xs:element name="faculty" type="xs:string" minOccurs="1" />
+                            <xs:element name="marks" minOccurs="1">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="mark" maxOccurs="unbounded" type="MarkType" />
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="MarkType">
+        <xs:all>
+            <xs:element name="subject" type="xs:string" minOccurs="1" />
+            <xs:element name="value" minOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:positiveInteger">
+                        <xs:minInclusive value="1" />
+                        <xs:maxInclusive value="10" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:all>
+    </xs:complexType>
+</xs:schema>

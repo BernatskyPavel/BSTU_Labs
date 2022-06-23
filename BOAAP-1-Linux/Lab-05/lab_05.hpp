@@ -1,6 +1,14 @@
 #pragma once
 
 namespace lab_05 {
+
+enum Order
+{
+  EQUAL,
+  LESS,
+  GREATER
+};
+
 void
 first_variant();
 void
@@ -33,4 +41,8 @@ void
 fifteenth_variant();
 void
 sixteenth_variant();
+
+void
+dialog();
+
 }

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8" />
+        <title>Document</title>
+    </head>
+    <body>
+        <table style="border:1px solid black;">
+            <thead>
+                <tr>
+                    <th>Информация</th>
+                    <th>Обложка</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+            </tbody>
+        </table>
+        <script>
+            txt = 
+`<shelf><book><author>Джейсон Уилкс</author><title>Математика в огне. Нескучный учебник</title><year>2020</year><pages>512</pages><publisher>Манн, Иванов и Фербер</publisher><cover>./images/MathOnFire.webp</cover></book><book><author>Макконнелл Стив</author><title>Совершенный код</title><year>2022</year><pages>896</pages><publisher>БХВ-Петербург</publisher><cover>./images/IdealCode.webp</cover></book><book><author>Клабник С., Николс К.</author><title>Программирование на Rust</title><year>2021</year><pages>592</pages><publisher>Питер</publisher><cover>./images/Rust.webp</cover></book></shelf>`;
+            if(window.DOMParser) {
+                parser = new DOMParser();
+                xmlDoc = parser.parseFromString(txt, 'text/xml');
+            } else {
+                xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+                xmlDoc.async = false;
+                xmlDoc.loadXML(txt);
+            }
+
+            book_it = xmlDoc.evaluate("//shelf//book", xmlDoc, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
+            book = book_it.iterateNext();
+            while(book) {
+                tr = document.createElement('tr');
+                first_td = document.createElement('td');
+                author = document.createElement('p')
+                author.innerHTML = 'Автор: ' + book.getElementsByTagName("author")[0].textContent;
+
+                title = document.createElement('p')
+                title.innerHTML = 'Название: ' + book.getElementsByTagName("title")[0].textContent;
+
+                publisher = document.createElement('p')
+                publisher.innerHTML = 'Издательство: ' + book.getElementsByTagName("publisher")[0].textContent;
+
+                pages = document.createElement('p')
+                pages.innerHTML = 'Кол-во страниц: ' + book.getElementsByTagName("pages")[0].textContent;
+
+                year = document.createElement('p')
+                year.innerHTML = 'Год издания: ' + book.getElementsByTagName("year")[0].textContent;
+
+                first_td.appendChild(author);
+                first_td.appendChild(title);
+                first_td.appendChild(publisher);
+                first_td.appendChild(pages);
+                first_td.appendChild(year);
+
+                second_td = document.createElement('td');
+                img = document.createElement('img')
+                img.setAttribute('style', 'height:192px')
+                img.setAttribute('src', book.getElementsByTagName("cover")[0].textContent);
+
+                second_td.appendChild(img);
+
+                tr.appendChild(first_td);
+                tr.appendChild(second_td);
+
+                document.getElementById("table-body").appendChild(tr);
+                book = book_it.iterateNext();
+            }
+        </script>
+    </body>
+</html>

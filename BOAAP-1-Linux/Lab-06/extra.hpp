@@ -13,8 +13,4 @@ void
 fifth_extra();
 void
 sixth_extra();
-void
-seventh_extra();
-void
-eighth_extra();
 }

@@ -1,9 +1,6 @@
 #pragma once
-#include <stddef.h>
 
 namespace lab_08 {
-void
-general_call(size_t index);
 void
 first_variant();
 void

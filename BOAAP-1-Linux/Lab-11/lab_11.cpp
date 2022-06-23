@@ -2,13 +2,11 @@
 #include <bitset>
 #include <iostream>
 #include <math.h>
-#include <random>
 #include <string>
 
+#define INT_BITS sizeof(int) * 8
+
 namespace lab_11 {
-
-int32_t _MIN_INT = INT32_MIN;
-
 #pragma region Helpers
 template<typename T>
 T
@@ -30,955 +28,738 @@ input_value()
   return temp;
 }
 
-template<typename T>
-void
-print_array(T* array, size_t size, const wchar_t* name, bool is_endline)
-{
-  std::wcout << L"Array " << name << L": [";
-  for (size_t i = 0; i < size; i++) {
-    std::wcout << *(array + i);
-    if (i != size - 1) {
-      std::wcout << L", ";
-    }
-  }
-  std::wcout << L"]" << (is_endline ? L"\n" : L"");
-}
-
-int32_t
-compare(const void* a, const void* b)
-{
-  return (*(int32_t*)a - *(int32_t*)b);
-}
-
-int32_t
-compare_desc(const void* b, const void* a)
-{
-  return (*(int32_t*)a - *(int32_t*)b);
-}
-
-int
-is_prime(size_t n)
-{
-  unsigned int p;
-  if (!(n & 1) || n < 2)
-    return n == 2;
-
-  for (p = 3; p <= n / p; p += 2)
-    if (!(n % p))
-      return 0;
-  return 1;
-}
-
-bool
-is_number_fits(size_t number)
-{
-  switch (number) {
-    case 1:
-      return false;
-    case 2:
-    case 3:
-    case 4:
-      return true;
-    default: {
-      for (size_t i = 5; i < number; i++) {
-        if (is_prime(i) && number % i == 0) {
-          return false;
-        }
-      }
-      return number % 2 == 0 || number % 3 == 0;
-    } break;
-  }
-}
-
 #pragma endregion Helpers
 #pragma region First_Variant
-#ifdef ARRAY_SIZE
-#undef ARRAY_SIZE
-#endif
-#define ARRAY_SIZE 10
-
 void
 first_variant()
 {
-  std::wcout << L"Input N:";
-  int32_t N = input_value<int32_t>();
-  std::wcout << L"Input m (1..9):";
-  size_t m = input_value<size_t>();
+  std::wcout << L"First part:\n";
+  std::wcout << L"Input A:";
+  int32_t A = input_value<int32_t>();
 
-  if (m == 0 || m > 9) {
-    std::wcout << L"Wrong parameter m!" << std::endl;
-    return;
-  }
-
-  int32_t* digits = new int32_t[ARRAY_SIZE];
-  for (size_t i = 0; i < ARRAY_SIZE; i++) {
-    *(digits + i) = -1;
-  }
-  int32_t index = 0;
-
-  do {
-    int32_t temp = N % 10;
-    if (temp % m == 0) {
-      *(digits + index) = temp;
-      index += 1;
+  int zero_counter = 0;
+  std::wcout << L"A: " << std::bitset<sizeof(A) * 8>(A) << L"\n";
+  int32_t temp = A;
+  for (size_t i = 0; i < sizeof(temp) * 8; i++) {
+    if (i >= 3 && i <= 13) {
+      zero_counter += !(temp & 1);
     }
-    N /= 10;
-  } while (N != 0);
-
-  if (index == 0) {
-    std::wcout
-      << L"There are no digits in the number N which are multiples of m!\n";
-  } else {
-    std::wcout << L"Digits of the number N which are multiples of m are ";
-    for (size_t i = 0; i < index - 1; i++) {
-      std::wcout << *(digits + i) << L", ";
-    }
-    std::wcout << *(digits + index - 1) << L".\n";
-  }
-
-  delete[] digits;
-  return;
-}
-#ifdef ARRAY_SIZE
-#undef ARRAY_SIZE
-#endif
-#pragma endregion First_Variant
-#pragma region Second_Variant
-
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-#define RANDOM_MIN -1000
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
-#define RANDOM_MAX 1000
-
-void
-second_variant()
-{
-  std::wcout << L"Input n:";
-  size_t n = input_value<size_t>();
-
-  int32_t* A = new int32_t[n];
-  int32_t* B = new int32_t[n];
-  int32_t* S = new int32_t[n];
-
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_int_distribution<int32_t> distribution(RANDOM_MIN, RANDOM_MAX);
-  for (size_t i = 0; i < n; i++) {
-    *(A + i) = distribution(gen);
-    *(B + i) = distribution(gen);
-    *(S + i) = *(A + i) + *(B + i);
-  }
-
-  print_array<int32_t>(A, n, L"A", true);
-  print_array<int32_t>(B, n, L"B", true);
-  print_array<int32_t>(S, n, L"S", true);
-
-  delete[] A;
-  delete[] B;
-  delete[] S;
-}
-
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
-
-#pragma endregion Second_Variant
-#pragma region Third_Variant
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-#define RANDOM_MIN -10
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
-#define RANDOM_MAX 10
-void
-third_variant()
-{
-  std::wcout << L"Input n:";
-  size_t n = input_value<size_t>();
-  std::wcout << L"Input t:";
-  int32_t t = input_value<int32_t>();
-
-  int32_t* A = new int32_t[n];
-  int32_t* B = new int32_t[n];
-
-  size_t t_counter_A = 0, t_counter_B = 0;
-
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_int_distribution<int32_t> distribution(RANDOM_MIN, RANDOM_MAX);
-  for (size_t i = 0; i < n; i++) {
-    *(A + i) = distribution(gen);
-    if (*(A + i) < t)
-      t_counter_A += 1;
-    *(B + i) = distribution(gen);
-    if (*(B + i) < t)
-      t_counter_B += 1;
-  }
-
-  std::wcout << L"A(t) = " << t_counter_A << L" and B(t) = " << t_counter_B
-             << L'\n';
-  if (t_counter_A >= t_counter_B) {
-    print_array<int32_t>(A, n, L"A", true);
-    print_array<int32_t>(B, n, L"B", true);
-  } else {
-    print_array<int32_t>(B, n, L"B", true);
-    print_array<int32_t>(A, n, L"A", true);
-  }
-
-  delete[] A;
-  delete[] B;
-}
-
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
-#pragma endregion Third_Variant
-#pragma region Fourth_Variant
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-#define RANDOM_MIN -10
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
-#define RANDOM_MAX 10
-void
-fourth_variant()
-{
-  std::wcout << L"Input n:";
-  size_t n = input_value<size_t>();
-  std::wcout << L"Input k:";
-  int32_t k = input_value<int32_t>();
-
-  int32_t* A = new int32_t[n];
-  int32_t* B = new int32_t[k];
-
-  int32_t** C = new int32_t*[n + 1];
-  for (size_t i = 0; i <= n; i++) {
-    *(C + i) = new int32_t[k + 1];
-    for (size_t j = 0; j <= k; j++) {
-      *(*(C + i) + j) = 0;
-    }
-  }
-
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_int_distribution<int32_t> distribution(RANDOM_MIN, RANDOM_MAX);
-  for (size_t i = 0; i < n; i++) {
-    *(A + i) = distribution(gen);
-  }
-  for (size_t i = 0; i < k; i++) {
-    *(B + i) = distribution(gen);
-  }
-
-  for (size_t i = 1; i <= n; i++) {
-    for (size_t j = 1; j <= k; j++) {
-      if (*(A + i - 1) == *(B + j - 1)) {
-        *(*(C + i) + j) = *(*(C + i - 1) + j - 1) + 1;
-      } else {
-        *(*(C + i) + j) = std::max(*(*(C + i - 1) + j), *(*(C + i) + j - 1));
-      }
-    }
-  }
-
-  print_array<int32_t>(A, n, L"A", true);
-  print_array<int32_t>(B, k, L"B", true);
-
-  std::wcout << L"Length of max subsequence is " << *(*(C + n) + k) << L"\n";
-
-  delete[] A;
-  delete[] B;
-  for (size_t i = 0; i < n; i++) {
-    delete[] * (C + i);
-  }
-  delete[] C;
-}
-
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
-#pragma endregion Fourth_Variant
-#pragma region Fifth_Variant
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-#define RANDOM_MIN -10
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
-#define RANDOM_MAX 10
-void
-fifth_variant()
-{
-  std::wcout << L"Input n:";
-  size_t n = input_value<size_t>();
-  std::wcout << L"Input m:";
-  int32_t m = input_value<int32_t>();
-
-  int32_t* A = new int32_t[n];
-  int32_t* B = new int32_t[m];
-
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_int_distribution<int32_t> distribution(RANDOM_MIN, RANDOM_MAX);
-  for (size_t i = 0; i < n; i++) {
-    *(A + i) = distribution(gen);
-  }
-  for (size_t i = 0; i < m; i++) {
-    *(B + i) = distribution(gen);
-  }
-
-  int32_t* max_elem_A = &_MIN_INT;
-
-  for (size_t i = 0; i < n; i++) {
-    if (*(A + i) > *max_elem_A) {
-      max_elem_A = &(*(A + i));
-    }
-  }
-
-  bool is_max_elem_in_B = false;
-
-  for (size_t i = 0; i < m; i++) {
-    if (*(B + i) == *max_elem_A) {
-      is_max_elem_in_B = true;
+    temp >>= 1;
+    if (i == 14) {
       break;
     }
   }
 
-  print_array<int32_t>(A, n, L"A", true);
-  print_array<int32_t>(B, m, L"B", true);
+  std::wcout << L"The number of zeros in bits from 3 to 13 of number A is "
+             << zero_counter << L"\n";
 
-  std::wcout << L"Is max element of the array A is presented in the array B? "
-             << std::boolalpha << is_max_elem_in_B << std::noboolalpha << "\n";
+  std::wcout << L"\nSecond part:\n";
+  std::wcout << L"Input A:";
+  A = input_value<int32_t>();
+  std::wcout << L"Input p:";
+  size_t p = input_value<size_t>();
+  std::wcout << L"Input n:";
+  size_t n = input_value<size_t>();
+  std::wcout << L"Input B:";
+  int32_t B = input_value<int32_t>();
+  std::wcout << L"Input q:";
+  size_t q = input_value<size_t>();
+  std::wcout << L"Input m:";
+  size_t m = input_value<size_t>();
 
-  delete[] A;
-  delete[] B;
+  if (p < n) {
+    n = p;
+  }
+
+  int32_t mask = static_cast<int32_t>(pow(2, n)) - 1;
+  mask <<= (p - n);
+
+  int32_t inv_bits_from_A = ~(A & mask) & mask;
+  inv_bits_from_A >>= (p - n);
+
+  int32_t left_mask = INT32_MAX - static_cast<int32_t>(pow(2, m + q)) + 1,
+          right_mask = static_cast<int32_t>(pow(2, q)) - 1;
+
+  int32_t left_part = B & left_mask, right_part = B & right_mask;
+
+  left_part >>= (q + m);
+  left_part <<= n;
+  left_part |= inv_bits_from_A;
+  left_part <<= q;
+  left_part |= right_part;
+
+  std::wcout << L"Number B after all changes is equal to "
+             << std::bitset<sizeof(left_part) * 8>(left_part) << L"("
+             << left_part << L")\n";
 }
+#pragma endregion First_Variant
+#pragma region Second_Variant
+void
+second_variant()
+{
+  std::wcout << L"First part:\n";
+  std::wcout << L"Input A:";
+  int32_t A = input_value<int32_t>();
+  std::wcout << L"Input B:";
+  int32_t B = input_value<int32_t>();
 
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
+  int32_t mask = 0x7C;
+  int32_t bits_from_A = (A & mask) >> 2, right_part = B & 0x7, new_B = B;
 
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
+  new_B &= 0xFFFFFFF8;
+  new_B <<= 2;
+  new_B |= bits_from_A;
+  new_B <<= 3;
+  new_B |= right_part;
+
+  std::wcout << L"Number B after all changes is equal to "
+             << std::bitset<sizeof(new_B) * 8>(new_B) << L"(" << new_B
+             << L")\n";
+
+  std::wcout << L"\nSecond part:\n";
+  std::wcout << L"Input A:";
+  A = input_value<int32_t>();
+  std::wcout << L"Input p:";
+  size_t p = input_value<size_t>();
+  std::wcout << L"Input n:";
+  size_t n = input_value<size_t>();
+
+  if (n > p) {
+    n = p;
+  }
+
+  int32_t new_A =
+    A | (static_cast<int32_t>(pow(2, p)) - static_cast<int32_t>(pow(2, p - n)));
+
+  std::wcout << L"Number A after all changes is equal to "
+             << std::bitset<sizeof(new_A) * 8>(new_A) << L"(" << new_A
+             << L")\n";
+}
+#pragma endregion Second_Variant
+#pragma region Third_Variant
+void
+third_variant()
+{
+  std::wcout << L"First part:\n";
+  std::wcout << L"Input A:";
+  int32_t A = input_value<int32_t>();
+
+  std::wcout << L"A: " << std::bitset<sizeof(A) * 8>(A) << L"\n";
+  size_t new_A = A | 0x00007FFC;
+  std::wcout << L"Number A after all changes is equal to "
+             << std::bitset<sizeof(A) * 8>(new_A) << L"(" << new_A << L")\n";
+
+  std::wcout << L"\nSecond part:\n";
+  std::wcout << L"Input A:";
+  A = input_value<int32_t>();
+  std::wcout << L"Input p:";
+  size_t p = input_value<size_t>();
+  std::wcout << L"Input n:";
+  size_t n = input_value<size_t>();
+  std::wcout << L"Input B:";
+  int32_t B = input_value<int32_t>();
+  std::wcout << L"Input q:";
+  size_t q = input_value<size_t>();
+  std::wcout << L"Input m:";
+  size_t m = input_value<size_t>();
+
+  p = std::min(INT_BITS - 1, p + n + 1);
+
+  int32_t mask = static_cast<int32_t>(pow(2, n)) - 1;
+  mask <<= (p - n);
+
+  int32_t inv_bits_from_A = ~(A & mask) & mask;
+  inv_bits_from_A >>= (p - n);
+
+  int32_t left_mask = INT32_MAX - static_cast<int32_t>(pow(2, m + q)) + 1,
+          right_mask = static_cast<int32_t>(pow(2, q)) - 1;
+
+  int32_t left_part = B & left_mask, right_part = B & right_mask;
+
+  left_part >>= (q + m);
+  left_part <<= n;
+  left_part |= inv_bits_from_A;
+  left_part <<= q;
+  left_part |= right_part;
+
+  std::wcout << L"Number B after all changes is equal to "
+             << std::bitset<sizeof(left_part) * 8>(left_part) << L"("
+             << left_part << L")\n";
+}
+#pragma endregion Third_Variant
+#pragma region Fourth_Variant
+void
+fourth_variant()
+{
+  std::wcout << L"First part:\n";
+  std::wcout << L"Input A:";
+  int32_t A = input_value<int32_t>();
+
+  std::wcout << L"Is number A divisible by 4? " << std::boolalpha
+             << ((A & 0x3) == 0x0) << std::noboolalpha << L"\n";
+
+  std::wcout << L"\nSecond part:\n";
+  std::wcout << L"Input A:";
+  A = input_value<int32_t>();
+  std::wcout << L"Input p:";
+  size_t p = input_value<size_t>();
+  std::wcout << L"Input n:";
+  size_t n = input_value<size_t>();
+
+  p = std::min(INT_BITS - 1, p + n + 1);
+
+  int32_t new_A =
+    A | (static_cast<int32_t>(pow(2, p)) - static_cast<int32_t>(pow(2, p - n)));
+
+  std::wcout << L"Number A after all changes is equal to "
+             << std::bitset<sizeof(new_A) * 8>(new_A) << L"(" << new_A
+             << L")\n";
+}
+#pragma endregion Fourth_Variant
+#pragma region Fifth_Variant
+void
+fifth_variant()
+{
+  std::wcout << L"First part:\n";
+  std::wcout << L"Input A:";
+  int32_t A = input_value<int32_t>();
+
+  int32_t diff = 0;
+
+  for (size_t i = 0; i < sizeof(A) * 8 - 2; i++) {
+    diff += A & 0x1 ? 1 : -1;
+    A >>= 1;
+  }
+
+  std::wcout << L"Difference in number of 1's and 0's in A is " << diff
+             << L"\n";
+
+  std::wcout << L"\nSecond part:\n";
+  std::wcout << L"Input A:";
+  A = input_value<int32_t>();
+  std::wcout << L"Input p:";
+  size_t p = input_value<size_t>();
+  std::wcout << L"Input n:";
+  size_t n = input_value<size_t>();
+  std::wcout << L"Input B:";
+  int32_t B = input_value<int32_t>();
+  std::wcout << L"Input q:";
+  size_t q = input_value<size_t>();
+  std::wcout << L"Input m:";
+  size_t m = input_value<size_t>();
+
+  n = std::min(n, p);
+
+  int32_t mask = static_cast<int32_t>(pow(2, n)) - 1;
+  int32_t bits_for_b = mask;
+  mask <<= (p - n);
+
+  A |= mask;
+
+  int32_t left_mask = INT32_MAX - static_cast<int32_t>(pow(2, m + q)) + 1,
+          right_mask = static_cast<int32_t>(pow(2, q)) - 1;
+
+  int32_t left_part = B & left_mask, right_part = B & right_mask;
+
+  left_part >>= (q + m);
+  left_part <<= n;
+  left_part |= bits_for_b;
+  left_part <<= q;
+  left_part |= right_part;
+
+  std::wcout << L"Number A after all changes is equal to "
+             << std::bitset<sizeof(A) * 8>(A) << L"(" << A << L")\n";
+
+  std::wcout << L"Number B after all changes is equal to "
+             << std::bitset<sizeof(left_part) * 8>(left_part) << L"("
+             << left_part << L")\n";
+}
 #pragma endregion Fifth_Variant
 #pragma region Sixth_Variant
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-#define RANDOM_MIN -10
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
-#define RANDOM_MAX 10
 void
 sixth_variant()
 {
+  std::wcout << L"First part:\n";
+  std::wcout << L"Input A:";
+  int32_t A = input_value<int32_t>();
+
+  A |= 0x2aaaaaaa;
+
+  std::wcout << L"Number A after all changes is equal to "
+             << std::bitset<sizeof(A) * 8>(A) << L"(" << A << L")\n";
+
+  std::wcout << L"Second part:\n";
+  std::wcout << L"Input A:";
+  A = input_value<int32_t>();
   std::wcout << L"Input n:";
   size_t n = input_value<size_t>();
-  std::wcout << L"Input k:";
-  int32_t k = input_value<int32_t>();
+  std::wcout << L"Input B:";
+  int32_t B = input_value<int32_t>();
+  std::wcout << L"Input m:";
+  size_t m = input_value<size_t>();
 
-  int32_t* A = new int32_t[n];
-  int32_t* B = new int32_t[k];
+  int32_t mask = 0x7 << n;
+  int32_t b_mask = static_cast<int32_t>(std::pow(2, m)) - 1;
+  int32_t bits_from_A = (A & mask) >> n, right_part = B & b_mask, new_B = B;
 
-  int32_t** C = new int32_t*[n + 1];
-  for (size_t i = 0; i <= n; i++) {
-    *(C + i) = new int32_t[k + 1];
-    for (size_t j = 0; j <= k; j++) {
-      *(*(C + i) + j) = 0;
-    }
-  }
+  new_B &= 0xFFFFFFF8;
+  new_B |= bits_from_A;
+  new_B <<= m;
+  new_B |= right_part;
 
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_int_distribution<int32_t> distribution(RANDOM_MIN, RANDOM_MAX);
-  for (size_t i = 0; i < n; i++) {
-    *(A + i) = distribution(gen);
-  }
-  for (size_t i = 0; i < k; i++) {
-    *(B + i) = distribution(gen);
-  }
-
-  for (size_t i = 1; i <= n; i++) {
-    for (size_t j = 1; j <= k; j++) {
-      if (*(A + i - 1) == *(B + j - 1)) {
-        *(*(C + i) + j) = *(*(C + i - 1) + j - 1) + 1;
-      } else {
-        *(*(C + i) + j) = std::max(*(*(C + i - 1) + j), *(*(C + i) + j - 1));
-      }
-    }
-  }
-
-  print_array<int32_t>(A, n, L"A", true);
-  print_array<int32_t>(B, k, L"B", true);
-
-  std::wcout << L"Is sequence B a subsequence of sequence A? " << std::boolalpha
-             << (*(*(C + n) + k) == k) << std::noboolalpha << L"\n";
-
-  delete[] A;
-  delete[] B;
-  for (size_t i = 0; i < n; i++) {
-    delete[] * (C + i);
-  }
-  delete[] C;
+  std::wcout << L"Number B after all changes is equal to "
+             << std::bitset<sizeof(new_B) * 8>(new_B) << L"(" << new_B
+             << L")\n";
 }
-
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
 #pragma endregion Sixth_Variant
 #pragma region Seventh_Variant
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-#define RANDOM_MIN -10
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
-#define RANDOM_MAX 10
 void
 seventh_variant()
 {
+  std::wcout << L"First part:\n";
+  std::wcout << L"Input A:";
+  int32_t A = input_value<int32_t>();
+  std::wcout << L"Input B:";
+  int32_t B = input_value<int32_t>();
+
+  int32_t mask = 0x1E0;
+
+  B <<= 5;
+  B |= ((A & mask) >> 5);
+
+  std::wcout << L"Number B after all changes is equal to "
+             << std::bitset<sizeof(B) * 8>(B) << L"(" << B << L")\n";
+
+  std::wcout << L"Second part:\n";
+  std::wcout << L"Input A:";
+  A = input_value<int32_t>();
+  std::wcout << L"Input p:";
+  size_t p = input_value<size_t>();
   std::wcout << L"Input n:";
   size_t n = input_value<size_t>();
-  std::wcout << L"Input k:";
-  int32_t k = input_value<int32_t>();
+  std::wcout << L"Input B:";
+  B = input_value<int32_t>();
+  std::wcout << L"Input q:";
+  size_t q = input_value<size_t>();
+  std::wcout << L"Input m:";
+  size_t m = input_value<size_t>();
 
-  int32_t* A = new int32_t[n];
+  p = std::min(INT_BITS - 1, p + n + 1);
 
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_int_distribution<int32_t> distribution(RANDOM_MIN, RANDOM_MAX);
-  for (size_t i = 0; i < n; i++) {
-    *(A + i) = distribution(gen);
-  }
+  mask = static_cast<int32_t>(pow(2, n)) - 1;
+  int32_t bits_for_b = mask;
+  mask <<= (p - n);
 
-  size_t** indexes = new size_t*[3];
-  for (size_t i = 0; i < 3; i++) {
-    *(indexes + i) = new size_t[n + 1];
-    for (size_t j = 0; j <= n; j++) {
-      *(*(indexes + i) + j) = 0;
-    }
-  }
+  A |= mask;
 
-  for (size_t i = 0; i < n; i++) {
-    size_t temp = 0;
-    if (*(A + i) > k) {
-      temp = 2;
-    } else if (*(A + i) < k) {
-      temp = 0;
-    } else {
-      temp = 1;
-    }
+  int32_t left_mask = INT32_MAX - static_cast<int32_t>(pow(2, m + q)) + 1,
+          right_mask = static_cast<int32_t>(pow(2, q)) - 1;
 
-    **(indexes + temp) += 1;
-    *(*(indexes + temp) + **(indexes + temp)) = i;
-  }
+  int32_t left_part = B & left_mask, right_part = B & right_mask;
 
-  print_array<int32_t>(A, n, L"A", true);
-  print_array<size_t>(*indexes + 1, **indexes, L"LT", true);
-  print_array<size_t>(*(indexes + 1) + 1, **(indexes + 1), L"EQ", true);
-  print_array<size_t>(*(indexes + 2) + 1, **(indexes + 2), L"GT", true);
+  left_part >>= (q + m);
+  left_part <<= n;
+  left_part |= bits_for_b;
+  left_part <<= q;
+  left_part |= right_part;
 
-  delete[] A;
-  for (size_t i = 0; i < 3; i++) {
-    delete[] * (indexes + i);
-  }
-  delete[] indexes;
+  std::wcout << L"Number A after all changes is equal to "
+             << std::bitset<sizeof(A) * 8>(A) << L"(" << A << L")\n";
+
+  std::wcout << L"Number B after all changes is equal to "
+             << std::bitset<sizeof(left_part) * 8>(left_part) << L"("
+             << left_part << L")\n";
 }
-
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
 #pragma endregion Seventh_Variant
 #pragma region Eighth_Variant
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-#define RANDOM_MIN -10
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
-#define RANDOM_MAX 10
 void
 eighth_variant()
 {
-  std::wcout << L"Input k:";
-  size_t k = input_value<size_t>();
+  std::wcout << L"First part:\n";
+  std::wcout << L"Input A:";
+  int32_t A = input_value<int32_t>();
+
+  A &= 0xdb6db6db;
+
+  std::wcout << L"Number A after all changes is equal to "
+             << std::bitset<sizeof(A) * 8>(A) << L"(" << A << L")\n";
+
+  std::wcout << L"Second part:\n";
+  std::wcout << L"Input A:";
+  A = input_value<int32_t>();
   std::wcout << L"Input n:";
   size_t n = input_value<size_t>();
+  std::wcout << L"Input B:";
+  int32_t B = input_value<int32_t>();
+  std::wcout << L"Input m:";
+  size_t m = input_value<size_t>();
 
-  int32_t* X = new int32_t[k];
-  int32_t* Y = new int32_t[n];
+  int32_t mask = 0x7 << n;
+  int32_t b_mask = static_cast<int32_t>(std::pow(2, m)) - 1;
+  int32_t bits_from_A = (A & mask) >> n, right_part = B & b_mask, new_B = B;
 
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_int_distribution<int32_t> distribution(RANDOM_MIN, RANDOM_MAX);
-  for (size_t i = 0; i < k; i++) {
-    *(X + i) = distribution(gen);
-  }
-  for (size_t i = 0; i < n; i++) {
-    *(Y + i) = distribution(gen);
-  }
+  new_B &= 0xFFFFFFF8;
+  new_B |= bits_from_A;
+  new_B <<= m;
+  new_B |= right_part;
 
-  qsort(X, k, sizeof(int32_t), compare);
-  qsort(Y, n, sizeof(int32_t), compare);
-
-  int32_t* intersect = new int32_t[std::min(n, k)];
-  size_t intersect_size = 0;
-
-  for (size_t i = 0, j = 0; i < k, j < n;) {
-    if (*(X + i) == *(Y + j)) {
-      *(intersect + intersect_size) = *(X + i);
-      intersect_size += 1;
-      i += 1;
-      j += 1;
-    } else if (*(X + i) > *(Y + j)) {
-      j += 1;
-    } else {
-      i += 1;
-    }
-  }
-
-  print_array<int32_t>(X, k, L"X", true);
-  print_array<int32_t>(Y, n, L"Y", true);
-  print_array<int32_t>(intersect, intersect_size, L"intersect", true);
-
-  delete[] X;
-  delete[] Y;
-  delete[] intersect;
+  std::wcout << L"Number B after all changes is equal to "
+             << std::bitset<sizeof(new_B) * 8>(new_B) << L"(" << new_B
+             << L")\n";
 }
-
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
 #pragma endregion Eighth_Variant
 #pragma region Ninth_Variant
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-#define RANDOM_MIN 2
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
-#define RANDOM_MAX 100
 void
 ninth_variant()
 {
-  // In process
+  std::wcout << L"First part:\n";
+  std::wcout << L"Input A:";
+  int32_t A = input_value<int32_t>();
+  std::wcout << L"Input B:";
+  int32_t B = input_value<int32_t>();
+
+  int32_t mask = 0xF8;
+  int32_t bits_from_A = (A & mask) >> 3, right_part = B & 0x3, new_B = B;
+
+  new_B &= 0xFFFFFFF8;
+  new_B <<= 2;
+  new_B |= bits_from_A;
+  new_B <<= 2;
+  new_B |= right_part;
+
+  std::wcout << L"Number B after all changes is equal to "
+             << std::bitset<sizeof(new_B) * 8>(new_B) << L"(" << new_B
+             << L")\n";
+
+  std::wcout << L"\nSecond part:\n";
+  std::wcout << L"Input A:";
+  A = input_value<int32_t>();
+  std::wcout << L"Input p:";
+  size_t p = input_value<size_t>();
+  std::wcout << L"Input n:";
+  size_t n = input_value<size_t>();
+
+  n = std::min(n, p);
+
+  int32_t new_A = A & ~(static_cast<int32_t>(pow(2, p)) -
+                        static_cast<int32_t>(pow(2, p - n)));
+
+  std::wcout << L"Number A after all changes is equal to "
+             << std::bitset<sizeof(new_A) * 8>(new_A) << L"(" << new_A
+             << L")\n";
 }
-
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
 #pragma endregion Ninth_Variant
 #pragma region Tenth_Variant
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-#define RANDOM_MIN 0
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
-#define RANDOM_MAX 20
-
-#ifndef ARRAY_SIZE
-#define ARRAY_SIZE 10
-#endif
-
 void
 tenth_variant()
 {
-  int32_t *A = new int32_t[ARRAY_SIZE], *B = new int32_t[ARRAY_SIZE];
-  int32_t* min = A;
+  std::wcout << L"First part:\n";
+  std::wcout << L"Input A:";
+  int32_t A = input_value<int32_t>();
 
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_int_distribution<int32_t> distribution(RANDOM_MIN, RANDOM_MAX);
-  for (size_t i = 0; i < ARRAY_SIZE; i++) {
-    *(B + i) = distribution(gen);
-  }
+  int32_t bits = A & 0xFC;
 
-  for (size_t i = 0; i < ARRAY_SIZE; i++) {
-    *(A + i) = distribution(gen);
+  std::wcout << L"Number A after all changes is equal to "
+             << std::bitset<6>(bits) << L"(" << bits << L")\n";
 
-    int temp = 0;
-    for (size_t j = 0; j < ARRAY_SIZE; j++) {
-      if (*(A + i) != *(B + j)) {
-        temp += 1;
-      } else {
-        break;
-      }
-    }
-    if (temp == ARRAY_SIZE) {
-      if (*(A + i) < *min) {
-        min = &*(A + i);
-      }
-    }
-  }
+  std::wcout << L"\nSecond part:\n";
+  std::wcout << L"Input A:";
+  A = input_value<int32_t>();
+  std::wcout << L"Input p:";
+  size_t p = input_value<size_t>();
+  std::wcout << L"Input n:";
+  size_t n = input_value<size_t>();
 
-  print_array<int32_t>(A, ARRAY_SIZE, L"A", true);
-  print_array<int32_t>(B, ARRAY_SIZE, L"B", true);
-  std::wcout << L"Min: " << *min << "\n";
-  delete[] A;
-  delete[] B;
+  bits = ~A & ((static_cast<int32_t>(pow(2, n)) - 1) << (p + 1));
+  int32_t right_part = A & (static_cast<int32_t>(pow(2, p + 1)) - 1);
+  A &= (0xFFFFFFFF << (n + p + 1));
+  A |= bits;
+  A |= right_part;
+  std::wcout << L"Number A after all changes is equal to "
+             << std::bitset<sizeof(A) * 8>(A) << L"(" << A << L")\n";
 }
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
 #pragma endregion Tenth_Variant
 #pragma region Eleventh_Variant
 void
 eleventh_variant()
 {
+  std::wcout << L"First part:\n";
+  std::wcout << L"Input A:";
+  int32_t A = input_value<int32_t>();
+
+  std::wcout << L"Is number A divisible by 16? " << std::boolalpha
+             << ((A & 0xF) == 0x0) << std::noboolalpha << L"\n";
+
+  std::wcout << L"Second part:\n";
+  std::wcout << L"Input A:";
+  A = input_value<int32_t>();
+  std::wcout << L"Input p:";
+  size_t p = input_value<size_t>();
   std::wcout << L"Input n:";
   size_t n = input_value<size_t>();
-
-  u_int32_t* A = new u_int32_t[n];
-
-  for (size_t i = 0; i < n; i++) {
-    *(A + i) = input_value<u_int32_t>();
-  }
-
-  qsort(A, n, sizeof(u_int32_t), compare);
-
-  u_int32_t missing = 0;
-  for (size_t i = 0; i < n; i++) {
-    if (missing < *(A + i)) {
-      break;
-    }
-    if (missing == *(A + i)) {
-      missing += 1;
-    }
-  }
-
-  print_array<u_int32_t>(A, n, L"A", true);
-  std::wcout << L"Min: " << missing << "\n";
-  delete[] A;
-  return;
-}
-#pragma endregion Eleventh_Variant
-#pragma region Twelfth_Variant
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-#define RANDOM_MIN 0
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
-#define RANDOM_MAX 20
-
-void
-twelfth_variant()
-{
-  std::wcout << L"Input n:";
-  size_t n = input_value<size_t>();
-
-  int32_t* A = new int32_t[n];
-  int32_t* B = new int32_t[n];
-
-  size_t lt = 0, eq = 0, gt = 0;
-
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_int_distribution<int32_t> distribution(RANDOM_MIN, RANDOM_MAX);
-  for (size_t i = 0; i < n; i++) {
-    *(A + i) = distribution(gen);
-    *(B + i) = distribution(gen);
-    if (*(A + i) > *(B + i)) {
-      gt += 1;
-    } else if (*(A + i) < *(B + i)) {
-      lt += 1;
-    } else {
-      eq += 1;
-    }
-  }
-
-  print_array<int32_t>(A, n, L"A", true);
-  print_array<int32_t>(B, n, L"B", true);
-  std::wcout << L"A[k] > B[k]: " << gt << "\n"
-             << L"A[k] < B[k]: " << lt << "\n"
-             << L"A[k] == B[k]: " << eq << "\n";
-
-  delete[] A;
-  delete[] B;
-  return;
-}
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
-#pragma endregion Twelfth_Variant
-#pragma region Thirteenth_Variant
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-#define RANDOM_MIN 0
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
-#define RANDOM_MAX 20
-
-void
-thirteenth_variant()
-{
-  std::wcout << L"Input n:";
-  size_t n = input_value<size_t>();
-
-  int32_t* X = new int32_t[n];
-  bool is_breaked = false;
-  size_t counter = 0;
-
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_int_distribution<int32_t> distribution(RANDOM_MIN, RANDOM_MAX);
-  for (size_t i = 0; i < n; i++) {
-    *(X + i) = distribution(gen);
-    for (size_t j = 0; j < i; j++) {
-      if (*(X + i) == *(X + j)) {
-        is_breaked = true;
-        break;
-      }
-    }
-    if (!is_breaked) {
-      counter += 1;
-    } else {
-      is_breaked = false;
-    }
-  }
-
-  print_array<int32_t>(X, n, L"X", true);
-  std::wcout << L"Number of different values in array X is " << counter << "\n";
-
-  delete[] X;
-  return;
-}
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
-#pragma endregion Thirteenth_Variant
-#pragma region Fourteenth_Variant
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-#define RANDOM_MIN 0
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
-#define RANDOM_MAX 20
-void
-fourteenth_variant()
-{
-  std::wcout << L"Input n:";
-  size_t n = input_value<size_t>();
+  std::wcout << L"Input B:";
+  int32_t B = input_value<int32_t>();
+  std::wcout << L"Input q:";
+  size_t q = input_value<size_t>();
   std::wcout << L"Input m:";
   size_t m = input_value<size_t>();
 
-  int32_t* X = new int32_t[n];
-  int32_t* Y = new int32_t[m];
+  p = std::min(INT_BITS - 1, p + n + 1);
 
-  bool is_first = true;
-  size_t counter = 0;
+  int32_t mask = static_cast<int32_t>(pow(2, n)) - 1;
+  int32_t bits_for_b = mask;
+  mask <<= (p - n);
+  mask = ~mask;
 
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_int_distribution<int32_t> distribution(RANDOM_MIN, RANDOM_MAX);
-  for (size_t i = 0; i < n; i++) {
-    *(X + i) = distribution(gen);
-  }
-  for (size_t i = 0; i < m; i++) {
-    *(Y + i) = distribution(gen);
-  }
+  A &= mask;
 
-  print_array<int32_t>(X, n, L"X", true);
-  print_array<int32_t>(Y, m, L"Y", true);
-  std::wcout << L"Same elements of array:\n";
+  int32_t left_mask = INT32_MAX - static_cast<int32_t>(pow(2, m + q)) + 1,
+          right_mask = static_cast<int32_t>(pow(2, q)) - 1;
 
-  for (size_t i = 0; i < n; i++) {
-    for (size_t j = 0; j < m; j++) {
-      if (*(X + i) == *(Y + j)) {
-        counter += 1;
-        if (!is_first) {
-          std::wcout << L", ";
-        } else {
-          is_first = false;
-        }
-        std::wcout << L"(X[" << i << L"], Y[" << j << L"])";
-      }
+  int32_t left_part = B & left_mask, right_part = B & right_mask;
+
+  left_part >>= (q + m);
+  left_part <<= n;
+  left_part &= (0xFFFFFFFF << n);
+  left_part <<= q;
+  left_part |= right_part;
+
+  std::wcout << L"Number A after all changes is equal to "
+             << std::bitset<sizeof(A) * 8>(A) << L"(" << A << L")\n";
+
+  std::wcout << L"Number B after all changes is equal to "
+             << std::bitset<sizeof(left_part) * 8>(left_part) << L"("
+             << left_part << L")\n";
+}
+#pragma endregion Eleventh_Variant
+#pragma region Twelfth_Variant
+void
+twelfth_variant()
+{
+  std::wcout << L"First part:\n";
+  std::wcout << L"Input A:";
+  int32_t A = input_value<int32_t>();
+
+  int32_t bits = ~A & 0x1F0;
+  int32_t right_part = A & 0xF;
+  A &= 0xFFFFFE00;
+  A |= bits;
+  A |= right_part;
+  std::wcout << L"Number A after all changes is equal to "
+             << std::bitset<sizeof(A) * 8>(A) << L"(" << A << L")\n";
+
+  std::wcout << L"\nSecond part:\n";
+  std::wcout << L"Input A:";
+  A = input_value<int32_t>();
+  std::wcout << L"Input p:";
+  size_t p = input_value<size_t>();
+  std::wcout << L"Input n:";
+  size_t n = input_value<size_t>();
+  std::wcout << L"Input B:";
+  int32_t B = input_value<int32_t>();
+  std::wcout << L"Input q:";
+  size_t q = input_value<size_t>();
+  std::wcout << L"Input m:";
+  size_t m = input_value<size_t>();
+
+  n = std::min(n, p);
+
+  int32_t mask = static_cast<int32_t>(pow(2, n)) - 1;
+  mask <<= (p - n);
+  mask = ~mask;
+
+  A &= mask;
+
+  int32_t left_mask = INT32_MAX - static_cast<int32_t>(pow(2, m + q)) + 1,
+          right_mask = static_cast<int32_t>(pow(2, q)) - 1;
+
+  int32_t left_part = B & left_mask;
+  right_part = B & right_mask;
+
+  left_part >>= (q + m);
+  left_part <<= n;
+  left_part &= (0xFFFFFFFF << n);
+  left_part <<= q;
+  left_part |= right_part;
+
+  std::wcout << L"Number A after all changes is equal to "
+             << std::bitset<sizeof(A) * 8>(A) << L"(" << A << L")\n";
+
+  std::wcout << L"Number B after all changes is equal to "
+             << std::bitset<sizeof(left_part) * 8>(left_part) << L"("
+             << left_part << L")\n";
+}
+#pragma endregion Twelfth_Variant
+#pragma region Thirteenth_Variant
+void
+thirteenth_variant()
+{
+  std::wcout << L"First part:\n";
+  std::wcout << L"Input A:";
+  int32_t A = input_value<int32_t>();
+  std::wcout << L"Input B:";
+  int32_t B = input_value<int32_t>();
+
+  int32_t mask = 0x60;
+  int32_t bits_from_A = (A & mask), right_part = B & 0x1F, new_B = B;
+
+  new_B &= 0xFFFFFFE0;
+  new_B <<= 2;
+  new_B |= bits_from_A;
+  new_B |= right_part;
+
+  std::wcout << L"Number B after all changes is equal to "
+             << std::bitset<sizeof(new_B) * 8>(new_B) << L"(" << new_B
+             << L")\n";
+
+  std::wcout << L"\nSecond part:\n";
+  std::wcout << L"Input A:";
+  A = input_value<int32_t>();
+  std::wcout << L"Input p:";
+  size_t p = input_value<size_t>();
+  std::wcout << L"Input n:";
+  size_t n = input_value<size_t>();
+
+  n = std::min(n, p);
+
+  mask = static_cast<int32_t>(pow(2, n)) - 1 << (p - n);
+
+  int32_t inv_bits_from_A = ~(A & mask) & mask;
+
+  A &= ~mask;
+  A |= inv_bits_from_A;
+
+  std::wcout << L"Number A after all changes is equal to "
+             << std::bitset<sizeof(A) * 8>(A) << L"(" << A << L")\n";
+}
+#pragma endregion Thirteenth_Variant
+#pragma region Fourteenth_Variant
+void
+fourteenth_variant()
+{
+  std::wcout << L"First part:\n";
+  std::wcout << L"Input A:";
+  int32_t A = input_value<int32_t>();
+
+  int ones_counter = 0;
+  std::wcout << L"A: " << std::bitset<sizeof(A) * 8>(A) << L"\n";
+  int32_t temp = A;
+  for (size_t i = 0; i < sizeof(temp) * 8; i++) {
+    if (i >= 5 && i <= 10) {
+      ones_counter += (temp & 1);
+    }
+    temp >>= 1;
+    if (i == 11) {
+      break;
     }
   }
-  std::wcout << L'\n' << L"Number of same elements: " << counter << L'\n';
 
-  delete[] X;
-  delete[] Y;
-  return;
+  std::wcout << L"The number of ones in bits from 5 to 10 of number A is "
+             << ones_counter << L"\n";
+
+  std::wcout << L"Second part:\n";
+  std::wcout << L"Input A:";
+  A = input_value<int32_t>();
+  std::wcout << L"Input n:";
+  size_t n = input_value<size_t>();
+  std::wcout << L"Input B:";
+  int32_t B = input_value<int32_t>();
+  std::wcout << L"Input m:";
+  size_t m = input_value<size_t>();
+  std::wcout << L"Input q:";
+  size_t q = input_value<size_t>();
+
+  int32_t mask = 0x7 << n;
+  int32_t b_mask = static_cast<int32_t>(std::pow(2, m)) - 1;
+  int32_t bits_from_A = (A & mask) >> n, right_part = B & b_mask, new_B = B;
+
+  new_B &= 0xFFFFFFF8;
+  new_B |= bits_from_A;
+  new_B <<= m;
+  new_B |= right_part;
+
+  int32_t left_mask = ~(static_cast<int32_t>(pow(2, m + q)) - 1),
+          right_mask = static_cast<int32_t>(pow(2, q)) - 1;
+
+  int32_t left_part = new_B & left_mask;
+  right_part = new_B & right_mask;
+
+  left_part >>= (q + m);
+  left_part <<= 3;
+  left_part |= bits_from_A;
+  left_part <<= q;
+  left_part |= right_part;
+
+  std::wcout << L"Number A after all changes is equal to "
+             << std::bitset<sizeof(A) * 8>(A) << L"(" << A << L")\n";
+
+  std::wcout << L"Number B after all changes is equal to "
+             << std::bitset<sizeof(left_part) * 8>(left_part) << L"("
+             << left_part << L")\n";
 }
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
 #pragma endregion Fourteenth_Variant
 #pragma region Fifteenth_Variant
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-#define RANDOM_MIN -20
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
-#define RANDOM_MAX 20
 void
 fifteenth_variant()
 {
+  std::wcout << L"First part:\n";
+  std::wcout << L"Input A:";
+  int32_t A = input_value<int32_t>();
+
+  std::wcout << L"Is number A divisible by 2? " << std::boolalpha
+             << ((A & 0x1) == 0x0) << std::noboolalpha << L"\n";
+
+  std::wcout << L"Second part:\n";
+  std::wcout << L"Input A:";
+  A = input_value<int32_t>();
+  std::wcout << L"Input p:";
+  size_t p = input_value<size_t>();
   std::wcout << L"Input n:";
   size_t n = input_value<size_t>();
 
-  int32_t* A = new int32_t[n];
+  p = std::min(INT_BITS - 1, p + n + 1);
 
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_int_distribution<int32_t> distribution(RANDOM_MIN, RANDOM_MAX);
-  for (size_t i = 0; i < n; i++) {
-    *(A + i) = distribution(gen);
-  }
+  int32_t mask = static_cast<int32_t>(pow(2, n)) - 1;
+  int32_t bits_for_b = mask;
+  mask <<= (p - n);
+  mask = ~mask;
 
-  qsort(A, n, sizeof(int32_t), compare_desc);
+  A &= mask;
 
-  print_array<int32_t>(A, n, L"A", true);
-
-  delete[] A;
-  return;
+  std::wcout << L"Number A after all changes is equal to "
+             << std::bitset<sizeof(A) * 8>(A) << L"(" << A << L")\n";
 }
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
 #pragma endregion Fifteenth_Variant
 #pragma region Sixteenth_Variant
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-#define RANDOM_MIN 0
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
-#define RANDOM_MAX 20
 void
 sixteenth_variant()
 {
-  std::wcout << L"Input k:";
-  size_t k = input_value<size_t>();
-  std::wcout << L"Input n:";
-  size_t n = input_value<size_t>();
-  std::wcout << L"Input q:";
-  int32_t q = input_value<int32_t>();
+  std::wcout << L"First part:\n";
+  std::wcout << L"Input A:";
+  int32_t A = input_value<int32_t>();
+  std::wcout << L"Input B:";
+  int32_t B = input_value<int32_t>();
 
-  int32_t* X = new int32_t[k];
-  int32_t* Y = new int32_t[n];
+  int32_t mask = 0x1C;
+  int32_t bits_from_A = (A & mask) >> 3, right_part = B & 0x1, new_B = B;
 
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_int_distribution<int32_t> distribution(RANDOM_MIN, RANDOM_MAX);
-  for (size_t i = 0; i < k; i++) {
-    *(X + i) = distribution(gen);
-  }
-  for (size_t i = 0; i < n; i++) {
-    *(Y + i) = distribution(gen);
-  }
+  new_B &= 0xFFFFFFF8;
+  new_B |= bits_from_A;
+  new_B <<= 1;
+  new_B |= right_part;
 
-  print_array<int32_t>(X, k, L"X", true);
-  print_array<int32_t>(Y, n, L"Y", true);
+  std::wcout << L"Number B after all changes is equal to "
+             << std::bitset<sizeof(new_B) * 8>(new_B) << L"(" << new_B
+             << L")\n";
 
-  int32_t dist = INT32_MAX, sum = 0;
+  std::wcout << L"Second part:\n";
+  std::wcout << L"Input A:";
+  A = input_value<int32_t>();
 
-  for (size_t i = 0; i < k; i++) {
-    for (size_t j = 0; j < n; j++) {
-      if (abs(q - *(X + i) - *(Y + j)) < dist) {
-        sum = *(X + i) + *(Y + j);
-        dist = abs(q - sum);
-      }
-    }
-  }
+  A |= 0x18;
 
-  std::wcout << L"Closest sum is " << sum << L"\n";
-
-  delete[] X;
-  delete[] Y;
-  return;
+  std::wcout << L"Number A after all changes is equal to "
+             << std::bitset<sizeof(A) * 8>(A) << L"(" << A << L")\n";
 }
-#ifdef RANDOM_MIN
-#undef RANDOM_MIN
-#endif
-
-#ifdef RANDOM_MAX
-#undef RANDOM_MAX
-#endif
 #pragma endregion Sixteenth_Variant
 }

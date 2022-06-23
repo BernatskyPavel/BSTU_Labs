@@ -32,15 +32,15 @@
                                     </p>
                                     <p>
                                         Год издания:
-                                        <xsl:value-of select="pages" />
+                                        <xsl:value-of select="year" />
                                     </p>
                                     <p>
                                         Кол-во страниц:
-                                        <xsl:value-of select="year" />
+                                        <xsl:value-of select="pages" />
                                     </p>
                                 </td>
                                 <td>
-                                    <img src="{cover}"></img>
+                                    <img src="{cover}" style="height:192px"></img>
                                 </td>
                             </tr>
                         </xsl:for-each>
