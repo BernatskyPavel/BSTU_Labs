@@ -1,24 +1,57 @@
 use std::time::Instant;
-const CYCLE: usize = 1000000;
+const CYCLE: usize = 1_000_000;
 fn main() {
-    let mut double_sum = 0.0;
-    let mut int_sum = 0; 
+    let mut double_sum: f64 = 0.0;
+    let mut int_sum: i64 = 0;
 
-    let mut rng = start();
+    let mut rng: ThreadRng = start();
 
-    let clock = Instant::now();
+    let clock: Instant = Instant::now();
 
-    (0..CYCLE).for_each(|_|{
+    for _ in 0..CYCLE {
         double_sum += dget(&mut rng, -100.0, 100.0);
         int_sum += iget(&mut rng, -100, 100);
-    });
+    }
 
-    let time = clock.elapsed();
+    let time: std::time::Duration = clock.elapsed();
 
     println!("Количество циклов: {CYCLE}");
-    println!("Среднее значение (i64): {}", int_sum as f64/ (CYCLE as f64));
+    println!(
+        "Среднее значение (i64): {}",
+        int_sum as f64 / (CYCLE as f64)
+    );
     println!("Среднее значение (f64): {}", double_sum / (CYCLE as f64));
     println!("Продолжительность (сек): {}", time.as_secs_f64());
+
+    println!("Измерения для графика:");
+    measure();
+}
+
+#[allow(unused)]
+fn measure() {
+    let mut double_sum: f64 = 0.0;
+    let mut int_sum: i64 = 0;
+
+    let mut rng: ThreadRng = start();
+
+    for iter in 1..=15 {
+        let cycle: i32 = iter * 1_000_000;
+        let clock: Instant = Instant::now();
+
+        for _ in 0..cycle {
+            double_sum += dget(&mut rng, -100.0, 100.0);
+            int_sum += iget(&mut rng, -100, 100);
+        }
+
+        let time: std::time::Duration = clock.elapsed();
+        println!("Количество циклов: {cycle}");
+        println!(
+            "Среднее значение (i64): {}",
+            int_sum as f64 / (cycle as f64)
+        );
+        println!("Среднее значение (f64): {}", double_sum / (cycle as f64));
+        println!("Продолжительность (сек): {}", time.as_secs_f64());
+    }
 }
 
 use rand::prelude::ThreadRng;
