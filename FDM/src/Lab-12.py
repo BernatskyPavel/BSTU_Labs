@@ -63,7 +63,7 @@ axes[1].legend(
 plt.show()
 
 print(f"""Форма вероятностей: {gbrt.predict_proba(X_test).shape}
-Спрогнозированные вероятности: {gbrt.predict_proba(X_test[:6])}""")
+Спрогнозированные вероятности:\n {gbrt.predict_proba(X_test[:6])}""")
 
 fig, axes = plt.subplots(1, 2, figsize=(13, 5))
 mglearn.tools.plot_2d_separator(gbrt,
