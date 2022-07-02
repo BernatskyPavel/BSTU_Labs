@@ -36,7 +36,12 @@ impl<'a, T> PermGen<'a, T> {
     }
 
     pub fn change_regime(&mut self, new_regime: PermRegime) {
-        self.rg = new_regime;
+        match new_regime {
+            PermRegime::PARTLY(n) if n == self.n => {
+                self.rg = PermRegime::FULL;
+            }
+            _ => self.rg = new_regime,
+        }
         self.reset();
     }
 
